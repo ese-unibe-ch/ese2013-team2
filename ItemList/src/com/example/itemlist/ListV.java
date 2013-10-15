@@ -1,18 +1,19 @@
 package com.example.itemlist;
 
 import android.app.ListActivity;
+import android.app.ListFragment;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class ListV extends ListActivity {
+public class ListV extends ListFragment {
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	  public void onActivityCreated(Bundle savedInstanceState)  {
 		// TODO Auto-generated method stub
-		super.onCreate(savedInstanceState);
+		super.onActivityCreated(savedInstanceState);
 		
-		setListAdapter(new ArrayAdapter<String>(this, R.layout.allcourseslist, SPORTS));
+		setListAdapter(new ArrayAdapter<String>(getActivity(), R.layout.allcourseslist, SPORTS));
 		ListView list = getListView();
 		list.setTextFilterEnabled(true);
 		
