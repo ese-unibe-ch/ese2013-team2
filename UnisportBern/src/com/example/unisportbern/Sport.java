@@ -3,6 +3,7 @@ package com.example.unisportbern;
 public class Sport {
 	private int id;
 	private String name;
+	private Course[] courses;
 
 
 	public Sport(int id, String name){
@@ -23,6 +24,9 @@ public class Sport {
 		return name;
 	}
 
+	public Course[] getCourses(){
+		return courses;
+	}
 
 
 }

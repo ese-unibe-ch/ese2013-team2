@@ -4,7 +4,7 @@
     android:layout_height="match_parent" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/textView:name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -12,6 +12,47 @@
         android:layout_alignParentTop="true"
         android:gravity="center"
         android:text="Masus04"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="@dimen/profile_title" />
+
+    <TextView
+        android:id="@+id/TextView:favourite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textView:name"
+        android:gravity="center"
+        android:text="@string/favourite_courses"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ListView
+        android:id="@+id/listView:favourite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/TextView:favourite" >
+    </ListView>
+    
+     <TextView
+        android:id="@+id/TextView:upcoming"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/listView:favourite"
+        android:gravity="center"
+        android:text="@string/upcoming_courses"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+     
+      <ListView
+        android:id="@+id/listView:upcoming"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/TextView:upcoming" >
+    </ListView>
+    
+      
 
 </RelativeLayout>

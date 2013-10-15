@@ -13,7 +13,8 @@ public class ProfileFragment extends Fragment{
 		
 		return inflater.inflate(R.layout.profile_layout, container, false);
 		
-
+		// TODO: query favourite/upcoming courses, insert into list
+		
 	}
 
 }
