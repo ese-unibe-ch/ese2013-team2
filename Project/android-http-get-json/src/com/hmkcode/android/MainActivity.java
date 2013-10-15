@@ -27,6 +27,7 @@ import org.json.*;
 
 public class MainActivity extends Activity {
 
+	// array size nid hardcodä
 	Sport [] allsports = new Sport [138];
 	EditText etResponse;
 	TextView tvIsConnected;
