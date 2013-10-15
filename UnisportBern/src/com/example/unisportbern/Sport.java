@@ -1,4 +1,4 @@
-package com.hmkcode.android;
+package com.example.unisportbern;
 
 public class Sport {
 	private int id;
