@@ -1,6 +1,7 @@
 package com.hmkcode.android;
 
 import java.io.BufferedReader;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -25,7 +26,7 @@ import android.widget.Toast;
 import android.app.Activity;
 import org.json.*;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity{
 
 	// array size nid hardcodä
 	Sport [] allsports = new Sport [138];
@@ -102,6 +103,7 @@ public class MainActivity extends Activity {
     	    	return false;	
     }
     private class HttpAsyncTask extends AsyncTask<String, Void, String> {
+    	
         @Override
         protected String doInBackground(String... urls) {
               
@@ -112,29 +114,29 @@ public class MainActivity extends Activity {
         protected void onPostExecute(String result) {
             Toast.makeText(getBaseContext(), "Received!", Toast.LENGTH_LONG).show();
             //etResponse.setText(result);
+            //WICHTIGER CODEBLOCK!!
             try {
             	JSONObject json = new JSONObject(result);
-            	//etResponse.setText(json.toString(1));
+            	//eigentlich würde ich hier gerne ein Sportobjekt erzeugen:
+            	//Sport [] allsports = new Sport [138]; 
             	
-            	JSONObject resultate = json.getJSONObject("result");
+            	String [] allsportnames = new String [138];
+            	int [] allsportid = new int [138];
             	
-            	String str;
-            	str = resultate.toString();
+            	String str = "";
+            	for(int i=1; i < 138; i++){
+            		String index = Integer.toString(i);
+            		String currentsport;
+            		currentsport = json.getJSONObject("result").getString(index);
+            		//Hier sollte noch für allsports[i] name & id gesettet werden
+            		allsportnames[i] = currentsport;
+            		allsportid[i] = i;
+            		str +=  currentsport +  "\n";
+            		etResponse.setText(currentsport);
+            	}
             	etResponse.setText(str);
-            	/*
-            	//JSONObject sport = resultate.getJSONObject("1");
-            	//str = sport.toString();
-            	String [] names = new String[150];
-            	names = getNames(resultate);
-            	str = names[0];
-            	etResponse.setText(str);
             	
-            	/*Sport [] allsports = new Sport [138];
-            	 *allsports[i].name = getJSONObject(integer.ToString(i+1));
-            	 *allsports[i].id = i+1;
-            	 */
-            	
-            	
+
             } catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -143,17 +145,6 @@ public class MainActivity extends Activity {
        }
     }
         
-        private static String[] getNames( JSONObject jo ) {
-        	int length = jo.length();
-        	if (length == 0) return null;
-        	Iterator iterator = jo.keys();
-        	String[] names = new String[length];
-        	int i = 0;
-        	while (iterator.hasNext()) {
-        		names[i] = (String)iterator.next();
-        		i += 1;
-        	}
-        	return names;
-        }
+
         
 }
