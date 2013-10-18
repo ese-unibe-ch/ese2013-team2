@@ -7,17 +7,17 @@ public class Course {
 	Sport sport;
 	Date date;
 	boolean[] phases;
-	String place;
+	String location;
 	String information;
 	boolean subscriptionRequired;
 	int kew;
 	
-	public Course (int cid,Sport sport, Date date, boolean[] phases, String place, String information, boolean subscriptionRequired, int kew){
+	public Course (int cid,Sport sport, Date date, boolean[] phases, String location, String information, boolean subscriptionRequired, int kew){
 		this.cid = cid;
 		this.sport = sport;
 		this.date = date;
 		this.phases = phases;
-		this.place = place;
+		this.location = location;
 		this.information = information;
 		this.subscriptionRequired = subscriptionRequired;
 		this.kew = kew;
