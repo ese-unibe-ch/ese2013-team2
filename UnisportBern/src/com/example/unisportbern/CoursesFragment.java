@@ -1,5 +1,7 @@
 package com.example.unisportbern;
 
+import ch.unibe.unisportbern.support.DBMethodes;
+import ch.unibe.unisportbern.support.Sport;
 import android.app.ListFragment;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -19,7 +21,7 @@ public class CoursesFragment extends ListFragment {
 
 	}
 
-	static final String[] SPORTS = new String[] { "Fussball", "Tennis", "Golf", "Tisch Tennis", "KungFu", "Badminton",
-			"Karate", "Basketball", "Volleyball", "Handball" };
-
+	//public static Sport[] sportList = DBMethodes.getSports();	
+	
+	static final String[] SPORTS = new String[] {"a"};
 }
