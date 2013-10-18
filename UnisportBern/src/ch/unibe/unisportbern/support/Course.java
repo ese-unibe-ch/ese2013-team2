@@ -23,4 +23,8 @@ public class Course {
 		this.kew = kew;
 	}
 	
+	public String toString(){
+		return sport.toString();
+	}
+	
 }

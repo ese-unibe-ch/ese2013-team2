@@ -16,8 +16,7 @@ public class Date {
 	 *  display date in format: 'mo 20:15'
 	 */
 	public String toString(){
-		return day;
-		
+		return day;	
 	}
 	
 }
