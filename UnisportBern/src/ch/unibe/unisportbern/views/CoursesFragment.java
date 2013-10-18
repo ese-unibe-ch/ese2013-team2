@@ -2,6 +2,7 @@ package ch.unibe.unisportbern.views;
 
 import ch.unibe.unisportbern.support.DBMethodes;
 import ch.unibe.unisportbern.support.Sport;
+import ch.unibe.unisportbern.support.SportsAdapter;
 
 import com.example.unisportbern.R;
 
@@ -33,7 +34,7 @@ public class CoursesFragment extends ListFragment {
 			SPORTS[a] = sportList[a].toString(); 
 		}
 
-		setListAdapter(new ArrayAdapter<String>(getActivity(), R.layout.allcourseslist, SPORTS));
+		setListAdapter(new SportsAdapter(getActivity(), sportList));
 		ListView list = getListView();
 		list.setTextFilterEnabled(true);
 
