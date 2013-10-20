@@ -22,5 +22,10 @@ public class Course {
 		this.subscriptionRequired = subscriptionRequired;
 		this.kew = kew;
 	}
+
+	public long getId() {
+		// TODO Auto-generated method stub
+		return cid;
+	}
 	
 }
