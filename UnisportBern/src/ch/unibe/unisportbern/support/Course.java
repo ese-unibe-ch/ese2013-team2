@@ -26,5 +26,9 @@ public class Course {
 	public String toString(){
 		return sport.toString();
 	}
+
+	public long getId() {
+		return cid;
+	}
 	
 }

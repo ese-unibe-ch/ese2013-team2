@@ -1,9 +1,11 @@
 package ch.unibe.unisportbern.support;
 
+import java.util.ArrayList;
+
 public class Sport {
 	private int id;
 	private String name;
-	private Course[] courses;
+	private ArrayList<Course> courses;
 
 
 	public Sport(int id, String name){
@@ -24,8 +26,13 @@ public class Sport {
 		return name;
 	}
 
-	public Course[] getCourses(){
+	public ArrayList<Course> getCourses(){
 		return courses;
+	}
+
+
+	public Course getCourse(int c) {
+		return courses.get(c);
 	}
 
 
