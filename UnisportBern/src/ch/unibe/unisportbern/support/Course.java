@@ -30,5 +30,13 @@ public class Course {
 	public long getId() {
 		return cid;
 	}
+
+	public Sport getSport() {
+		return sport;
+	}
+
+	public Object getDate() {
+		return date;
+	}
 	
 }

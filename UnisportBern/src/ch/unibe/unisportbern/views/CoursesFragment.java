@@ -4,11 +4,8 @@ import ch.unibe.unisportbern.support.DBMethodes;
 import ch.unibe.unisportbern.support.Sport;
 import ch.unibe.unisportbern.support.SportsAdapter;
 
-import com.example.unisportbern.R;
-
 import android.app.ListFragment;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class CoursesFragment extends ListFragment {
