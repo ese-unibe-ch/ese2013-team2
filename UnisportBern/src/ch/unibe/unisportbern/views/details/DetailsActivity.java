@@ -34,8 +34,7 @@ public class DetailsActivity extends Activity implements OnClickListener{
 		setContentView(R.layout.details_layout);
 		
 		
-		db = new DBMethodes();
-		// TODO: courses = db.getAllCourses(DetailsActivity.this, sid) as soon as db is changed
+		courses = DBMethodes.getAllCourses(DetailsActivity.this, sid);
 		
 		
 		myList = (ExpandableListView) findViewById(R.id.expandableListViewCourses);
