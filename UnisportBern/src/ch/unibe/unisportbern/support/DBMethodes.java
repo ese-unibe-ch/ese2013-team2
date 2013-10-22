@@ -1,5 +1,7 @@
 package ch.unibe.unisportbern.support;
 
+import java.util.ArrayList;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -7,6 +9,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 
 public class DBMethodes {
+	
+	public static ArrayList<Sport> allSports;
 	
 	public DBMethodes(){
 		
@@ -19,8 +23,7 @@ public class DBMethodes {
         
         ContentValues values = new ContentValues();
         
-        //Todo: Implement JSON
-        String[] jSonResult = new String[]{"Orientierungslauf", "Fussball", "Badmington", "Schlegle!"};
+        String[] jSonResult = new String[]{"Langlauf", "Orientierungslauf", "Fechten", "Laufen"};
         
         for(int a=0;a<jSonResult.length;a++){
 
@@ -48,7 +51,7 @@ public static void courseUpdate(Context context){
         //Todo: Implement JSON
 
 	        //Setup new Content Values and assign some dummy content
-	        values.put("SID", 3);
+	        values.put("SID", 2);
 	        values.put("REALSTARTTIMESEC", 1382072400);
 	        values.put("REALENDTIMESEC", 1382072900);
 	        values.put("DAY", "Montag");
@@ -70,21 +73,26 @@ public static void courseUpdate(Context context){
         db.close();
 	}
 	
-	
-	public static Sport[] getAllSport(Context context){
+	/**
+	 * returns a list with all sport names.
+	 * 
+	 * @param context
+	 * @return ArrayList<Sport>
+	 */
+	public static ArrayList<Sport> getAllSport(Context context){
 		
 		DBHelper helper = new DBHelper(context);
 		SQLiteDatabase db = helper.getWritableDatabase();
         
         Cursor cursor = helper.query(db, "SELECT * FROM sports");
 
-        Sport []sportNames = new Sport[cursor.getCount()];
+        ArrayList<Sport> sportNames = new ArrayList<Sport>();
         
         cursor.moveToFirst();
         
-        for(int a=0; a<sportNames.length; a++){
+        for(int a=0; a<sportNames.size(); a++){
         	
-        	sportNames[a] = new Sport(cursor.getInt(0), cursor.getString(1));
+        	sportNames.add(new Sport(cursor.getInt(0), cursor.getString(1)));
         	cursor.moveToNext();
         }
         
@@ -94,8 +102,15 @@ public static void courseUpdate(Context context){
 		
 		return sportNames;
 	}
+	
 
-	public static Course[] getAllCourses (Context context, int sid){
+	/**
+	 * return a list of all Courses from a certain Sport 
+	 * @param context
+	 * @param sid
+	 * @return ArryList<Course>
+	 */
+	public static ArrayList<Course> getAllCourses (Context context, int sid){
 		DBHelper helper = new DBHelper(context);
 		SQLiteDatabase db = helper.getWritableDatabase();
         
@@ -108,7 +123,7 @@ public static void courseUpdate(Context context){
         
         
         //some definitions
-        Course[] courses = new Course[cursor.getCount()];
+        ArrayList<Course> courses = new ArrayList<Course>();
         boolean[] phases = new boolean[5];
         Date date; 
         
@@ -127,7 +142,7 @@ public static void courseUpdate(Context context){
         	//subscription integer to boolean
         	boolean subscriptionRequired = (cursor.getInt(12) == 1) ? true : false;
         	
-        	courses[a] = new Course(cursor.getInt(0), sport, date, phases, cursor.getString(10), cursor.getString(11), subscriptionRequired, cursor.getInt(13));
+        	courses.add(new Course(cursor.getInt(0), sport, date, phases, cursor.getString(10), cursor.getString(11), subscriptionRequired, cursor.getInt(13)));
         	cursor.moveToNext();
         }
         
@@ -151,7 +166,6 @@ public static void courseUpdate(Context context){
         
 		Cursor cursorFavorites = helper.query(db, "SELECT * FROM favorites");
         cursorFavorites.moveToFirst();
-        cursorFavorites.moveToNext();
 		
 		Cursor cursor = helper.query(db, "SELECT * FROM courses WHERE cid="+cursorFavorites.getInt(1));
         cursor.moveToFirst();

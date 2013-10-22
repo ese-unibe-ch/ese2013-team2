@@ -26,5 +26,17 @@ public class Course {
 	public String toString(){
 		return sport.toString();
 	}
+
+	public long getId() {
+		return cid;
+	}
+
+	public Sport getSport() {
+		return sport;
+	}
+
+	public Object getDate() {
+		return date;
+	}
 	
 }
