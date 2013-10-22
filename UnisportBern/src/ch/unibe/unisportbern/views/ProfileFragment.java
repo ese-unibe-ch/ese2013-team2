@@ -1,7 +1,5 @@
 package ch.unibe.unisportbern.views;
 
-import ch.unibe.unisportbern.support.DBMethodes;
-
 import com.example.unisportbern.R;
 
 import android.app.Fragment;
