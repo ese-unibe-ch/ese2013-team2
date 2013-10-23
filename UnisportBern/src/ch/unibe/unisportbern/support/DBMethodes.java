@@ -1,6 +1,10 @@
 package ch.unibe.unisportbern.support;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeoutException;
+
+import org.json.JSONException;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -16,21 +20,23 @@ public class DBMethodes {
 		
 	}
 	
-	public static void sportUpdate(Context context){
+	public static void sportUpdate(Context context) throws JSONException, InterruptedException, ExecutionException, TimeoutException{
+		
 		
 		DBHelper dbHelper = new DBHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         
         ContentValues values = new ContentValues();
         
-        String[] jSonResult = new String[]{"Langlauf", "Orientierungslauf", "Fechten", "Laufen"};
+        Json json = new Json();
+        ArrayList<Sport> list = json.getAllSports();
         
-        for(int a=0;a<jSonResult.length;a++){
+        for(int a=0;a<list.size();a++){
 
 	        //Setup new Content Values and assign some dummy content
 	
 	        values.put("SID", a);
-	        values.put("NAME", jSonResult[a]);
+	        values.put("NAME", list.get(a).getName());
 	
 	        //Perform the insert
 	        db.insert(DBHelper.SPORTS,null, values);
@@ -41,20 +47,22 @@ public class DBMethodes {
         db.close();
 	}
 	
-public static void courseUpdate(Context context){
+/*public static void courseUpdate(Context context, int sid) throws JSONException, InterruptedException, ExecutionException, TimeoutException{
 		
 		DBHelper dbHelper = new DBHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         
         ContentValues values = new ContentValues();
         
-        //Todo: Implement JSON
-
-	        //Setup new Content Values and assign some dummy content
-	        values.put("SID", 2);
+        Json json = new Json();
+        ArrayList<String[]> jsonResult = json.getAllCourses(sid);
+        
+        for(int a=0;a<jsonResult.size();a++){
+        	//Setup new Content Values and assign some dummy content
+	        values.put("SID", sid);
 	        values.put("REALSTARTTIMESEC", 1382072400);
 	        values.put("REALENDTIMESEC", 1382072900);
-	        values.put("DAY", "Montag");
+	        values.put("DAY", jsonResult.get(a)[1]);
 	        values.put("P1", 1);
 	        values.put("P2", 1);
 	        values.put("P3", 0);
@@ -67,11 +75,12 @@ public static void courseUpdate(Context context){
 
 	        //Perform the insert
 	        db.insert(DBHelper.COURSES,null, values);
+        }   
         
         //Close the Database and the Helper
         dbHelper.close();
         db.close();
-	}
+	}*/
 	
 	/**
 	 * returns a list with all sport names.
@@ -109,8 +118,15 @@ public static void courseUpdate(Context context){
 	 * @param context
 	 * @param sid
 	 * @return ArryList<Course>
+	 * @throws TimeoutException 
+	 * @throws ExecutionException 
+	 * @throws InterruptedException 
+	 * @throws JSONException 
 	 */
-	public static ArrayList<Course> getAllCourses (Context context, int sid){
+	/*public static ArrayList<Course> getAllCourses (Context context, int sid) throws JSONException, InterruptedException, ExecutionException, TimeoutException{
+		//Update Database
+		courseUpdate(context, sid);
+		
 		DBHelper helper = new DBHelper(context);
 		SQLiteDatabase db = helper.getWritableDatabase();
         
@@ -202,6 +218,5 @@ public static void courseUpdate(Context context){
         }
         
         return courses;
-	}
-	
+	}*/
 }
