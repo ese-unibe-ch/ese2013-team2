@@ -90,7 +90,7 @@ public static void courseUpdate(Context context){
         
         cursor.moveToFirst();
         
-        for(int a=0; a<sportNames.size(); a++){
+        for(int a=0; a<cursor.getCount(); a++){
         	
         	sportNames.add(new Sport(cursor.getInt(0), cursor.getString(1)));
         	cursor.moveToNext();

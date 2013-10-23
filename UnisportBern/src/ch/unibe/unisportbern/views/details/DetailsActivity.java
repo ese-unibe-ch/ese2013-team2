@@ -6,9 +6,12 @@ import com.example.unisportbern.R;
 
 import ch.unibe.unisportbern.support.Course;
 import ch.unibe.unisportbern.support.DBMethodes;
+import ch.unibe.unisportbern.support.Date;
 import ch.unibe.unisportbern.support.Sport;
+import ch.unibe.unisportbern.views.CoursesFragment;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -24,18 +27,14 @@ public class DetailsActivity extends Activity implements OnClickListener{
 	private int sid;
 	
 	
-	public DetailsActivity(int id){
-		sid = id;
-	}
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.details_layout);
 		
-		
+		Intent intent = getIntent();
+		sid = intent.getIntExtra(CoursesFragment.EXTRA, 1);
 		courses = DBMethodes.getAllCourses(DetailsActivity.this, sid);
-		
 		
 		myList = (ExpandableListView) findViewById(R.id.expandableListViewCourses);
 		listAdapter = new ExpandableListAdapter(DetailsActivity.this, courses);
