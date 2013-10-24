@@ -14,37 +14,37 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class DBMethodes {
 	
-	public static ArrayList<Sport> allSports;
-	
 	public DBMethodes(){
-		
 	}
 	
 	public static void sportUpdate(Context context) throws JSONException, InterruptedException, ExecutionException, TimeoutException{
-		
-		
-		DBHelper dbHelper = new DBHelper(context);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
         
-        ContentValues values = new ContentValues();
+        Network network = new Network(context);
         
-        Json json = new Json();
-        ArrayList<Sport> list = json.getAllSports();
-        
-        for(int a=0;a<list.size();a++){
-
-	        //Setup new Content Values and assign some dummy content
-	
-	        values.put("SID", a);
-	        values.put("NAME", list.get(a).getName());
-	
-	        //Perform the insert
-	        db.insert(DBHelper.SPORTS,null, values);
+        if(network.isOnline()){
+        	DBHelper dbHelper = new DBHelper(context);
+            SQLiteDatabase db = dbHelper.getWritableDatabase();
+            
+            ContentValues values = new ContentValues();
+        	
+        	Json json = new Json();
+            
+            ArrayList<Sport> list = json.getAllSports();
+            
+    	        for(int a=0;a<list.size();a++){
+    	
+    		        //Setup new Content Values and assign some dummy content
+    		
+    		        values.put("SID", a);
+    		        values.put("NAME", list.get(a).getName());
+    		
+    		        //Perform the insert
+    		        db.insert(DBHelper.SPORTS,null, values);
+    	        } 
+    	      //Close the Database and the Helper
+    	      dbHelper.close();
+    	      db.close();
         }
-        
-        //Close the Database and the Helper
-        dbHelper.close();
-        db.close();
 	}
 	
 /*public static void courseUpdate(Context context, int sid) throws JSONException, InterruptedException, ExecutionException, TimeoutException{
