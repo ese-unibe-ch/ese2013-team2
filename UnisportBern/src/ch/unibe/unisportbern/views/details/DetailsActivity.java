@@ -6,8 +6,6 @@ import com.example.unisportbern.R;
 
 import ch.unibe.unisportbern.support.Course;
 import ch.unibe.unisportbern.support.DBMethodes;
-import ch.unibe.unisportbern.support.Date;
-import ch.unibe.unisportbern.support.Sport;
 import ch.unibe.unisportbern.views.CoursesFragment;
 
 import android.app.Activity;
@@ -19,13 +17,11 @@ import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnGroupClickListener;
 
 public class DetailsActivity extends Activity implements OnClickListener{
-
-	private DBMethodes db;
+	
 	private ArrayList<Course> courses;
 	private ExpandableListAdapter listAdapter;
 	private ExpandableListView myList;
 	private int sid;
-	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){

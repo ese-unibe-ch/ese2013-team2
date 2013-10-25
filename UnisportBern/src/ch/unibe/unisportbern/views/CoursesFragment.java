@@ -2,8 +2,6 @@ package ch.unibe.unisportbern.views;
 
 import java.util.ArrayList;
 
-import org.json.JSONException;
-
 import ch.unibe.unisportbern.support.*;
 import ch.unibe.unisportbern.views.details.DetailsActivity;
 
@@ -20,7 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class CoursesFragment extends ListFragment {
-	public final static String EXTRA = "ch.unibe.unisportbern.views";
+	public final static String EXTRA = "ch.unibe.unisportbern.views.EXTRA";
 	ArrayList<Sport> sportList = new ArrayList<Sport>();
 
 	Sport[] sports;
