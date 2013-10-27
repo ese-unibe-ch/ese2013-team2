@@ -12,7 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class CoursesFragment extends ListFragment {
-	
+
+	public final static String EXTRA = "ch.unibe.unisportbern.views";
 	public String[] SPORTS;			
 	
 	public final static String EXTRA = "ch.unibe.unisportbern.views.EXTRA";
@@ -66,6 +67,18 @@ public class CoursesFragment extends ListFragment {
 		setListAdapter(new ArrayAdapter<String>(getActivity(), R.layout.allcourseslist, SPORTS));
 		ListView list = getListView();
 		list.setTextFilterEnabled(true);
+				list.setOnItemClickListener(new OnItemClickListener(){
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent (getActivity(), DetailsActivity.class);
+				intent.putExtra(EXTRA, sportList.get(arg2).getId());
+				startActivity(intent);
+			}
+			
+		});
 
 	}
 }
