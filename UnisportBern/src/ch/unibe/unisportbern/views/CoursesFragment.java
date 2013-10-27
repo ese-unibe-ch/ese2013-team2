@@ -15,6 +15,7 @@ public class CoursesFragment extends ListFragment {
 	
 	public String[] SPORTS;			
 	
+	public final static String EXTRA = "ch.unibe.unisportbern.views.EXTRA";
 	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {

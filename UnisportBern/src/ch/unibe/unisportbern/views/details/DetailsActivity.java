@@ -20,7 +20,6 @@ import android.widget.ExpandableListView.OnGroupClickListener;
 
 public class DetailsActivity extends Activity implements OnClickListener{
 
-	private DBMethodes db;
 	private ArrayList<Course> courses;
 	private ExpandableListAdapter listAdapter;
 	private ExpandableListView myList;
