@@ -33,7 +33,7 @@ public class DetailsActivity extends Activity implements OnClickListener{
 		
 		Intent intent = getIntent();
 		sid = intent.getIntExtra(CoursesFragment.EXTRA, 1);
-		courses = DBMethodes.getAllCourses(DetailsActivity.this, sid);
+		// TODO: courses = DBMethodes.getAllCourses(DetailsActivity.this, sid);
 		
 		myList = (ExpandableListView) findViewById(R.id.expandableListViewCourses);
 		listAdapter = new ExpandableListAdapter(DetailsActivity.this, courses);
