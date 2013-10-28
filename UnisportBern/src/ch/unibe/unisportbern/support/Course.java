@@ -2,20 +2,21 @@ package ch.unibe.unisportbern.support;
 
 public class Course {
 
-	// TODO: create class
-	int cid;
-	Sport sport;
-	Date date;
+	int sid;
+	String courseName;
+	String day;
+	String time;
 	boolean[] phases;
 	String location;
 	String information;
 	boolean subscriptionRequired;
-	int kew;
+	String kew;
 	
-	public Course (int cid,Sport sport, Date date, boolean[] phases, String location, String information, boolean subscriptionRequired, int kew){
-		this.cid = cid;
-		this.sport = sport;
-		this.date = date;
+	public Course (int sid,String courseName, String day, String time, boolean[] phases, String location, String information, boolean subscriptionRequired, String kew){
+		this.sid = sid;
+		this.courseName = courseName;
+		this.day = day;
+		this.time = time;
 		this.phases = phases;
 		this.location = location;
 		this.information = information;
@@ -24,19 +25,6 @@ public class Course {
 	}
 	
 	public String toString(){
-		return sport.toString();
+		return courseName;
 	}
-
-	public long getId() {
-		return cid;
-	}
-
-	public Sport getSport() {
-		return sport;
-	}
-
-	public Object getDate() {
-		return date;
-	}
-	
 }

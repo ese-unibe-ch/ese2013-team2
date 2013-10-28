@@ -27,7 +27,7 @@ public class DBMethodes {
             
             ContentValues values = new ContentValues();
         	
-        	Json json = new Json();
+        	JsonSport json = new JsonSport();
             
             ArrayList<Sport> list = json.getAllSports();
             

@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
@@ -16,19 +15,17 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import android.os.AsyncTask;
 
-public class Json extends AsyncTask<Void, Void, Void> {
+public class JsonCourse extends AsyncTask<Void, Void, Void> {
 
-	private ArrayList<Sport> allSports;
-	private final static String SPORTS = "http://scg.unibe.ch/ese/unisport/sports.php";
+	private ArrayList<Course> allCourses;
 	private final static String COURSE = "http://scg.unibe.ch/ese/unisport/sport.php?id=";
 	private String URL;
-	private JSONObject obj;
+	private JSONObject objCourse;
 	
-	public Json(){
-		allSports = new ArrayList<Sport>();
+	public JsonCourse(){
+		allCourses = new ArrayList<Course>();
 	}
 
 	protected Void doInBackground(Void... params) {
@@ -40,8 +37,8 @@ public class Json extends AsyncTask<Void, Void, Void> {
 			String inputStream = convertInputStreamToString(is);
 
 			JSONObject json = new JSONObject(inputStream);
-			obj = json.getJSONObject("result");
-			
+			objCourse = json.getJSONObject("result");
+
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -52,12 +49,12 @@ public class Json extends AsyncTask<Void, Void, Void> {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		return null;	
 	}
 
 	public void executeJson() throws JSONException, InterruptedException, ExecutionException, TimeoutException {
 		this.execute();
-		this.get(300,TimeUnit.MILLISECONDS);
+		this.get(200,TimeUnit.MILLISECONDS);
 	}
 
 	private static String convertInputStreamToString(InputStream inputStream) throws IOException {
@@ -71,46 +68,45 @@ public class Json extends AsyncTask<Void, Void, Void> {
 		return result;
 	}
 	
-	public ArrayList<Sport> getAllSports() throws JSONException, InterruptedException, ExecutionException, TimeoutException{
-		URL = SPORTS;
-		this.executeJson();
-		String currentsport;
+	public ArrayList<Course> getAllCourses(Sport sport) throws JSONException, InterruptedException, ExecutionException, TimeoutException{		
+		URL = COURSE+Integer.toString(sport.getId());
 		
-		for (int i = 1; i < obj.length(); i++) {
-			String index = Integer.toString(i);
-			currentsport = obj.getString(index);
-			allSports.add(new Sport(i, currentsport));
-		}
-		return allSports;
-	}
- 
-	/* public ArrayList<String[]> getAllCourses(int sid) throws JSONException, InterruptedException, ExecutionException, TimeoutException{		
+		String sportName = sport.getName();
 		
-		String sportName = getAllSports().get(sid).getName();
-		
-		URL = COURSE+Integer.toString(sid);
 		this.executeJson();
 		
-		JSONArray array = obj.getJSONArray(sportName);
+		JSONArray array = objCourse.getJSONArray(sportName);
 		
-		ArrayList<String[]> getBack = new ArrayList<String[]>();
-		String[] temp = new String[8];
 
 		for(int i = 0; i < array.length(); i++)
 		{
 			JSONObject row = array.getJSONObject(i);
 
-			temp[0] = row.getString("course");
-			temp[1] = row.getString("day");
-			temp[2] = row.getString("time");
-			temp[3] = row.getString("period");
-			temp[4] = row.getString("place");
-			temp[5] = row.getString("info");
-			temp[6] = row.getString("subscription");
-			temp[7] = row.getString("kew");
-			
-			getBack.add(i,temp);
+			allCourses.add(new Course(sport.getId(),row.getString("course"),row.getString("day"),row.getString("time"),getPeriode(row.getString("period")),row.getString("place"),row.getString("info"), subscriptionRequired(row.getString("subscription")), row.getString("kew")));
 		}
-		return getBack;
-	}*/
+		return allCourses;
+	}
+	
+	private boolean[] getPeriode(String periode){
+		boolean[] substring = new boolean[5];
+		int b=0;
+		for(int i=0;i<9;i+=2){
+			if(periode.substring(i,i+1).equals("-")){
+				substring[b] = false;
+			}
+			else{
+				substring[b] = true;
+			}
+			b++;
+		}
+		return substring;
+	}
+	
+	private boolean subscriptionRequired(String required){
+		boolean isRequired;
+		if(required.equals("null")) isRequired = false;
+		else isRequired = true;
+		
+		return isRequired;
+	}
 }
