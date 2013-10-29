@@ -35,7 +35,7 @@ public class DBMethodes {
     	
     		        //Setup new Content Values and assign some dummy content
     		
-    		        values.put("SID", a);
+    		        values.put("SID", a+1);
     		        values.put("NAME", list.get(a).getName());
     		
     		        //Perform the insert
@@ -54,8 +54,8 @@ public class DBMethodes {
         
         ContentValues values = new ContentValues();
         
-        Json json = new Json();
-        ArrayList<String[]> jsonResult = json.getAllCourses(sid);
+        JsonCourse courses = new JsonCourse();
+        
         
         for(int a=0;a<jsonResult.size();a++){
         	//Setup new Content Values and assign some dummy content
