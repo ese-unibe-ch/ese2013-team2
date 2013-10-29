@@ -1,6 +1,7 @@
 package ch.unibe.unisportbern.support;
 
 public class Course {
+
 	int cid;
 	Sport sport;
 	String courseName;
@@ -26,7 +27,7 @@ public class Course {
 	}
 	
 	public String toString(){
-		return courseName;
+		return courseName+" ("+getTime()+")";
 	}
 	
 	public Sport getSport(){

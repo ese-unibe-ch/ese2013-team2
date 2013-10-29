@@ -29,10 +29,7 @@ public class MainActivity extends Activity {
 		tab.setText("Courses");
 		tab.setTabListener(new TabListener<CoursesFragment>(this, "Courses", CoursesFragment.class));
 		
-		actionbar.addTab(tab);
-	
-		
-	
+		actionbar.addTab(tab);	
 	}
 
 	@Override

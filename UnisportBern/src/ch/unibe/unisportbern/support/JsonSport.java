@@ -75,7 +75,7 @@ public class JsonSport extends AsyncTask<Void, Void, Void> {
 			for (int i = 1; i <= obj.length(); i++) {
 				String index = Integer.toString(i);
 				currentsport = obj.getString(index);
-				this.allSports.add(new Sport(i, currentsport));
+				this.allSports.add(new Sport(i+1, currentsport));
 			}
 			return allSports;	
 		}
