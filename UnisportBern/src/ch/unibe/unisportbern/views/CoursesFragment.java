@@ -13,15 +13,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class CoursesFragment extends ListFragment {
-
-	public final static String EXTRA = "ch.unibe.unisportbern.views";
-	public String[] SPORTS;
-
+	
+	public String[] SPORTS;			
+	
+	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-
-		// Activate the database
+		
+		//Activate the database
 		try {
 			DBMethodes.sportUpdate(getActivity());
 		} catch (JSONException e1) {
@@ -38,26 +38,9 @@ public class CoursesFragment extends ListFragment {
 			e1.printStackTrace();
 		}
 
-		/*
-		 * Json json = new Json(); try { json.getAllCourses(3); } catch
-		 * (JSONException e) { // TODO Auto-generated catch block
-		 * e.printStackTrace(); } catch (InterruptedException e) { // TODO
-		 * Auto-generated catch block e.printStackTrace(); } catch
-		 * (ExecutionException e) { // TODO Auto-generated catch block
-		 * e.printStackTrace(); } catch (TimeoutException e) { // TODO
-		 * Auto-generated catch block e.printStackTrace(); }
-		 */
-
-		JsonCourse courses = new JsonCourse();
+		/*Json json = new Json();
 		try {
-			ArrayList<Sport> sports = DBMethodes.getAllSport(getActivity());
-
-			ArrayList<Course> stringCourses = courses.getAllCourses(new Sport(2, "AeroDance"));
-			SPORTS = new String[stringCourses.size()];
-
-			for (int a = 0; a < stringCourses.size(); a++) {
-				SPORTS[a] = stringCourses.get(a).toString();
-			}
+			json.getAllCourses(3);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -70,15 +53,26 @@ public class CoursesFragment extends ListFragment {
 		} catch (TimeoutException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
+		
+		
+		
+		
+			ArrayList<Sport> sports = DBMethodes.getAllSport(getActivity());
+			
+			
+			//DBMethodes.courseUpdate(getActivity());
+			SPORTS = new String[sports.size()];
+			
+			for(int a=0;a<sports.size();a++){
+				SPORTS[a] = sports.get(a).toString(); 
+			}
 
-		// ArrayList<Sport> sportList = DBMethodes.getAllSport(getActivity());
+
+		//ArrayList<Sport> sportList = DBMethodes.getAllSport(getActivity());
 
 		setListAdapter(new ArrayAdapter<String>(getActivity(), R.layout.allcourseslist, SPORTS));
 		ListView list = getListView();
 		list.setTextFilterEnabled(true);
-		
 	}
-	
-	
 }

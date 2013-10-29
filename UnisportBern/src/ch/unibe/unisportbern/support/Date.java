@@ -15,14 +15,8 @@ public class Date {
 	/**
 	 *  display date in format: 'mo 20:15'
 	 */
-	@Override
 	public String toString(){
-		return day + " " + format(startTimeSec);	
-	}
-
-	private String format(long startTime) {
-		// TODO format time to usual format: 20:30
-		return "" + startTime;
+		return day;	
 	}
 	
 }

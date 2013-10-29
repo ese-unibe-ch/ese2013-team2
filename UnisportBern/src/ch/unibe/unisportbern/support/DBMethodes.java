@@ -47,34 +47,38 @@ public class DBMethodes {
         }
 	}
 	
-/*public static void courseUpdate(Context context, int sid) throws JSONException, InterruptedException, ExecutionException, TimeoutException{
+/*public static void courseUpdate(Context context) throws JSONException, InterruptedException, ExecutionException, TimeoutException{
 		
 		DBHelper dbHelper = new DBHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         
         ContentValues values = new ContentValues();
         
-        JsonCourse courses = new JsonCourse();
+        JsonCourse json = new JsonCourse();
+        ArrayList<Course> allCourses;
+        ArrayList<Sport> allSports = getAllSport(context);
         
-        
-        for(int a=0;a<jsonResult.size();a++){
-        	//Setup new Content Values and assign some dummy content
-	        values.put("SID", sid);
-	        values.put("REALSTARTTIMESEC", 1382072400);
-	        values.put("REALENDTIMESEC", 1382072900);
-	        values.put("DAY", jsonResult.get(a)[1]);
-	        values.put("P1", 1);
-	        values.put("P2", 1);
-	        values.put("P3", 0);
-	        values.put("P4", 1);
-	        values.put("P5", 0);
-	        values.put("LOCATION", "ExWi");
-	        values.put("INFORMATION", "Keine");
-	        values.put("SUB", 0);
-	        values.put("KEW", 44);
+        for(int a=0;a<allSports.size();a++){
+        	
+        	allCourses = json.getAllCourses(allSports.get(a));
+        	
+        	for(int b=0;b<allCourses.size();b++){
+        		values.put("SID", allSports.get(a).getId());
+    	        values.put("TIME", "Hallo");
+    	        values.put("DAY", "monday");
+    	        values.put("P1", 1);
+    	        values.put("P2", 1);
+    	        values.put("P3", 0);
+    	        values.put("P4", 1);
+    	        values.put("P5", 0);
+    	        values.put("LOCATION", "ExWi");
+    	        values.put("INFORMATION", "Keine");
+    	        values.put("SUB", 0);
+    	        values.put("KEW", 44);
 
-	        //Perform the insert
-	        db.insert(DBHelper.COURSES,null, values);
+    	        //Perform the insert
+    	        db.insert(DBHelper.COURSES,null, values);
+        	}
         }   
         
         //Close the Database and the Helper
