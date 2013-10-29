@@ -82,8 +82,7 @@ public class JsonCourse extends AsyncTask<Void, Void, Void> {
 		{
 			JSONObject row = array.getJSONObject(i);
 
-			// TODO: courses brucht ä eigeti id, nid diä vom sport. plus courses brucht z sport objekt. isch ja anyway nur ä referänz u du heschs ja hiä scho.
-			allCourses.add(new Course(sport.getId(),row.getString("course"),row.getString("day"),row.getString("time"),getPeriode(row.getString("period")),row.getString("place"),row.getString("info"), subscriptionRequired(row.getString("subscription")), row.getString("kew")));
+			allCourses.add(new Course(sport,row.getString("course"),row.getString("day"),row.getString("time"),getPeriode(row.getString("period")),row.getString("place"),row.getString("info"), subscriptionRequired(row.getString("subscription")), row.getString("kew")));
 		}
 		return allCourses;
 	}
