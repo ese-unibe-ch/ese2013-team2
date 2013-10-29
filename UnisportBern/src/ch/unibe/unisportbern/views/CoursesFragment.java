@@ -5,17 +5,22 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
 import org.json.JSONException;
 import ch.unibe.unisportbern.support.*;
+import ch.unibe.unisportbern.views.details.DetailsActivity;
 
 import com.example.unisportbern.R;
 import android.app.ListFragment;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class CoursesFragment extends ListFragment {
 
 	public final static String EXTRA = "ch.unibe.unisportbern.views";
-	public String[] SPORTS;
+	public ArrayList<Sport> sports;
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -38,47 +43,35 @@ public class CoursesFragment extends ListFragment {
 			e1.printStackTrace();
 		}
 
-		/*
-		 * Json json = new Json(); try { json.getAllCourses(3); } catch
-		 * (JSONException e) { // TODO Auto-generated catch block
-		 * e.printStackTrace(); } catch (InterruptedException e) { // TODO
-		 * Auto-generated catch block e.printStackTrace(); } catch
-		 * (ExecutionException e) { // TODO Auto-generated catch block
-		 * e.printStackTrace(); } catch (TimeoutException e) { // TODO
-		 * Auto-generated catch block e.printStackTrace(); }
-		 */
+		@SuppressWarnings("unused")
+		int i= 0;
+		
+		sports = DBMethodes.getAllSport(getActivity());
 
-		JsonCourse courses = new JsonCourse();
-		try {
-			ArrayList<Sport> sports = DBMethodes.getAllSport(getActivity());
-
-			ArrayList<Course> stringCourses = courses.getAllCourses(new Sport(2, "AeroDance"));
-			SPORTS = new String[stringCourses.size()];
-
-			for (int a = 0; a < stringCourses.size(); a++) {
-				SPORTS[a] = stringCourses.get(a).toString();
-			}
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (TimeoutException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		// ArrayList<Sport> sportList = DBMethodes.getAllSport(getActivity());
-
-		setListAdapter(new ArrayAdapter<String>(getActivity(), R.layout.allcourseslist, SPORTS));
+		setListAdapter(new ArrayAdapter<String>(getActivity(), R.layout.allcourseslist, getNames(sports)));
 		ListView list = getListView();
 		list.setTextFilterEnabled(true);
+			list.setOnItemClickListener(new OnItemClickListener() {
+
+				@Override
+				public void onItemClick(AdapterView<?> arg0, View arg1, int groupPos, long arg3) {
+					Intent intent = new Intent(getActivity(), DetailsActivity.class);
+					intent.putExtra(EXTRA, sports.get(groupPos).getId());
+					startActivity(intent);
+				}
+				
+			});
 		
 	}
 	
+	private String[] getNames(ArrayList<Sport> list){
 	
+		String[] result = new String[list.size()];
+		
+		for (int i=0; i<list.size(); i++){
+			result[i] = list.get(i).getName();
+		}
+			
+		return result;
+	}
 }

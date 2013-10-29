@@ -2,6 +2,8 @@ package ch.unibe.unisportbern.support;
 
 
 
+import java.util.ArrayList;
+
 import com.example.unisportbern.R;
 
 import android.content.Context;
@@ -13,11 +15,11 @@ import android.widget.TextView;
 
 public class SportsAdapter extends ArrayAdapter<Sport>  {
 	private final Context context;
-	private final Sport[] sportsList;
+	private final ArrayList<Sport> sportsList;
 
 
 
-	public SportsAdapter(Context context, Sport[] sportsList) {
+	public SportsAdapter(Context context, ArrayList<Sport> sportsList) {
 		  super(context, R.layout.allcourseslist, sportsList);
 		  this.context = context;
 		  this.sportsList = sportsList;
@@ -30,7 +32,7 @@ public class SportsAdapter extends ArrayAdapter<Sport>  {
 	 
 	  View view = inflater.inflate(R.layout.allcourseslist, parent, false);
 	  TextView textView = (TextView) view.findViewById(R.id.textView_sports);
-	  textView.setText(sportsList[position].toString());
+	  textView.setText(sportsList.get(position).toString());
 	  return view;
 	}
 

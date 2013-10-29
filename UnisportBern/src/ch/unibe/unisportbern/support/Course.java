@@ -1,7 +1,7 @@
 package ch.unibe.unisportbern.support;
 
 public class Course {
-
+	int cid;
 	Sport sport;
 	String courseName;
 	String day;
@@ -12,7 +12,8 @@ public class Course {
 	boolean subscriptionRequired;
 	String kew;
 	
-	public Course (Sport sport, String courseName, String day, String time, boolean[] phases, String location, String information, boolean subscriptionRequired, String kew){
+	public Course (int cid, Sport sport, String courseName, String day, String time, boolean[] phases, String location, String information, boolean subscriptionRequired, String kew){
+		this.cid = cid;
 		this.sport = sport;
 		this.courseName = courseName;
 		this.day = day;
@@ -32,9 +33,9 @@ public class Course {
 		return sport;
 	}
 	
-	/*public int getId(){
-		return sid;
-	}*/
+	public int getId(){
+		return cid;
+	}
 	
 	public String getName(){
 		return courseName;
