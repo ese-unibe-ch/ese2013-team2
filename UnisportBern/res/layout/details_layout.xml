@@ -15,15 +15,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="@dimen/profile_title" />
 
-
-    <ExpandableListView
-        android:id="@+id/expandableListViewCourses"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/sportName" >
-    </ExpandableListView>
-
     <RatingBar
         android:id="@+id/ratingBar"
         android:layout_width="match_parent"

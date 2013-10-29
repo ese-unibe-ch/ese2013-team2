@@ -1,9 +1,6 @@
 package ch.unibe.unisportbern.views;
 
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeoutException;
-import org.json.JSONException;
 import ch.unibe.unisportbern.support.*;
 
 import com.example.unisportbern.R;
@@ -19,8 +16,10 @@ import android.widget.ListView;
 public class CoursesFragment extends ListFragment {
 
 	public String[] SPORTS;
-	public final static String EXTRA = "ch.unibe.unisportbern.views";
-
+	public final static String NAME = "ch.unibe.unisportbern.views";
+	public final static String ID = "ch.unibe.unisportbern.views";
+	public ArrayList<Sport> sports;
+	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
@@ -28,25 +27,14 @@ public class CoursesFragment extends ListFragment {
 		// Activate the database
 		try {
 			DBMethodes.sportUpdate(getActivity());
-		} catch (JSONException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (ExecutionException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (TimeoutException e1) {
+		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-
-		ArrayList<Sport> sports = DBMethodes.getAllSport(getActivity());
+			
+		sports = DBMethodes.getAllSport(getActivity());
 
 		SPORTS = getNames(sports);
-
-		// ArrayList<Sport> sportList = DBMethodes.getAllSport(getActivity());
 
 		setListAdapter(new ArrayAdapter<String>(getActivity(), R.layout.allcourseslist, SPORTS));
 		ListView list = getListView();
@@ -54,9 +42,10 @@ public class CoursesFragment extends ListFragment {
 		list.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int groupPos, long arg3) {
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 				Intent intent = new Intent(getActivity(), DetailsActivity.class);
-				intent.putExtra(EXTRA, SPORTS[groupPos]);
+				intent.putExtra(NAME, sports.get(arg2).getName());
+				intent.putExtra(ID, sports.get(arg2).getId());
 				startActivity(intent);
 			}
 		});
