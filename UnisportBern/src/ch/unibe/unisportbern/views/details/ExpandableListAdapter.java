@@ -81,7 +81,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		heading.setText(sport.getName());
 		
 		TextView headingDate = (TextView) view.findViewById(R.id.dateView);
-		headingDate.setText(course.getDate().toString());
+		// TODO: DATE OBJECTT
+		headingDate.setText(course.getDay() + " " + course.getTime());
 
 		return view;
 	}
