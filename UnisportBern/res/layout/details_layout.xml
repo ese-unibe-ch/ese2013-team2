@@ -17,11 +17,19 @@
 
     <RatingBar
         android:id="@+id/ratingBar"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         android:numStars="5"
-        />
+        android:stepSize="1"
+        android:layout_centerInParent="true" />
+
+    <ExpandableListView
+        android:id="@+id/expandableListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/sportName" >
+    </ExpandableListView>
 
 </RelativeLayout>

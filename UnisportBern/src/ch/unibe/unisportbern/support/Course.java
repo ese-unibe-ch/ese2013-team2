@@ -73,4 +73,15 @@ public class Course {
 	public String getKew(){
 		return kew;
 	}
+
+	public String getPhasesAsString() {
+		String string = "";
+		
+		for (boolean b:phases){
+			if (b) string += "[x] ";
+			else string += "[ ] ";
+		}
+		
+		return string;
+	}
 }

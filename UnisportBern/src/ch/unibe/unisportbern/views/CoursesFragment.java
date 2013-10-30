@@ -2,6 +2,7 @@ package ch.unibe.unisportbern.views;
 
 import java.util.ArrayList;
 import ch.unibe.unisportbern.support.*;
+import ch.unibe.unisportbern.views.details.DActivity;
 
 import com.example.unisportbern.R;
 import android.app.ListFragment;
@@ -46,7 +47,7 @@ public class CoursesFragment extends ListFragment {
 				
 				ArrayList<Sport> sports = DBMethodes.getAllSport(getActivity());
 				
-				Intent intent = new Intent(getActivity(), DetailsActivity.class);
+				Intent intent = new Intent(getActivity(), DActivity.class);
 				intent.putExtra(NAME, sports.get(arg2).getName());
 				intent.putExtra(ID, sports.get(arg2).getId());
 				startActivity(intent);
