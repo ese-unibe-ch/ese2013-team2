@@ -15,10 +15,10 @@ import android.widget.ListView;
 
 public class CoursesFragment extends ListFragment {
 
-	public String[] SPORTS;
-	public final static String NAME = "ch.unibe.unisportbern.views";
-	public final static String ID = "ch.unibe.unisportbern.views";
-	public ArrayList<Sport> sports;
+	protected String[] SPORTS;
+	protected final static String NAME = "SportName";
+	protected final static String ID = "SportID";
+	protected ArrayList<Sport> sports;
 	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -43,6 +43,9 @@ public class CoursesFragment extends ListFragment {
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+				
+				ArrayList<Sport> sports = DBMethodes.getAllSport(getActivity());
+				
 				Intent intent = new Intent(getActivity(), DetailsActivity.class);
 				intent.putExtra(NAME, sports.get(arg2).getName());
 				intent.putExtra(ID, sports.get(arg2).getId());

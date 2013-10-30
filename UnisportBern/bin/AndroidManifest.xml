@@ -17,12 +17,12 @@
         android:theme="@style/AppTheme" >
        
        <activity
+        android:name="ch.unibe.unisportbern.views.DetailsActivity"
         android:label="@string/app_name"
-        android:name="DetailsActivity"
 		android:parentActivityName="ch.unibe.unisportbern.views.MainActivity">           
        </activity>
-      
-        
+       
+       
         <activity
             android:name="ch.unibe.unisportbern.views.MainActivity"
             android:label="@string/app_name" >

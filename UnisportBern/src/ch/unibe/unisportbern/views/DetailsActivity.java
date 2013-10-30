@@ -1,15 +1,22 @@
 package ch.unibe.unisportbern.views;
 
 import java.util.ArrayList;
+
+import com.example.unisportbern.R;
+
 import ch.unibe.unisportbern.support.Course;
 import ch.unibe.unisportbern.support.JsonCourse;
 import ch.unibe.unisportbern.support.Sport;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.drawable.GradientDrawable.Orientation;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -21,9 +28,11 @@ public class DetailsActivity extends Activity {
 	ArrayList<TextView> views = new ArrayList<TextView>();
 	ArrayList<detailsView> detailViews = new ArrayList<detailsView>();
 	
-	public final static String NAME = "ch.unibe.unisportbern.views.name";
-	public final static String ID = "ch.unibe.unisportbern.views.id";
-
+	public final static String NAME = "SportName";
+	public final static String ID = "SportID";
+	public final static int TITLESIZE = 40; //equal to profile_title in resources
+	public final static int TEXTSIZE = 20;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,18 +46,22 @@ public class DetailsActivity extends Activity {
 	}
 
 	private View getLayout() {
-		RelativeLayout layout = new RelativeLayout(this);
+		LinearLayout layout = new LinearLayout(this);
+		layout.setOrientation(1);
 		TextView sportName = new TextView(this);
 		sportName.setText(sport.getName());
+		sportName.setGravity(Gravity.CENTER);
+		sportName.setTextSize(TITLESIZE);
 		layout.addView(sportName);
 		
 
 		// loops for every course, creating a textview(view) and the corresponding
 		// detailsView for further details and adding both to an arraylist.
+		
 		for (Course c : courses) {
 			
 			TextView view = generateView(c);
-
+			
 			detailsView detailsView = generateDetailsView(this, c);
 
 			detailViews.add(detailsView);
@@ -73,8 +86,10 @@ public class DetailsActivity extends Activity {
 
 	private TextView generateView(Course c){
 		TextView view = new TextView(this);
+		view.setTextSize(TEXTSIZE);
+		view.setClickable(true);
 		view.setText(c.getName() + " " + c.getDay() + " " + c.getTime());
-
+		
 		view.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -102,9 +117,10 @@ public class DetailsActivity extends Activity {
 	}
 
 	private void getSport() {
-		int id = getIntent().getIntExtra(ID, 0);
-		String name = getIntent().getStringExtra(NAME);
-		sport = new Sport(id, name);
+		Intent intent = this.getIntent();
+		int id = intent.getIntExtra(ID, 0);
+		String name = intent.getStringExtra(NAME);
+		this.sport = new Sport(id, name);
 	}
 
 	private void getCourses() {
