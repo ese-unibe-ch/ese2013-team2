@@ -85,6 +85,8 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 			   convertView = inf.inflate(R.layout.group_heading, null);
 			  }
 		
+		convertView.setMinimumHeight(100);
+		
 		TextView courseName = (TextView) convertView.findViewById(R.id.CourseName);
 		TextView courseDate = (TextView) convertView.findViewById(R.id.CourseDate);
 		
@@ -101,7 +103,7 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 
 	@Override
 	public boolean isChildSelectable(int groupPosition, int childPosition) {
-		return false;
+		return true;
 	}
 
 }
