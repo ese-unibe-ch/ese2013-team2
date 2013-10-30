@@ -5,8 +5,6 @@ import ch.unibe.unisportbern.support.Course;
 import ch.unibe.unisportbern.support.JsonCourse;
 import ch.unibe.unisportbern.support.Sport;
 
-import com.example.unisportbern.R;
-
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -29,11 +27,12 @@ public class DetailsActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(getLayout());
-		TextView sportName = (TextView) findViewById(R.id.sportName);
-		sportName.setText(sport.getName());
 		getSport();
 		getCourses();
+		setContentView(getLayout());
+		//TextView sportName = (TextView) findViewById(R.id.sportName);
+		//sportName.setText(sport.getName());
+		
 		// placeTextViews();
 	}
 
