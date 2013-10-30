@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.example.unisportbern.R;
 
 import ch.unibe.unisportbern.support.Course;
+import ch.unibe.unisportbern.support.DBMethodes;
 import ch.unibe.unisportbern.support.JsonCourse;
 import ch.unibe.unisportbern.support.Sport;
 
@@ -124,16 +125,12 @@ public class DetailsActivity extends Activity {
 	}
 
 	private void getCourses() {
-		// ////////////////////////////////////////
-		// replace when db is finished //
-		// ////////////////////////////////////////
-		JsonCourse json = new JsonCourse();
+		DBMethodes dbMethodes = new DBMethodes(this);
 
 		try {
-			courses = json.getAllCourses(sport);
+			courses = dbMethodes.getAllCourses(sport);
 		} catch (Exception e) {
 		}
-		// ///////////////////////////////////////
 	}
 
 }

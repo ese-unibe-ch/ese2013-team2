@@ -51,8 +51,8 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 		TextView phases = (TextView) convertView.findViewById(R.id.phases);
 		TextView info = (TextView) convertView.findViewById(R.id.info);
 		
-		phases.setText("phases:\n" + courseList.get(groupPosition).getPhasesAsString());
-		info.setText(courseList.get(groupPosition).getInfo());
+		phases.setText("phases:\n" + courseList.get(groupPosition).getPhases());
+		info.setText(courseList.get(groupPosition).getInformation());
 		
 		return convertView;
 	}
@@ -85,8 +85,6 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 			   convertView = inf.inflate(R.layout.group_heading, null);
 			  }
 		
-		convertView.setMinimumHeight(100);
-		
 		TextView courseName = (TextView) convertView.findViewById(R.id.CourseName);
 		TextView courseDate = (TextView) convertView.findViewById(R.id.CourseDate);
 		
@@ -103,7 +101,7 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 
 	@Override
 	public boolean isChildSelectable(int groupPosition, int childPosition) {
-		return true;
+		return false;
 	}
 
 }

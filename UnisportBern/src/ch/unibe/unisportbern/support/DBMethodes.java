@@ -14,15 +14,18 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class DBMethodes {
 	
-	public DBMethodes(){
+	Network network;
+	DBHelper dbHelper;
+	
+	public DBMethodes(Context context){
+		this.network = new Network(context);
+		this.dbHelper = new DBHelper(context);
 	}
 	
-	public static void sportUpdate(Context context) throws JSONException, InterruptedException, ExecutionException, TimeoutException{
-        
-        Network network = new Network(context);
+	public void sportUpdate() throws JSONException, InterruptedException, ExecutionException, TimeoutException{
         
         if(network.isOnline()){
-        	DBHelper dbHelper = new DBHelper(context);
+        	
             SQLiteDatabase db = dbHelper.getWritableDatabase();
             
             ContentValues values = new ContentValues();
@@ -47,44 +50,37 @@ public class DBMethodes {
         }
 	}
 	
-/*public static void courseUpdate(Context context) throws JSONException, InterruptedException, ExecutionException, TimeoutException{
+public void courseUpdate(Sport sport) throws JSONException, InterruptedException, ExecutionException, TimeoutException{
 		
-		DBHelper dbHelper = new DBHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         
         ContentValues values = new ContentValues();
         
         JsonCourse json = new JsonCourse();
-        ArrayList<Course> allCourses;
-        ArrayList<Sport> allSports = getAllSport(context);
+
+        ArrayList<Course> allCourses = json.getAllCourses(sport);
+        Course course;
         
-        for(int a=0;a<allSports.size();a++){
-        	
-        	allCourses = json.getAllCourses(allSports.get(a));
-        	
-        	for(int b=0;b<allCourses.size();b++){
-        		values.put("SID", allSports.get(a).getId());
-    	        values.put("TIME", "Hallo");
-    	        values.put("DAY", "monday");
-    	        values.put("P1", 1);
-    	        values.put("P2", 1);
-    	        values.put("P3", 0);
-    	        values.put("P4", 1);
-    	        values.put("P5", 0);
-    	        values.put("LOCATION", "ExWi");
-    	        values.put("INFORMATION", "Keine");
-    	        values.put("SUB", 0);
-    	        values.put("KEW", 44);
+        for(int a=0;a<allCourses.size();a++){
+        	course = allCourses.get(a);
+        		
+        	values.put("SID", sport.getId());
+        	values.put("COURSENAME", course.getName());
+        	values.put("DAY", course.getDay());
+    	    values.put("TIME", course.getTime());
+    	    values.put("PHASES", course.getPhases());
+    	    values.put("LOCATION", course.getLocation());
+    	    values.put("INFORMATION", course.getInformation());
+    	    values.put("SUB", course.getSub());
+    	    values.put("KEW", course.getKew());
 
     	        //Perform the insert
     	        db.insert(DBHelper.COURSES,null, values);
-        	}
-        }   
-        
+        }
         //Close the Database and the Helper
         dbHelper.close();
         db.close();
-	}*/
+	}
 	
 	/**
 	 * returns a list with all sport names.
@@ -92,12 +88,11 @@ public class DBMethodes {
 	 * @param context
 	 * @return ArrayList<Sport>
 	 */
-	public static ArrayList<Sport> getAllSport(Context context){
-		
-		DBHelper helper = new DBHelper(context);
-		SQLiteDatabase db = helper.getWritableDatabase();
+	public ArrayList<Sport> getAllSport(){
+
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
         
-        Cursor cursor = helper.query(db, "SELECT * FROM sports");
+        Cursor cursor = dbHelper.query(db, "SELECT * FROM sports");
 
         ArrayList<Sport> sportNames = new ArrayList<Sport>();
         
@@ -111,7 +106,7 @@ public class DBMethodes {
         
         //Close the Database and the Helper
         db.close();
-        helper.close();
+        dbHelper.close();
 		
 		return sportNames;
 	}
@@ -127,100 +122,73 @@ public class DBMethodes {
 	 * @throws InterruptedException 
 	 * @throws JSONException 
 	 */
-	/*public static ArrayList<Course> getAllCourses (Context context, int sid) throws JSONException, InterruptedException, ExecutionException, TimeoutException{
-		//Update Database
-		courseUpdate(context, sid);
+	public ArrayList<Course> getAllCourses (Sport sport) throws JSONException, InterruptedException, ExecutionException, TimeoutException{
 		
-		DBHelper helper = new DBHelper(context);
-		SQLiteDatabase db = helper.getWritableDatabase();
+		//If Network is connected to internet, Updating the database
+		if(network.isOnline()){
+			this.courseUpdate(sport);
+		}
+		
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		int sid = sport.getId();
         
-        Cursor cursor = helper.query(db, "SELECT * FROM courses WHERE sid="+sid);
-        Cursor cursorSport = helper.query(db, "SELECT sid, name FROM sports WHERE sid="+sid);
-        
-        //create Sport-Object
-        cursorSport.moveToFirst();
-        Sport sport = new Sport(cursorSport.getInt(0), cursorSport.getString(1));
-        
+        Cursor cursor = dbHelper.query(db, "SELECT * FROM courses WHERE sid="+sid);
         
         //some definitions
         ArrayList<Course> courses = new ArrayList<Course>();
-        boolean[] phases = new boolean[5];
-        Date date; 
         
         cursor.moveToFirst();
         
         for(int a=0;a<cursor.getCount();a++){
-        	
-        	//create DateObject
-        	date = new Date(cursor.getInt(2), cursor.getInt(3), cursor.getString(4));
-        	
-        	//create Phases-Array
-        	for(int b=0;b<5;b++){
-        		phases[b] = (cursor.getInt(5+b) == 1) ? true : false;
-        	}
-        	
-        	//subscription integer to boolean
-        	boolean subscriptionRequired = (cursor.getInt(12) == 1) ? true : false;
-        	
-        	courses.add(new Course(cursor.getInt(0), sport, date, phases, cursor.getString(10), cursor.getString(11), subscriptionRequired, cursor.getInt(13)));
+        	courses.add(new Course(cursor.getInt(0), sport, cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7),sub(cursor.getInt(8)), cursor.getString(9)));
         	cursor.moveToNext();
         }
         
         return courses;
 	}
 	
-	public static void addFavorite(Context context){
-		DBHelper helper = new DBHelper(context);
-		SQLiteDatabase db = helper.getWritableDatabase();
+	public void addFavorite(Course course){
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
 		ContentValues values = new ContentValues();
 		
-		values.put("cid", 2);
+		values.put("cid", course.getId());
 
-        //Perform the insert
         db.insert(DBHelper.FAVORITES,null, values);
 	}
 	
-	public static Course[] getAllFavorites(Context context){
-		DBHelper helper = new DBHelper(context);
-		SQLiteDatabase db = helper.getWritableDatabase();
+	public void deleteFavorite(Course course){
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		db.delete(DBHelper.FAVORITES, "cid = "+Integer.toString(course.getId()), null);
+	}
+	
+	public ArrayList<Course> getAllFavorites(){
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
         
-		Cursor cursorFavorites = helper.query(db, "SELECT * FROM favorites");
+		Cursor cursorFavorites = dbHelper.query(db, "SELECT * FROM favorites");
         cursorFavorites.moveToFirst();
+        
+        ArrayList<Course> allFavorites = new ArrayList<Course>();
+        
+        for(int a=0;a<cursorFavorites.getCount();a++){
 		
-		Cursor cursor = helper.query(db, "SELECT * FROM courses WHERE cid="+cursorFavorites.getInt(1));
-        cursor.moveToFirst();
-        
-        Cursor cursorSport = helper.query(db, "SELECT sid, name FROM sports WHERE sid="+cursor.getInt(1));
-        
-        //create Sport-Object
-        cursorSport.moveToFirst();
-        Sport sport = new Sport(cursorSport.getInt(0), cursorSport.getString(1));
-        
-        
-        //some definitions
-        Course[] courses = new Course[cursor.getCount()];
-        boolean[] phases = new boolean[5];
-        Date date; 
-        
-        cursor.moveToFirst();
-        
-        for(int a=0;a<cursor.getCount();a++){
-        	
-        	//create DateObject
-        	date = new Date(cursor.getInt(2), cursor.getInt(3), cursor.getString(4));
-        	
-        	//create Phases-Array
-        	for(int b=0;b<5;b++){
-        		phases[b] = (cursor.getInt(5+b) == 1) ? true : false;
-        	}
-        	
-        	//subscription integer to boolean
-        	boolean subscriptionRequired = (cursor.getInt(12) == 1) ? true : false;
-        	
-        	courses[a] = new Course(cursor.getInt(0), sport, date, phases, cursor.getString(10), cursor.getString(11), subscriptionRequired, cursor.getInt(13));
-        	cursor.moveToNext();
+			Cursor cursor = dbHelper.query(db, "SELECT * FROM courses WHERE cid="+cursorFavorites.getInt(1));
+	        cursor.moveToFirst();
+	        
+	        Cursor cursorSport = dbHelper.query(db, "SELECT sid, name FROM sports WHERE sid="+cursor.getInt(1));
+	        cursorSport.moveToFirst();
+	       
+	        allFavorites.add(new Course(cursor.getInt(0), new Sport(cursorSport.getInt(0),cursorSport.getString(1)), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7),sub(cursor.getInt(8)), cursor.getString(9)));
+	        
+	        cursorFavorites.moveToNext();
         }
         
-        return courses;
-	}*/
+        return allFavorites;
+	}
+	
+	private boolean sub(int i){
+		boolean sub;
+		if(i==1) sub = true;
+		else sub = false;
+		return sub;
+	}
 }

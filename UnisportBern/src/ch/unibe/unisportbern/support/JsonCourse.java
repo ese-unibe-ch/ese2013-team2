@@ -54,7 +54,7 @@ public class JsonCourse extends AsyncTask<Void, Void, Void> {
 
 	public void executeJson() throws JSONException, InterruptedException, ExecutionException, TimeoutException {
 		this.execute();
-		this.get(200,TimeUnit.MILLISECONDS);
+		this.get(300,TimeUnit.MILLISECONDS);
 	}
 
 	private static String convertInputStreamToString(InputStream inputStream) throws IOException {
@@ -82,24 +82,9 @@ public class JsonCourse extends AsyncTask<Void, Void, Void> {
 		{
 			JSONObject row = array.getJSONObject(i);
 
-			allCourses.add(new Course(i,sport,row.getString("course"),row.getString("day"),row.getString("time"),getPeriode(row.getString("period")),row.getString("place"),row.getString("info"), subscriptionRequired(row.getString("subscription")), row.getString("kew")));
+			allCourses.add(new Course(i,sport,row.getString("course"),row.getString("day"),row.getString("time"),row.getString("period"),row.getString("place"),row.getString("info"), subscriptionRequired(row.getString("subscription")), row.getString("kew")));
 		}
 		return allCourses;
-	}
-	
-	private boolean[] getPeriode(String periode){
-		boolean[] substring = new boolean[5];
-		int b=0;
-		for(int i=0;i<9;i+=2){
-			if(periode.substring(i,i+1).equals("-")){
-				substring[b] = false;
-			}
-			else{
-				substring[b] = true;
-			}
-			b++;
-		}
-		return substring;
 	}
 	
 	private boolean subscriptionRequired(String required){

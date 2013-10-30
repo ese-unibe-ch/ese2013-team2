@@ -7,13 +7,13 @@ public class Course {
 	String courseName;
 	String day;
 	String time;
-	boolean[] phases;
+	String phases;
 	String location;
 	String information;
 	boolean subscriptionRequired;
 	String kew;
 	
-	public Course (int cid, Sport sport, String courseName, String day, String time, boolean[] phases, String location, String information, boolean subscriptionRequired, String kew){
+	public Course (int cid, Sport sport, String courseName, String day, String time, String phases, String location, String information, boolean subscriptionRequired, String kew){
 		this.cid = cid;
 		this.sport = sport;
 		this.courseName = courseName;
@@ -50,7 +50,7 @@ public class Course {
 		return time;
 	}
 	
-	public boolean[] getPhases(){
+	public String getPhases(){
 		return phases;
 	}
 	
@@ -58,7 +58,7 @@ public class Course {
 		return location;
 	}
 	
-	public String getInfo(){
+	public String getInformation(){
 		return information;
 	}
 	
@@ -72,16 +72,5 @@ public class Course {
 	
 	public String getKew(){
 		return kew;
-	}
-
-	public String getPhasesAsString() {
-		String string = "";
-		
-		for (boolean b:phases){
-			if (b) string += "[x] ";
-			else string += "[ ] ";
-		}
-		
-		return string;
 	}
 }

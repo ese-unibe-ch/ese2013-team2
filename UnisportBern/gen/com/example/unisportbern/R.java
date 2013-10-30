@@ -40,8 +40,8 @@ public final class R {
         public static final int listView_favourite=0x7f08000c;
         public static final int listView_upcoming=0x7f08000e;
         public static final int phases=0x7f080002;
-        public static final int ratingBar=0x7f080004;
-        public static final int sportName=0x7f080005;
+        public static final int ratingBar=0x7f080005;
+        public static final int sportName=0x7f080004;
         public static final int textView_name=0x7f08000a;
     }
     public static final class layout {

@@ -39,14 +39,5 @@
         android:layout_below="@+id/phases"
         android:gravity="center"
         android:text="information:" />
-    
-     <RatingBar
-        android:id="@+id/ratingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:numStars="5"
-        android:stepSize="1"
-        android:layout_centerInParent="true" />
 
 </RelativeLayout>

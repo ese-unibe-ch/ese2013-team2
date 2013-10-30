@@ -24,16 +24,16 @@ public class CoursesFragment extends ListFragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-
+		DBMethodes dbMethodes = new DBMethodes(getActivity());
 		// Activate the database
 		try {
-			DBMethodes.sportUpdate(getActivity());
+			dbMethodes.sportUpdate();
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 			
-		sports = DBMethodes.getAllSport(getActivity());
+		sports = dbMethodes.getAllSport();
 
 		SPORTS = getNames(sports);
 
@@ -44,8 +44,9 @@ public class CoursesFragment extends ListFragment {
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+				DBMethodes dbmet = new DBMethodes(getActivity());
 				
-				ArrayList<Sport> sports = DBMethodes.getAllSport(getActivity());
+				ArrayList<Sport> sports = dbmet.getAllSport();
 				
 				Intent intent = new Intent(getActivity(), DActivity.class);
 				intent.putExtra(NAME, sports.get(arg2).getName());
