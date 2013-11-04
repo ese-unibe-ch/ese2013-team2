@@ -5,31 +5,29 @@ import java.util.ArrayList;
 import com.example.unisportbern.R;
 
 import ch.unibe.unisportbern.support.Course;
-import ch.unibe.unisportbern.support.Sport;
+import ch.unibe.unisportbern.support.DBMethodes;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
 
 public class SportsAdapter extends BaseExpandableListAdapter  {
 	private Context context;
 	private ArrayList<Course> courseList;
-	private Sport sport;
 
 
 
-	public SportsAdapter(Context context, Sport sport, ArrayList<Course> courseList) {
-		super();
+	public SportsAdapter(Context context, ArrayList<Course> courseList) {
 		this.context = context;
 		this.courseList = courseList;
-		this.sport = sport;
 	}
 	
-	
-
 	@Override
 	public Object getChild(int index, int stub) {
 		return courseList.get(index);
@@ -37,7 +35,7 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 
 	@Override
 	public long getChildId(int index, int stub) {
-		return 0;
+		return stub;
 	}
 
 	@Override
@@ -78,7 +76,10 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 	}
 
 	@Override
-	public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+	public View getGroupView(final int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+		
+		Course course = courseList.get(groupPosition);
+		DBMethodes db = new DBMethodes(context);
 		
 		if (convertView == null) {
 			   LayoutInflater inf = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -88,8 +89,29 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 		TextView courseName = (TextView) convertView.findViewById(R.id.CourseName);
 		TextView courseDate = (TextView) convertView.findViewById(R.id.CourseDate);
 		
-		courseName.setText(courseList.get(groupPosition).getName());
-		courseDate.setText(courseList.get(groupPosition).getDay() + courseList.get(groupPosition).getTime());
+		courseName.setText(course.getName());
+		courseDate.setText(course.getDay() + course.getTime());
+		
+		CheckBox checkbox = (CheckBox) convertView.findViewById(R.id.checkBox);
+		
+		if (db.getAllFavorites().contains(course))
+			checkbox.setChecked(true);
+		
+		checkbox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				
+				Course course = courseList.get(groupPosition);
+				DBMethodes db = new DBMethodes(context);
+				
+				if (isChecked && !db.getAllFavorites().contains(course))
+					db.addFavorite(course);
+				
+				else if (!isChecked && db.getAllFavorites().contains(course))
+						db.deleteFavorite(course);
+			}
+		});
 		
 		return convertView;
 	}
@@ -101,7 +123,7 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 
 	@Override
 	public boolean isChildSelectable(int groupPosition, int childPosition) {
-		return false;
+		return true;
 	}
 
 }

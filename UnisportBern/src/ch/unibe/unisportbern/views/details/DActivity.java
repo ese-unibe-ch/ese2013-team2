@@ -6,7 +6,6 @@ import com.example.unisportbern.R;
 
 import ch.unibe.unisportbern.support.Course;
 import ch.unibe.unisportbern.support.DBMethodes;
-import ch.unibe.unisportbern.support.JsonCourse;
 import ch.unibe.unisportbern.support.Sport;
 
 import android.app.Activity;
@@ -36,7 +35,7 @@ public class DActivity extends Activity{
 		setContentView(R.layout.details_layout);
 		
 		myList = (ExpandableListView) findViewById(R.id.expandableListView);
-		sportsadapter = new SportsAdapter(this, sport, courses);
+		sportsadapter = new SportsAdapter(this, courses);
 		myList.setAdapter(sportsadapter);
 	}
 	
