@@ -17,16 +17,20 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
 
+/**
+ * is responsible for filling up the ExpandableList in DActivity
+ * 
+ * @author Thomas Steinmann
+ */
 public class SportsAdapter extends BaseExpandableListAdapter  {
 	private Context context;
 	private ArrayList<Course> courseList;
-
-
 
 	public SportsAdapter(Context context, ArrayList<Course> courseList) {
 		this.context = context;
 		this.courseList = courseList;
 	}
+
 	
 	@Override
 	public Object getChild(int index, int stub) {
@@ -38,6 +42,10 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 		return stub;
 	}
 
+	/**
+	 * precondition: courses list has to contain data or else the list cannot be filled
+	 * 
+	 */
 	@Override
 	public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
 		
@@ -75,6 +83,10 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 		return courseList.get(groupPosition).getId();
 	}
 
+	/**
+	 * precondition: courses list has to contain data or else the list cannot be filled
+	 * 
+	 */
 	@Override
 	public View getGroupView(final int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
 		

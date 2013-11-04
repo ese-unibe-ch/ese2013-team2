@@ -18,6 +18,16 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+/**
+ * responibilities:
+ * - displays all profile information containing username, the users favourite
+ * courses and upcoming courses that might be interesting
+ * 
+ * - all data is stored in the database, not in the ProfileFragment.
+ * 
+ * @author Thomas Steinmann
+ *
+ */
 public class ProfileFragment extends Fragment{
 	
 	protected final static String NAME = "SportName";

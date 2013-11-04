@@ -13,6 +13,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ExpandableListView;
 
+/**
+ * Responsibilities:
+ * - does not contain any data that it's responsible for. all data is stored in the databank
+ * - manages the representation of a sport, showing it's courses and additional information
+ * - provides functionality to subscribe to courses, show further details, set a reminder or rate a course.
+ * 
+ * @author Thomas Steinmann
+ */
 public class DActivity extends Activity{
 
 	
@@ -25,6 +33,11 @@ public class DActivity extends Activity{
 	
 	private ExpandableListView myList;
 	
+	
+	/**
+	 * preconditions: none
+	 * postconditions: the ExpandableList is filled with the courses and the whole display is rendered.
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
