@@ -1,5 +1,11 @@
 package ch.unibe.unisportbern.support;
 
+import java.io.IOException;
+import java.util.List;
+import android.content.Context;
+import android.location.Address;
+import android.location.Geocoder;
+
 public class Course {
 
 	int cid;
@@ -72,5 +78,17 @@ public class Course {
 	
 	public String getKew(){
 		return kew;
+	}
+	
+	public String getCoordinate(Context context) throws IOException{
+		
+		Geocoder geocoder = new Geocoder(context);  
+		List<Address> addresses;
+		addresses = geocoder.getFromLocationName(this.location, 1);
+		    
+		double latitude= addresses.get(0).getLatitude();
+		double longitude= addresses.get(0).getLongitude();
+		
+		return Double.toString(latitude)+","+Double.toString(longitude);
 	}
 }
