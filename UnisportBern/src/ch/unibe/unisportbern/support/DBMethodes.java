@@ -37,12 +37,16 @@ public class DBMethodes {
     	        for(int a=0;a<list.size();a++){
     	
     		        //Setup new Content Values and assign some dummy content
+    	        	int sid = a+1;
     		
     		        values.put("SID", a+1);
     		        values.put("NAME", list.get(a).getName());
     		
-    		        //Perform the insert
-    		        db.insert(DBHelper.SPORTS,null, values);
+    		        //Perform the insert/update
+    		        if(db.update(DBHelper.SPORTS,values,"SID = "+sid,null) == 0)
+    		        {
+    		        	db.insert(DBHelper.SPORTS,null, values);
+    		        }
     	        } 
     	      //Close the Database and the Helper
     	      dbHelper.close();
@@ -74,8 +78,11 @@ public void courseUpdate(Sport sport) throws JSONException, InterruptedException
     	    values.put("SUB", course.getSub());
     	    values.put("KEW", course.getKew());
 
-    	        //Perform the insert
-    	        db.insert(DBHelper.COURSES,null, values);
+    	        //Perform the insert/update
+    	        if(db.update(DBHelper.COURSES, values, "COURSENAME = \""+course.getName()+"\"",null) == 0)
+    	        {
+    	        	db.insert(DBHelper.COURSES, null, values);
+    	        }
         }
         //Close the Database and the Helper
         dbHelper.close();
@@ -152,7 +159,7 @@ public void courseUpdate(Sport sport) throws JSONException, InterruptedException
 		ContentValues values = new ContentValues();
 		
 		values.put("cid", course.getId());
-
+		
         db.insert(DBHelper.FAVORITES,null, values);
 	}
 	
