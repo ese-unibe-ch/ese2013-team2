@@ -4,21 +4,21 @@
     android:layout_height="wrap_content"
     android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/button1"
+    <ImageButton
+        android:id="@+id/button_map"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:text="Button" />
+        android:src="@drawable/map" />
 
-    <Button
-        android:id="@+id/button2"
+    <ImageButton
+        android:id="@+id/button_reminder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/button1"
-        android:text="Button" />
+        android:layout_toRightOf="@id/button_map"
+        android:src="@drawable/time" />
 
     <TextView
         android:id="@+id/phases"
@@ -27,7 +27,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:gravity="center"
-        android:layout_below="@+id/button1"
+        android:layout_below="@id/button_map"
         android:text="phases:" />
 
     <TextView
@@ -36,8 +36,17 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/phases"
+        android:layout_below="@id/phases"
         android:gravity="center"
         android:text="information:" />
+
+    <RatingBar
+        android:id="@+id/ratingBar1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/info"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:numStars="5" />
 
 </RelativeLayout>

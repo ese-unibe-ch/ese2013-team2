@@ -10,11 +10,13 @@ import ch.unibe.unisportbern.support.DBMethodes;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 /**
@@ -55,12 +57,40 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 		}
 		
 		TextView phases = (TextView) convertView.findViewById(R.id.phases);
-		TextView info = (TextView) convertView.findViewById(R.id.info);
-		
 		phases.setText("phases:\n" + courseList.get(groupPosition).getPhases());
+		
+		TextView info = (TextView) convertView.findViewById(R.id.info);
 		info.setText(courseList.get(groupPosition).getInformation());
 		
+		setUpButtons(convertView);
+		
+		
+		
 		return convertView;
+	}
+
+
+	private void setUpButtons(View convertView) {
+		ImageButton buttonMap = (ImageButton) convertView.findViewById(R.id.button_map);
+		ImageButton buttonReminder = (ImageButton) convertView.findViewById(R.id.button_reminder);
+		
+		buttonMap.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO calling map with coordinates as parameter
+				
+			}
+		});
+		
+		buttonReminder.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO calling reminder fragment
+
+			}
+		});
 	}
 
 	@Override

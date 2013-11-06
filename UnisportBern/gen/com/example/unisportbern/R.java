@@ -24,25 +24,27 @@ public final class R {
     public static final class drawable {
         public static final int ic_action_search=0x7f020000;
         public static final int ic_launcher=0x7f020001;
-        public static final int unisport_logo=0x7f020002;
+        public static final int map=0x7f020002;
+        public static final int time=0x7f020003;
     }
     public static final class id {
-        public static final int CourseDate=0x7f080007;
-        public static final int CourseName=0x7f080006;
-        public static final int TextView_favourite=0x7f08000a;
-        public static final int TextView_upcoming=0x7f08000c;
-        public static final int action_search=0x7f08000f;
-        public static final int action_settings=0x7f08000e;
-        public static final int button1=0x7f080000;
-        public static final int button2=0x7f080001;
-        public static final int checkBox=0x7f080008;
-        public static final int expandableListView=0x7f080005;
+        public static final int CourseDate=0x7f080008;
+        public static final int CourseName=0x7f080007;
+        public static final int TextView_favourite=0x7f08000b;
+        public static final int TextView_upcoming=0x7f08000d;
+        public static final int action_search=0x7f080010;
+        public static final int action_settings=0x7f08000f;
+        public static final int button_map=0x7f080000;
+        public static final int button_reminder=0x7f080001;
+        public static final int checkBox=0x7f080009;
+        public static final int expandableListView=0x7f080006;
         public static final int info=0x7f080003;
-        public static final int listView_favourite=0x7f08000b;
-        public static final int listView_upcoming=0x7f08000d;
+        public static final int listView_favourite=0x7f08000c;
+        public static final int listView_upcoming=0x7f08000e;
         public static final int phases=0x7f080002;
-        public static final int sportName=0x7f080004;
-        public static final int textView_name=0x7f080009;
+        public static final int ratingBar1=0x7f080004;
+        public static final int sportName=0x7f080005;
+        public static final int textView_name=0x7f08000a;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
