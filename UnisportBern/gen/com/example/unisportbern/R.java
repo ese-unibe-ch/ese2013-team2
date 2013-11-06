@@ -38,9 +38,9 @@ public final class R {
         public static final int button_reminder=0x7f080001;
         public static final int checkBox=0x7f080009;
         public static final int expandableListView=0x7f080006;
+        public static final int expandableListViewFavourites=0x7f08000c;
+        public static final int expandableListViewUpcoming=0x7f08000e;
         public static final int info=0x7f080003;
-        public static final int listView_favourite=0x7f08000c;
-        public static final int listView_upcoming=0x7f08000e;
         public static final int phases=0x7f080002;
         public static final int ratingBar1=0x7f080004;
         public static final int sportName=0x7f080005;
