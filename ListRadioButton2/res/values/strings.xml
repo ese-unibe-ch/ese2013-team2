@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="oneandhalf">1h 30 min before</string><string name="app_name">ListRadioButton2</string>
+    <string name="action_settings">Settings</string>
+    <string name="two">2 hours before</string><string name="half">30 minutes before</string><string name="one">1 hour before</string><string name="Confirm">Confirm</string><string name="hello_world">Hello world!</string>
+    
+    
+    
+    
+    
+
+</resources>
