@@ -24,6 +24,8 @@ public class detailsView extends View {
 		textV.setText("here goes the whole details of a course");
 		// TODO: add further info
 		
+		
+		
 		layout.addView(textV);
 	}
 

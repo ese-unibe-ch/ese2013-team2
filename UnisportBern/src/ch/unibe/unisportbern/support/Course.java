@@ -8,16 +8,16 @@ import android.location.Geocoder;
 
 public class Course {
 
-	int cid;
-	Sport sport;
-	String courseName;
-	String day;
-	String time;
-	String phases;
-	String location;
-	String information;
-	boolean subscriptionRequired;
-	String kew;
+	private int cid;
+	private Sport sport;
+	private String courseName;
+	private String day;
+	private String time;
+	private String phases;
+	private String location;
+	private String information;
+	private boolean subscriptionRequired;
+	private String kew;
 	
 	public Course (int cid, Sport sport, String courseName, String day, String time, String phases, String location, String information, boolean subscriptionRequired, String kew){
 		this.cid = cid;
