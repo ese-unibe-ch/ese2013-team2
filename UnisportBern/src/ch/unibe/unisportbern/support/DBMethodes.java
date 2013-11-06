@@ -14,8 +14,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class DBMethodes {
 	
-	Network network;
-	DBHelper dbHelper;
+	private Network network;
+	private DBHelper dbHelper;
 	
 	public DBMethodes(Context context){
 		this.network = new Network(context);
