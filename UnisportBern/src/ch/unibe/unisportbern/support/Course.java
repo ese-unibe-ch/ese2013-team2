@@ -80,6 +80,15 @@ public class Course {
 		return kew;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
+	public long getNextDay(){
+		Day day = new Day(this.day);
+		return day.getNextDay();
+	}
+	
 	public String getCoordinate(Context context) throws IOException{
 		
 		Geocoder geocoder = new Geocoder(context);  
