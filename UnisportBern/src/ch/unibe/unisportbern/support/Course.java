@@ -94,8 +94,26 @@ public class Course {
 		return day.getNextDay();
 	}
 	
-	/*public String getCoordinate(Context context) throws IOException, JSONException, InterruptedException, ExecutionException, TimeoutException{
-		JsonCoordinate json = new JsonCoordinate();
-		return json.getCoordinate(this);
-	}*/
+	public String getCoordinate(Context context) throws IOException, JSONException, InterruptedException, ExecutionException, TimeoutException{
+		Geocoder geocoder = new Geocoder(context); 
+		double lat;
+		double lon;
+		try {
+		    List<Address> geoResults = geocoder.getFromLocationName("Murtenstrasse 51, Bargen BE", 1);
+		    while (geoResults.size()==0) {
+		        geoResults = geocoder.getFromLocationName("Murtenstrasse 51, Bargen BE", 1);
+		    }
+		    if (geoResults.size()>0) {
+		        Address addr = geoResults.get(0);
+		        lat = addr.getLatitude();
+		        lon = addr.getLongitude();
+		        return Double.toString(lat)+","+Double.toString(lon);
+		    }
+  
+		} catch (Exception e) {
+		    System.out.print(e.getMessage());
+		}
+		
+		return null;
+	}
 }
