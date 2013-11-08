@@ -1,5 +1,6 @@
 package ch.unibe.unisportbern.views.details;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import com.example.unisportbern.R;
@@ -8,6 +9,8 @@ import ch.unibe.unisportbern.support.Course;
 import ch.unibe.unisportbern.support.DBMethodes;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -70,7 +73,7 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 	}
 
 
-	private void setUpButtons(View convertView, Course course) {
+	private void setUpButtons(View convertView, final Course course) {
 		ImageButton buttonMap = (ImageButton) convertView.findViewById(R.id.button_map);
 		ImageButton buttonReminder = (ImageButton) convertView.findViewById(R.id.button_reminder);
 		
@@ -78,6 +81,17 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 			
 			@Override
 			public void onClick(View v) {
+				try {
+					String str = course.getCoordinate(context);
+					 String uri = "http://maps.google.com/maps?daddr="+str;
+				        Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
+				        intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+				        context.startActivity(intent);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 				// TODO calling map with coordinates as parameter
 				
 			}
