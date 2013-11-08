@@ -12,6 +12,12 @@
         android:layout_alignParentTop="true"
         android:gravity="center"
         android:text="Masus04"
+        android:textColor="#b0b0b0"
+        android:textStyle="bold"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="3"
         android:background="@drawable/profile_stub"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="@dimen/profile_title" />
