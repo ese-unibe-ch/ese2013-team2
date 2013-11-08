@@ -94,8 +94,8 @@ public class Course {
 		return day.getNextDay();
 	}
 	
-	public String getCoordinate(Context context) throws IOException, JSONException, InterruptedException, ExecutionException, TimeoutException{
+	/*public String getCoordinate(Context context) throws IOException, JSONException, InterruptedException, ExecutionException, TimeoutException{
 		JsonCoordinate json = new JsonCoordinate();
 		return json.getCoordinate(this);
-	}
+	}*/
 }

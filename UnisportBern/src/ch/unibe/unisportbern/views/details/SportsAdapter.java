@@ -85,12 +85,15 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 			
 			@Override
 			public void onClick(View v) {
-				try {
-					String str = course.getCoordinate(context);
-					 String uri = "http://maps.google.com/maps?daddr="+str;
+				
+					//String str = course.getCoordinate(context);
+					 String uri = "http://maps.google.com/maps?daddr="+"46.949134"+","+"7.4425";
 				        Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
 				        intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
 				        context.startActivity(intent);
+<<<<<<< HEAD
+				
+=======
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -107,6 +110,7 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+>>>>>>> d2ee5327573c5c2ac28f5b023ad3276b73a25c79
 
 				// TODO calling map with coordinates as parameter
 				
