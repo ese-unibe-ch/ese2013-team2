@@ -54,7 +54,7 @@ public class JsonSport extends AsyncTask<Void, Void, Void> {
 
 	public void executeJson() throws JSONException, InterruptedException, ExecutionException, TimeoutException {
 		this.execute();
-		this.get(500,TimeUnit.MILLISECONDS);
+		this.get();
 	}
 
 	private static String convertInputStreamToString(InputStream inputStream) throws IOException {
@@ -69,14 +69,16 @@ public class JsonSport extends AsyncTask<Void, Void, Void> {
 	}
 	
 	public ArrayList<Sport> getAllSports() throws JSONException, InterruptedException, ExecutionException, TimeoutException{
-		this.executeJson();
+		this.executeJson();	
 		String currentsport;
 
-			for (int i = 1; i <= obj.length(); i++) {
-				String index = Integer.toString(i);
-				currentsport = obj.getString(index);
-				this.allSports.add(new Sport(i+1, currentsport));
-			}
-			return allSports;	
+		for (int i = 1; i <= obj.length(); i++) {
+			String index = Integer.toString(i);
+			currentsport = obj.getString(index);
+			this.allSports.add(new Sport(i+1, currentsport));
 		}
+			
+			
+		return allSports;	
+	}
 }
