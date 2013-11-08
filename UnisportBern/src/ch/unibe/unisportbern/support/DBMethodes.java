@@ -168,6 +168,16 @@ public void courseUpdate(Sport sport) throws JSONException, InterruptedException
 		db.delete(DBHelper.FAVORITES, "cid = "+Integer.toString(course.getId()), null);
 	}
 	
+	public boolean isFavorite(Course course) {
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		
+		Cursor cursor = dbHelper.query(db, "SELECT * FROM courses WHERE coursename=\""+course.getName()+"\"");
+		
+		if(cursor.getCount() == 0) return false;
+		
+		else return true;
+	}
+	
 	public ArrayList<Course> getAllFavorites(){
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
         
