@@ -96,9 +96,9 @@ public class Course {
 	
 	public String getCoordinate(Context context) throws IOException, JSONException, InterruptedException, ExecutionException, TimeoutException{
 		Geocoder geocoder = new Geocoder(context); 
-		double lat;
-		double lon;
-		try {
+		double lat = 1;
+		double lon = 1;
+		//try {
 		    List<Address> geoResults = geocoder.getFromLocationName("Murtenstrasse 51, Bargen BE", 1);
 		    while (geoResults.size()==0) {
 		        geoResults = geocoder.getFromLocationName("Murtenstrasse 51, Bargen BE", 1);
@@ -107,13 +107,12 @@ public class Course {
 		        Address addr = geoResults.get(0);
 		        lat = addr.getLatitude();
 		        lon = addr.getLongitude();
-		        return Double.toString(lat)+","+Double.toString(lon);
 		    }
   
-		} catch (Exception e) {
-		    System.out.print(e.getMessage());
-		}
-		
-		return null;
+		//} catch (Exception e) {
+		   // System.out.print(e.getMessage());
+		//}
+		    
+		    return Double.toString(lat)+","+Double.toString(lon);
 	}
 }
