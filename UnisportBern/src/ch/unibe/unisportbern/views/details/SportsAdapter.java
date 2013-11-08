@@ -91,26 +91,6 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 				        Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
 				        intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
 				        context.startActivity(intent);
-<<<<<<< HEAD
-				
-=======
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ExecutionException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (TimeoutException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
->>>>>>> d2ee5327573c5c2ac28f5b023ad3276b73a25c79
 
 				// TODO calling map with coordinates as parameter
 				
