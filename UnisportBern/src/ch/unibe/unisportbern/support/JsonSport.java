@@ -54,7 +54,7 @@ public class JsonSport extends AsyncTask<Void, Void, Void> {
 
 	public void executeJson() throws JSONException, InterruptedException, ExecutionException, TimeoutException {
 		this.execute();
-		this.get(300,TimeUnit.MILLISECONDS);
+		this.get(500,TimeUnit.MILLISECONDS);
 	}
 
 	private static String convertInputStreamToString(InputStream inputStream) throws IOException {
