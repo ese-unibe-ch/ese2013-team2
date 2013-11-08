@@ -1,11 +1,16 @@
 package ch.unibe.unisportbern.views.details;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeoutException;
+
+import org.json.JSONException;
 
 import com.example.unisportbern.R;
 
 import ch.unibe.unisportbern.support.Course;
 import ch.unibe.unisportbern.support.DBMethodes;
+import ch.unibe.unisportbern.support.JsonCoordinate;
 
 import android.content.Context;
 import android.content.Intent;
@@ -80,13 +85,28 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 			
 			@Override
 			public void onClick(View v) {
+				JsonCoordinate jsoncoordinate = new JsonCoordinate();
 				
-					//String str = course.getCoordinate(context);
-					 String uri = "http://maps.google.com/maps?daddr="+"46.949134"+","+"7.4425";
-				        Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
-				        intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
-				        context.startActivity(intent);
+				try {
+					String str = jsoncoordinate.getCoordinate();
+					String uri = "http://maps.google.com/maps?daddr="+str;//"46.949134"+","+"7.4425";
+				    Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
+				    intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+				    context.startActivity(intent);
 				
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ExecutionException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (TimeoutException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		

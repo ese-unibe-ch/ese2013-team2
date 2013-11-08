@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -52,7 +51,7 @@ public class JsonCoordinate extends AsyncTask<Void, Void, Void> {
 
 	public void executeJson() throws JSONException, InterruptedException, ExecutionException, TimeoutException {
 		this.execute();
-		this.get(300,TimeUnit.MILLISECONDS);
+		this.get();
 	}
 
 	private static String convertInputStreamToString(InputStream inputStream) throws IOException {
@@ -66,8 +65,8 @@ public class JsonCoordinate extends AsyncTask<Void, Void, Void> {
 		return result;
 	}
 	
-	public String getCoordinate(Course course) throws JSONException, InterruptedException, ExecutionException, TimeoutException{		
-		URL = COORDINATE+course.getLocation();
+	public String getCoordinate() throws JSONException, InterruptedException, ExecutionException, TimeoutException{		
+		this.URL = "http://scg.unibe.ch/ese/unisport/location.php?loc=Turnhalle%20B";
 		
 		this.executeJson();
 		
