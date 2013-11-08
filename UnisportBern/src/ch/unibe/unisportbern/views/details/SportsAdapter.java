@@ -62,7 +62,7 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 		TextView info = (TextView) convertView.findViewById(R.id.info);
 		info.setText(courseList.get(groupPosition).getInformation());
 		
-		setUpButtons(convertView);
+		setUpButtons(convertView, courseList.get(groupPosition));
 		
 		
 		
@@ -70,7 +70,7 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 	}
 
 
-	private void setUpButtons(View convertView) {
+	private void setUpButtons(View convertView, Course course) {
 		ImageButton buttonMap = (ImageButton) convertView.findViewById(R.id.button_map);
 		ImageButton buttonReminder = (ImageButton) convertView.findViewById(R.id.button_reminder);
 		
