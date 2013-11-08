@@ -3,7 +3,6 @@ package ch.unibe.unisportbern.test;
 import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import org.json.JSONException;
@@ -11,9 +10,7 @@ import org.json.JSONException;
 import ch.unibe.unisportbern.support.DBMethodes;
 import ch.unibe.unisportbern.support.JsonSport;
 import ch.unibe.unisportbern.support.Sport;
-import ch.unibe.unisportbern.views.DetailsActivity;
 import android.test.AndroidTestCase;
-import android.os.AsyncTask;
 
 public class JsonTestCase extends AndroidTestCase {
 	JsonSport json;
