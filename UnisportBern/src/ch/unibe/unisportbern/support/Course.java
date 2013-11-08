@@ -2,6 +2,11 @@ package ch.unibe.unisportbern.support;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeoutException;
+
+import org.json.JSONException;
+
 import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
@@ -89,15 +94,8 @@ public class Course {
 		return day.getNextDay();
 	}
 	
-	public String getCoordinate(Context context) throws IOException{
-		
-		Geocoder geocoder = new Geocoder(context);  
-		List<Address> addresses;
-		addresses = geocoder.getFromLocationName(this.location, 1);
-		    
-		double latitude= addresses.get(0).getLatitude();
-		double longitude= addresses.get(0).getLongitude();
-		
-		return Double.toString(latitude)+","+Double.toString(longitude);
+	public String getCoordinate(Context context) throws IOException, JSONException, InterruptedException, ExecutionException, TimeoutException{
+		JsonCoordinate json = new JsonCoordinate();
+		return json.getCoordinate(this);
 	}
 }
