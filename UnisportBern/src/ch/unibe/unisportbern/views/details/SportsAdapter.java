@@ -1,11 +1,6 @@
 package ch.unibe.unisportbern.views.details;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeoutException;
-
-import org.json.JSONException;
 
 import com.example.unisportbern.R;
 
@@ -91,8 +86,6 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 				        Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
 				        intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
 				        context.startActivity(intent);
-
-				// TODO calling map with coordinates as parameter
 				
 			}
 		});
