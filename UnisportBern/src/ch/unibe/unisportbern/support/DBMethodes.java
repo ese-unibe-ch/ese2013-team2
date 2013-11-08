@@ -160,7 +160,7 @@ public void courseUpdate(Sport sport) throws JSONException, InterruptedException
 		
 		values.put("cid", course.getId());
 		
-        db.insert(DBHelper.FAVORITES,null, values);
+		if(!this.isFavorite(course)) db.insert(DBHelper.FAVORITES,null, values);
 	}
 	
 	public void deleteFavorite(Course course){
@@ -171,7 +171,7 @@ public void courseUpdate(Sport sport) throws JSONException, InterruptedException
 	public boolean isFavorite(Course course) {
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 		
-		Cursor cursor = dbHelper.query(db, "SELECT * FROM courses WHERE coursename=\""+course.getName()+"\"");
+		Cursor cursor = dbHelper.query(db, "SELECT * FROM courses JOIN favorites ON courses.cid = favorites.cid  WHERE courses.coursename=\""+course.getName()+"\"");
 		
 		if(cursor.getCount() == 0) return false;
 		
