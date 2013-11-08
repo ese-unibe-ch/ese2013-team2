@@ -1,11 +1,6 @@
 package ch.unibe.unisportbern.views.details;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeoutException;
-
-import org.json.JSONException;
 
 import com.example.unisportbern.R;
 
