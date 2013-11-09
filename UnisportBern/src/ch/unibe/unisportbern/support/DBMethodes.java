@@ -208,9 +208,4 @@ public void courseUpdate(Sport sport) throws JSONException, InterruptedException
 		else sub = false;
 		return sub;
 	}
-
-	public boolean isFavourite(Course course) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 }
