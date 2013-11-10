@@ -88,7 +88,7 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 				JsonCoordinate jsoncoordinate = new JsonCoordinate();
 				
 				try {
-					String str = jsoncoordinate.getCoordinate();
+					String str = jsoncoordinate.getCoordinate(course);
 					String uri = "http://maps.google.com/maps?daddr="+str;//"46.949134"+","+"7.4425";
 				    Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
 				    intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
@@ -115,6 +115,8 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 			@Override
 			public void onClick(View v) {
 				// TODO calling reminder fragment
+				Intent intent = new Intent(context, OptionsActivity.class);
+				context.startActivity(intent);
 
 			}
 		});
