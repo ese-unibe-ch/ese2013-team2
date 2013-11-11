@@ -32,22 +32,13 @@
         android:gravity="center"
         android:text="@string/favourite_courses"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-    
-     <TextView
-         android:id="@+id/TextView:favHelp"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_alignParentLeft="true"
-         android:layout_alignParentRight="true"
-         android:layout_below="@+id/TextView:favourite"
-         android:text="TextView" />
 
     <ExpandableListView
          android:id="@+id/expandableListViewFavourites"
          android:layout_width="match_parent"
          android:layout_height="wrap_content"
          android:layout_alignParentLeft="true"
-         android:layout_below="@+id/TextView:favHelp" >
+         android:layout_below="@+id/TextView:favourite" >
      </ExpandableListView>
     
     
@@ -69,5 +60,6 @@
          android:layout_alignParentLeft="true"
          android:layout_below="@+id/TextView:upcoming" >
      </ExpandableListView>
+     
      
 </RelativeLayout>

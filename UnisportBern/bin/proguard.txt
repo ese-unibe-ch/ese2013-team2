@@ -1,0 +1,21 @@
+# view AndroidManifest.xml #generated:19
+-keep class ch.unibe.unisportbern.views.DetailsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:32
+-keep class ch.unibe.unisportbern.views.MainActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:25
+-keep class ch.unibe.unisportbern.views.details.DActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:41
+-keep class ch.unibe.unisportbern.views.details.OptionsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:51
+-keep class com.example.unisportbern.AlarmReceiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:45
+-keep class com.example.unisportbern.BootReceiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:53
+-keep class com.example.unisportbern.NotificationService { <init>(...); }
+

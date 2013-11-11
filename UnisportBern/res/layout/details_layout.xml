@@ -13,7 +13,7 @@
         android:gravity="center"
         android:text="Sport Name"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="30dip" />
+        android:textSize="@dimen/profile_title" />
 
 
     <ExpandableListView
@@ -23,13 +23,5 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/sportName" >
     </ExpandableListView>
-
-    <Button
-        android:id="@+id/buttonTest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:text="DialogTest" />
 
 </RelativeLayout>

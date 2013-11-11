@@ -7,15 +7,6 @@
 	<string name="action_search">Action Search</string>
 	<string name="favourite_courses">Favourite Courses</string>
 	<string name="upcoming_courses">Upcoming Courses</string>
-	<string name="FavHelpText">To add Favourite Courses either click AllSports and select one, or use the search to find your Sport.\nThen select a Course and click the Favourite Star beside its name to add it to your favourite Courses</string>
-	<string-array name="SpinnerReminderArray">
-	    <item >2 hours before</item>
-	    <item >1 hour before</item>
-	    <item >30 minutes before</item>
-	    <item >15 minutes before</item>
-	    <item >at start time</item>
-	    <item >no reminder</item>
-	</string-array>
     
     
 </resources>

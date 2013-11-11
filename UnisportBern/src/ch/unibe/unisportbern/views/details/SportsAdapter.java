@@ -6,12 +6,11 @@ import java.util.concurrent.TimeoutException;
 
 import org.json.JSONException;
 
-import com.example.unisportbern.R;
+import ch.unibe.unisportbern.R;
 
 import ch.unibe.unisportbern.support.Course;
 import ch.unibe.unisportbern.support.DBMethodes;
 import ch.unibe.unisportbern.support.JsonCoordinate;
-import ch.unibe.unisportbern.views.details.reminder.OptionsActivity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -25,8 +24,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageButton;
-import android.widget.RatingBar;
-import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
 
 /**
@@ -61,42 +58,22 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 	@Override
 	public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
 		
-		final Course course = courseList.get(groupPosition);
-		
 		if (convertView == null){
 			LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			   convertView = inflater.inflate(R.layout.child_row, null);
 		}
 		
 		TextView phases = (TextView) convertView.findViewById(R.id.phases);
-		phases.setText("phases:\n" + course.getPhases());
+		phases.setText("phases:\n" + courseList.get(groupPosition).getPhases());
 		
 		TextView info = (TextView) convertView.findViewById(R.id.info);
-		info.setText(course.getInformation());
+		info.setText(courseList.get(groupPosition).getInformation());
 		
-		setUpButtons(convertView, course);
+		setUpButtons(convertView, courseList.get(groupPosition));
 		
-		//setUpRatingBar(convertView, course);
+		
 		
 		return convertView;
-	}
-
-
-	private void setUpRatingBar(View convertView, final Course course) {
-		
-		final DBMethodes db = new DBMethodes(context);
-		
-		RatingBar ratingBar = (RatingBar) convertView.findViewById(R.id.ratingBar);
-		ratingBar.setRating(db.getRating(course));
-		
-		ratingBar.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
-			
-			@Override
-			public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-				db.setRating(course, rating);
-				
-			}
-		});
 	}
 
 
@@ -137,6 +114,7 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 			
 			@Override
 			public void onClick(View v) {
+				// TODO calling reminder fragment
 				Intent intent = new Intent(context, OptionsActivity.class);
 				context.startActivity(intent);
 
@@ -183,10 +161,10 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 		TextView courseDate = (TextView) convertView.findViewById(R.id.CourseDate);
 		
 		courseName.setText(course.getName());
-		courseDate.setText(course.getDay() + " " + course.getTime());
+		courseDate.setText(course.getDay() + course.getTime());
 		
 		CheckBox checkbox = (CheckBox) convertView.findViewById(R.id.checkBox);
-		checkbox.setChecked(db.isFavourite(course));
+		checkbox.setChecked(db.isFavorite(course));
 		checkbox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
 			@Override
@@ -195,10 +173,10 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 				Course course = courseList.get(groupPosition);
 				DBMethodes db = new DBMethodes(context);
 				
-				if (isChecked && !db.isFavourite(course))
+				if (isChecked && !db.isFavorite(course))
 					db.addFavorite(course);
 				
-				else if (!isChecked && db.isFavourite(course))
+				else if (!isChecked && db.isFavorite(course))
 						db.deleteFavorite(course);
 			}
 		});
