@@ -202,6 +202,30 @@ public void courseUpdate(Sport sport) throws JSONException, InterruptedException
         return allFavorites;
 	}
 	
+	public void setRating(Course course, int rating){
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		
+		ContentValues values = new ContentValues();
+		
+		values.put("cid", course.getId());
+		values.put("rating", rating);
+		
+		if(db.update(DBHelper.RATING, values, "CID = "+course.getId(),null) == 0)
+        {
+        	db.insert(DBHelper.RATING, null, values);
+        }
+	}
+	
+	public int getRating(Course course){
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		
+		Cursor cursor = dbHelper.query(db, "SELECT * FROM rating WHERE cid="+course.getId());
+        cursor.moveToFirst();
+        
+        return cursor.getInt(2);
+	}
+	
+	
 	private boolean sub(int i){
 		boolean sub;
 		if(i==1) sub = true;
