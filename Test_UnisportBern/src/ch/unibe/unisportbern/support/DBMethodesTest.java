@@ -14,7 +14,6 @@ public class DBMethodesTest extends AndroidTestCase{
 		db = new DBMethodes(getContext());
 		db.addFavorite(course);
 		assertNotNull(db);
-		
      }
 	
 	
