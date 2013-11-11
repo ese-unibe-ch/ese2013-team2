@@ -32,19 +32,20 @@ public final class R {
     public static final class id {
         public static final int CourseDate=0x7f080008;
         public static final int CourseName=0x7f080007;
+        public static final int TextView_favHelp=0x7f08000c;
         public static final int TextView_favourite=0x7f08000b;
-        public static final int TextView_upcoming=0x7f08000d;
-        public static final int action_search=0x7f080010;
-        public static final int action_settings=0x7f08000f;
+        public static final int TextView_upcoming=0x7f08000e;
+        public static final int action_search=0x7f080011;
+        public static final int action_settings=0x7f080010;
         public static final int button_map=0x7f080000;
         public static final int button_reminder=0x7f080001;
         public static final int checkBox=0x7f080009;
         public static final int expandableListView=0x7f080006;
-        public static final int expandableListViewFavourites=0x7f08000c;
-        public static final int expandableListViewUpcoming=0x7f08000e;
+        public static final int expandableListViewFavourites=0x7f08000d;
+        public static final int expandableListViewUpcoming=0x7f08000f;
         public static final int info=0x7f080003;
         public static final int phases=0x7f080002;
-        public static final int ratingBar1=0x7f080004;
+        public static final int ratingBar=0x7f080004;
         public static final int sportName=0x7f080005;
         public static final int textView_name=0x7f08000a;
     }
@@ -61,6 +62,7 @@ public final class R {
         public static final int main_activity_actions=0x7f070001;
     }
     public static final class string {
+        public static final int FavHelpText=0x7f050006;
         public static final int action_search=0x7f050003;
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;

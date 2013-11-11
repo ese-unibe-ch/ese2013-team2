@@ -12,6 +12,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 
 /**
  * Responsibilities:
@@ -47,9 +48,14 @@ public class DActivity extends Activity{
 		
 		setContentView(R.layout.details_layout);
 		
+		TextView sportName = (TextView) findViewById(R.id.sportName);
+		sportName.setText(sport.getName());
+		
 		myList = (ExpandableListView) findViewById(R.id.expandableListView);
 		sportsadapter = new SportsAdapter(this, courses);
 		myList.setAdapter(sportsadapter);
+	
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 	
 	private void getCourses() {

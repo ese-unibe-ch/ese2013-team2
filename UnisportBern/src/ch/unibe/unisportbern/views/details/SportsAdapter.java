@@ -24,6 +24,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageButton;
+import android.widget.RatingBar;
+import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
 
 /**
@@ -58,22 +60,42 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 	@Override
 	public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
 		
+		final Course course = courseList.get(groupPosition);
+		
 		if (convertView == null){
 			LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			   convertView = inflater.inflate(R.layout.child_row, null);
 		}
 		
 		TextView phases = (TextView) convertView.findViewById(R.id.phases);
-		phases.setText("phases:\n" + courseList.get(groupPosition).getPhases());
+		phases.setText("phases:\n" + course.getPhases());
 		
 		TextView info = (TextView) convertView.findViewById(R.id.info);
-		info.setText(courseList.get(groupPosition).getInformation());
+		info.setText(course.getInformation());
 		
-		setUpButtons(convertView, courseList.get(groupPosition));
+		setUpButtons(convertView, course);
 		
-		
+		setUpRatingBar(convertView, course);
 		
 		return convertView;
+	}
+
+
+	private void setUpRatingBar(View convertView, final Course course) {
+		
+		final DBMethodes db = new DBMethodes(context);
+		
+		RatingBar ratingBar = (RatingBar) convertView.findViewById(R.id.ratingBar);
+		ratingBar.setRating(db.getRating(course));
+		
+		ratingBar.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
+			
+			@Override
+			public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+				db.setRating(course, rating);
+				
+			}
+		});
 	}
 
 
@@ -159,7 +181,7 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 		TextView courseDate = (TextView) convertView.findViewById(R.id.CourseDate);
 		
 		courseName.setText(course.getName());
-		courseDate.setText(course.getDay() + course.getTime());
+		courseDate.setText(course.getDay() + " " + course.getTime());
 		
 		CheckBox checkbox = (CheckBox) convertView.findViewById(R.id.checkBox);
 		checkbox.setChecked(db.isFavourite(course));

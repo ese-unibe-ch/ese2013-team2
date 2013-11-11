@@ -6,11 +6,13 @@ import ch.unibe.unisportbern.views.details.SportsAdapter;
 import com.example.unisportbern.R;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 
 /**
  * responibilities:
@@ -37,6 +39,10 @@ public class ProfileFragment extends Fragment{
 		ExpandableListView listFavourites = (ExpandableListView) view.findViewById(R.id.expandableListViewFavourites);
 		listFavourites.setAdapter(new SportsAdapter(getActivity(), db.getAllFavorites()));
 		
+		TextView textView = (TextView) view.findViewById(R.id.TextView_favHelp);
+		if (listFavourites.getCount() == 0)
+			textView.setText(R.string.FavHelpText);	 
+		else textView.setText("");
 		
 		return view; 
 	}

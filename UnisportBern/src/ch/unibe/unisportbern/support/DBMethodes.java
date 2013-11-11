@@ -160,7 +160,7 @@ public void courseUpdate(Sport sport) throws JSONException, InterruptedException
 		
 		values.put("cid", course.getId());
 		
-		if(!this.isFavorite(course)) db.insert(DBHelper.FAVORITES,null, values);
+		if(!this.isFavourite(course)) db.insert(DBHelper.FAVORITES,null, values);
 	}
 	
 	public void deleteFavorite(Course course){
@@ -168,11 +168,11 @@ public void courseUpdate(Sport sport) throws JSONException, InterruptedException
 		db.delete(DBHelper.FAVORITES, "cid = "+Integer.toString(course.getId()), null);
 	}
 	
-	public boolean isFavorite(Course course) {
+	public boolean isFavourite(Course course) {
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 		
 		Cursor cursor = dbHelper.query(db, "SELECT * FROM courses JOIN favorites ON courses.cid = favorites.cid  WHERE courses.coursename=\""+course.getName()+"\"");
-		
+		// wosch ds ni übert id machä statt überä namä? fr ds isch ja t id..? evtl. heissä ja 2 kürs sogar glich si aber zum nä angerä zitpunkt.
 		if(cursor.getCount() == 0) return false;
 		
 		else return true;
@@ -207,5 +207,19 @@ public void courseUpdate(Sport sport) throws JSONException, InterruptedException
 		if(i==1) sub = true;
 		else sub = false;
 		return sub;
+	}
+
+	public float getRating(Course course) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/**
+	 * returns the rating of a course. if the course does not have a rating, the result should be 0.
+	 * 
+	 */
+	public void setRating(Course course, float rating) {
+		// TODO Auto-generated method stub
+		
 	}
 }
