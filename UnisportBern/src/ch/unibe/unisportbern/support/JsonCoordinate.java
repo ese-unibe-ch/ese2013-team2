@@ -65,7 +65,7 @@ public class JsonCoordinate extends AsyncTask<Void, Void, Void> {
 		return result;
 	}
 	
-	public String getCoordinate() throws JSONException, InterruptedException, ExecutionException, TimeoutException{		
+	public String getCoordinate(Course course) throws JSONException, InterruptedException, ExecutionException, TimeoutException{		
 		this.URL = "http://scg.unibe.ch/ese/unisport/location.php?loc=Turnhalle%20B";
 		
 		this.executeJson();

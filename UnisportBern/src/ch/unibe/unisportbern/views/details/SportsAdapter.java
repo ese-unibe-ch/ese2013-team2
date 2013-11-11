@@ -164,7 +164,7 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 		courseDate.setText(course.getDay() + course.getTime());
 		
 		CheckBox checkbox = (CheckBox) convertView.findViewById(R.id.checkBox);
-		checkbox.setChecked(db.isFavourite(course));
+		checkbox.setChecked(db.isFavorite(course));
 		checkbox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
 			@Override
@@ -173,10 +173,10 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 				Course course = courseList.get(groupPosition);
 				DBMethodes db = new DBMethodes(context);
 				
-				if (isChecked && !db.isFavourite(course))
+				if (isChecked && !db.isFavorite(course))
 					db.addFavorite(course);
 				
-				else if (!isChecked && db.isFavourite(course))
+				else if (!isChecked && db.isFavorite(course))
 						db.deleteFavorite(course);
 			}
 		});
