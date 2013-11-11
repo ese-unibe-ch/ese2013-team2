@@ -33,34 +33,33 @@ public final class R {
         public static final int unisport_logo=0x7f020005;
     }
     public static final class id {
-        public static final int CourseDate=0x7f09000c;
-        public static final int CourseName=0x7f09000b;
-        public static final int TextView_favHelp=0x7f090010;
-        public static final int TextView_favourite=0x7f09000f;
-        public static final int TextView_upcoming=0x7f090012;
-        public static final int action_search=0x7f09001b;
-        public static final int action_settings=0x7f09001a;
-        public static final int btnDisplay=0x7f090019;
-        public static final int buttonTest=0x7f090007;
+        public static final int CourseDate=0x7f09000b;
+        public static final int CourseName=0x7f09000a;
+        public static final int TextView_favHelp=0x7f09000f;
+        public static final int TextView_favourite=0x7f09000e;
+        public static final int TextView_upcoming=0x7f090011;
+        public static final int action_search=0x7f09001a;
+        public static final int action_settings=0x7f090019;
+        public static final int btnDisplay=0x7f090018;
         public static final int button_map=0x7f090000;
         public static final int button_reminder=0x7f090001;
-        public static final int checkBox=0x7f09000d;
+        public static final int checkBox=0x7f09000c;
         public static final int expandableListView=0x7f090006;
-        public static final int expandableListViewFavourites=0x7f090011;
-        public static final int expandableListViewUpcoming=0x7f090013;
-        public static final int h=0x7f090018;
-        public static final int hh=0x7f090017;
-        public static final int hhh=0x7f090016;
-        public static final int hhhh=0x7f090015;
+        public static final int expandableListViewFavourites=0x7f090010;
+        public static final int expandableListViewUpcoming=0x7f090012;
+        public static final int h=0x7f090017;
+        public static final int hh=0x7f090016;
+        public static final int hhh=0x7f090015;
+        public static final int hhhh=0x7f090014;
         public static final int info=0x7f090003;
         public static final int phases=0x7f090002;
-        public static final int radioSex=0x7f090014;
+        public static final int radioSex=0x7f090013;
         public static final int ratingBar=0x7f090004;
-        public static final int spinnerReminderDialog=0x7f09000a;
+        public static final int spinnerReminderDialog=0x7f090009;
         public static final int sportName=0x7f090005;
-        public static final int textView_name=0x7f09000e;
-        public static final int textViewDialogFeedback=0x7f090009;
-        public static final int textViewReminderDialogHeading=0x7f090008;
+        public static final int textView_name=0x7f09000d;
+        public static final int textViewDialogFeedback=0x7f090008;
+        public static final int textViewReminderDialogHeading=0x7f090007;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;

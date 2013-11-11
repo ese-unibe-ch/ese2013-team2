@@ -61,11 +61,11 @@ public class DActivity extends Activity {
 
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 
-		setDialogButton();
+		//setDialogButton();
 
 	}
 
-	private void setDialogButton() {
+	/*private void setDialogButton() {
 		Button testButton = (Button) findViewById(R.id.buttonTest);
 		testButton.setOnClickListener(new OnClickListener() {
 
@@ -76,7 +76,7 @@ public class DActivity extends Activity {
 				dialog.show(getFragmentManager(), "dialog");
 			}
 		});
-	}
+	}*/
 
 	private void getCourses() {
 		DBMethodes dbMethodes = new DBMethodes(this);
