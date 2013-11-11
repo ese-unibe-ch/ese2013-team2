@@ -232,12 +232,7 @@ public void courseUpdate(Sport sport) throws JSONException, InterruptedException
 		else sub = false;
 		return sub;
 	}
-
-	public float getRating(Course course) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
+	
 	/**
 	 * returns the rating of a course. if the course does not have a rating, the result should be 0.
 	 * 

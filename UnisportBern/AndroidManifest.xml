@@ -24,7 +24,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
                
        <activity
         android:name="ch.unibe.unisportbern.views.details.DActivity"
@@ -32,10 +31,8 @@
         android:parentActivityName="ch.unibe.unisportbern.views.MainActivity">
        </activity>
        
-       
-=======
                 <activity 
-           android:name="ch.unibe.unisportbern.views.details.OptionsActivity"
+           android:name="ch.unibe.unisportbern.views.details.reminder.OptionsActivity"
            android:label="@string/app_name">
         </activity>
     <receiver android:name=".BootReceiver"> 

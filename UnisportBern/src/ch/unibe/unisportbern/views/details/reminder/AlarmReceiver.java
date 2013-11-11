@@ -1,4 +1,4 @@
-package ch.unibe.unisportbern.views.details;
+package ch.unibe.unisportbern.views.details.reminder;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

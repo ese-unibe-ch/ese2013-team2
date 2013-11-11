@@ -11,6 +11,7 @@ import com.example.unisportbern.R;
 import ch.unibe.unisportbern.support.Course;
 import ch.unibe.unisportbern.support.DBMethodes;
 import ch.unibe.unisportbern.support.JsonCoordinate;
+import ch.unibe.unisportbern.views.details.reminder.OptionsActivity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -75,7 +76,7 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 		
 		setUpButtons(convertView, course);
 		
-		setUpRatingBar(convertView, course);
+		//setUpRatingBar(convertView, course);
 		
 		return convertView;
 	}
@@ -136,7 +137,6 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO calling reminder fragment
 				Intent intent = new Intent(context, OptionsActivity.class);
 				context.startActivity(intent);
 
@@ -186,7 +186,7 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 		courseDate.setText(course.getDay() + " " + course.getTime());
 		
 		CheckBox checkbox = (CheckBox) convertView.findViewById(R.id.checkBox);
-		checkbox.setChecked(db.isFavorite(course));
+		checkbox.setChecked(db.isFavourite(course));
 		checkbox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
 			@Override
@@ -195,10 +195,10 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 				Course course = courseList.get(groupPosition);
 				DBMethodes db = new DBMethodes(context);
 				
-				if (isChecked && !db.isFavorite(course))
+				if (isChecked && !db.isFavourite(course))
 					db.addFavorite(course);
 				
-				else if (!isChecked && db.isFavorite(course))
+				else if (!isChecked && db.isFavourite(course))
 						db.deleteFavorite(course);
 			}
 		});

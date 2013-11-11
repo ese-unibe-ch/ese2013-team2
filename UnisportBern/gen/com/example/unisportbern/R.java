@@ -34,38 +34,24 @@ public final class R {
         public static final int CourseName=0x7f080007;
         public static final int TextView_favHelp=0x7f08000c;
         public static final int TextView_favourite=0x7f08000b;
-<<<<<<< HEAD
         public static final int TextView_upcoming=0x7f08000e;
-        public static final int action_search=0x7f080011;
-        public static final int action_settings=0x7f080010;
-=======
-        public static final int TextView_upcoming=0x7f08000d;
-        public static final int action_search=0x7f080016;
-        public static final int action_settings=0x7f080015;
-        public static final int btnDisplay=0x7f080014;
->>>>>>> cac7b47a6aa66098dd00d4b2a2d7d8b147475ae8
+        public static final int action_search=0x7f080017;
+        public static final int action_settings=0x7f080016;
+        public static final int btnDisplay=0x7f080015;
         public static final int button_map=0x7f080000;
         public static final int button_reminder=0x7f080001;
         public static final int checkBox=0x7f080009;
         public static final int expandableListView=0x7f080006;
-<<<<<<< HEAD
         public static final int expandableListViewFavourites=0x7f08000d;
         public static final int expandableListViewUpcoming=0x7f08000f;
+        public static final int h=0x7f080014;
+        public static final int hh=0x7f080013;
+        public static final int hhh=0x7f080012;
+        public static final int hhhh=0x7f080011;
         public static final int info=0x7f080003;
         public static final int phases=0x7f080002;
+        public static final int radioSex=0x7f080010;
         public static final int ratingBar=0x7f080004;
-=======
-        public static final int expandableListViewFavourites=0x7f08000c;
-        public static final int expandableListViewUpcoming=0x7f08000e;
-        public static final int h=0x7f080013;
-        public static final int hh=0x7f080012;
-        public static final int hhh=0x7f080011;
-        public static final int hhhh=0x7f080010;
-        public static final int info=0x7f080003;
-        public static final int phases=0x7f080002;
-        public static final int radioSex=0x7f08000f;
-        public static final int ratingBar1=0x7f080004;
->>>>>>> cac7b47a6aa66098dd00d4b2a2d7d8b147475ae8
         public static final int sportName=0x7f080005;
         public static final int textView_name=0x7f08000a;
     }
