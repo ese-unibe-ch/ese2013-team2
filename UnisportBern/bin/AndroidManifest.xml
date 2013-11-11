@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.unisportbern"
+    package="ch.unibe.unisportbern"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -16,23 +16,30 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
        
+       <activity
+        android:name="ch.unibe.unisportbern.views.DetailsActivity"
+        android:label="@string/app_name"
+		android:parentActivityName="ch.unibe.unisportbern.views.MainActivity">           
+       </activity>
+       
+       <activity
+        android:name="ch.unibe.unisportbern.views.details.DActivity"
+        android:label="@string/app_name"
+        android:parentActivityName="ch.unibe.unisport.views.MainActivity">
+       </activity>
+       
+       
         <activity
             android:name="ch.unibe.unisportbern.views.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-               
-       <activity
-        android:name="ch.unibe.unisportbern.views.details.DActivity"
-        android:label="@string/app_name"
-        android:parentActivityName="ch.unibe.unisportbern.views.MainActivity">
-       </activity>
-       
                 <activity 
-           android:name="ch.unibe.unisportbern.views.details.reminder.OptionsActivity"
+           android:name="ch.unibe.unisportbern.views.details.OptionsActivity"
            android:label="@string/app_name">
         </activity>
     <receiver android:name=".BootReceiver"> 
@@ -45,7 +52,6 @@
          
         <service android:name=".NotificationService"
                  android:enabled="true" />
->>>>>>> cac7b47a6aa66098dd00d4b2a2d7d8b147475ae8
     </application>
 
 </manifest>
