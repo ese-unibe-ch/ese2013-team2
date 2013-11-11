@@ -2,7 +2,7 @@ package ch.unibe.unisportbern.views;
 
 import ch.unibe.unisportbern.views.profile.ProfileFragment;
 
-import ch.unibe.unisportbern.R;
+import com.example.unisportbern.R;
 
 import android.os.Bundle;
 import android.app.ActionBar;
