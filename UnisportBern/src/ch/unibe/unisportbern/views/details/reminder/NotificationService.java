@@ -1,7 +1,7 @@
 package ch.unibe.unisportbern.views.details.reminder;
 
 
-import com.example.unisportbern.R;
+import ch.unibe.unisportbern.R;
 
 import android.app.IntentService;
 import android.app.Notification;

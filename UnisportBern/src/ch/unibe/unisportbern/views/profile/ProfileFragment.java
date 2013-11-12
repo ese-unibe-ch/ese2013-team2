@@ -3,7 +3,7 @@ package ch.unibe.unisportbern.views.profile;
 import ch.unibe.unisportbern.support.DBMethodes;
 import ch.unibe.unisportbern.views.details.SportsAdapter;
 
-import com.example.unisportbern.R;
+import ch.unibe.unisportbern.R;
 
 import android.app.Fragment;
 import android.content.Intent;

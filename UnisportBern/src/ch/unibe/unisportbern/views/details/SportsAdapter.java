@@ -6,7 +6,7 @@ import java.util.concurrent.TimeoutException;
 
 import org.json.JSONException;
 
-import com.example.unisportbern.R;
+import ch.unibe.unisportbern.R;
 
 import ch.unibe.unisportbern.support.Course;
 import ch.unibe.unisportbern.support.DBMethodes;
