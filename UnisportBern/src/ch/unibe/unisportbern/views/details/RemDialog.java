@@ -1,6 +1,6 @@
 package ch.unibe.unisportbern.views.details;
 
-import com.example.unisportbern.R;
+import ch.unibe.unisportbern.R;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

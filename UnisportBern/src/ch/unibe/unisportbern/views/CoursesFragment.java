@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import ch.unibe.unisportbern.support.*;
 import ch.unibe.unisportbern.views.details.DActivity;
 
-import com.example.unisportbern.R;
+import ch.unibe.unisportbern.R;
 import android.app.ListFragment;
 import android.content.Intent;
 import android.os.Bundle;

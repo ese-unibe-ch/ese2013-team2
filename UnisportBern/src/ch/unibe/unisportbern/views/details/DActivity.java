@@ -2,7 +2,7 @@ package ch.unibe.unisportbern.views.details;
 
 import java.util.ArrayList;
 
-import com.example.unisportbern.R;
+import ch.unibe.unisportbern.R;
 
 import ch.unibe.unisportbern.support.Course;
 import ch.unibe.unisportbern.support.DBMethodes;
