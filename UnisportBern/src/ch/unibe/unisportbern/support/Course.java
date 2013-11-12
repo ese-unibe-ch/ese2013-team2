@@ -38,7 +38,7 @@ public class Course {
 	}
 	
 	public String toString(){
-		return courseName  + " ("+getTime()+")";
+		return courseName + " " + day +  " ("+getTime()+")";
 	}
 	
 	public Sport getSport(){
