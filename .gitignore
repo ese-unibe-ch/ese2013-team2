@@ -1,0 +1,20 @@
+# Java compiled code
+*.class
+*.war
+*.ear
+
+# eclipse and setting files
+*/bin
+*/gen
+.metadata
+
+# OS specifc files
+Thumbs.db
+Desktrop.ini
+.DS_Store
+.directory
+
+# jenkins
+*/local.properties
+
+
