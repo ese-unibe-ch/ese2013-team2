@@ -16,6 +16,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+/**
+ * This class is responsible for the selection of the options for the time of the notification.
+ * @author Karan
+ *
+ */
+
 	public class OptionsActivity extends Activity {
 		
 		RadioGroup timeOptions;
