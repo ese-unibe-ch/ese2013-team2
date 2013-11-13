@@ -1,5 +1,7 @@
 package ch.unibe.unisportbern.support;
 
+import java.util.ArrayList;
+
 import android.test.AndroidTestCase;
 
 public class DBMethodesTest extends AndroidTestCase{
@@ -10,10 +12,7 @@ public class DBMethodesTest extends AndroidTestCase{
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		course = new Course(1, new Sport(1,"Fechten"), "Fechten", "monday", "12.00-13.00", "-2-45", "Hauptgebaeude", "", false, "3");
-		db = new DBMethodes(getContext());
-		db.addFavorite(course);
-		assertNotNull(db);
+		init();
      }
 	
 	
@@ -23,10 +22,15 @@ public class DBMethodesTest extends AndroidTestCase{
             
     }
 	
-	public void testFavouriteInDb(){
-		db.addFavorite(this.course);
-		assertEquals(1,1);
-		//assertEquals(course.getId(),1);	
+	public void testDBSports() throws Exception{
+		init();
+		
+		assertNotNull(db);
+				
+		ArrayList<Sport> sports = db.getAllSport();
+		
+		assertNotNull(sports);
+		//assertEquals(0, sports.get(0).getId());
 	}
 	
 	/*public void testIsFavorite(){
@@ -35,4 +39,9 @@ public class DBMethodesTest extends AndroidTestCase{
 		assertEquals(db.countFavorites(),1);
 	}*/
 	
+	public void init(){
+		course = new Course(1, new Sport(1,"Fechten"), "Fechten", "monday", "12.00-13.00", "-2-45", "Hauptgebaeude", "", false, "3");
+		db = new DBMethodes(getContext());
+		assertNotNull(db);
+	}
 }
