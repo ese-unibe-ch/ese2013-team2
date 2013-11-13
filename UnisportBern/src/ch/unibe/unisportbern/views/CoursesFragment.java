@@ -25,13 +25,6 @@ public class CoursesFragment extends ListFragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		DBMethodes dbMethodes = new DBMethodes(getActivity());
-		// Activate the database
-		try {
-			dbMethodes.sportUpdate();
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 			
 		sports = dbMethodes.getAllSport();
 

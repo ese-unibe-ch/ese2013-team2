@@ -22,7 +22,7 @@ public class DBMethodes {
 		this.dbHelper = new DBHelper(context);
 	}
 	
-	public void sportUpdate() throws JSONException, InterruptedException, ExecutionException, TimeoutException{
+	public void sportUpdate(){
         
         if(network.isOnline()){
         	
@@ -32,10 +32,11 @@ public class DBMethodes {
         	
         	JsonSport json = new JsonSport();
             
-            ArrayList<Sport> list = json.getAllSports();
-            
-    	        for(int a=0;a<list.size();a++){
-    	
+            ArrayList<Sport> list;
+			try {
+				list = json.getAllSports();
+				for(int a=0;a<list.size();a++){
+			    	
     		        //Setup new Content Values and assign some dummy content
     	        	int sid = a+1;
     		
@@ -47,7 +48,12 @@ public class DBMethodes {
     		        {
     		        	db.insert(DBHelper.SPORTS,null, values);
     		        }
-    	        } 
+    	        }
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+             
     	      //Close the Database and the Helper
     	      dbHelper.close();
     	      db.close();

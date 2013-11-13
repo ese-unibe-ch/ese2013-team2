@@ -6,7 +6,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import org.apache.http.HttpResponse;
@@ -28,6 +27,7 @@ public class JsonSport extends AsyncTask<Void, Void, Void> {
 		allSports = new ArrayList<Sport>();
 	}
 
+	@Override
 	protected Void doInBackground(Void... params) {
 
 		try {

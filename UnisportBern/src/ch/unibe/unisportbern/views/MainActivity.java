@@ -1,5 +1,6 @@
 package ch.unibe.unisportbern.views;
 
+import ch.unibe.unisportbern.support.DBMethodes;
 import ch.unibe.unisportbern.views.profile.ProfileFragment;
 
 import ch.unibe.unisportbern.R;
@@ -32,6 +33,10 @@ public class MainActivity extends Activity {
 		tab.setTabListener(new TabListener<CoursesFragment>(this, "Courses", CoursesFragment.class));
 		
 		actionbar.addTab(tab);	
+		
+		// Activate the database
+		DBMethodes dbMethodes = new DBMethodes(this);
+		dbMethodes.sportUpdate();
 	}
 
 	@Override
