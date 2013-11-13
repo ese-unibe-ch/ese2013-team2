@@ -10,6 +10,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+/**
+ * This class gets the information when the timer must be set. 
+ * @author Karan
+ *
+ */
+
 public class BootReceiver extends BroadcastReceiver {
 
 		@Override

@@ -9,6 +9,12 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 
+/**
+ * This class sets what should stand in the notification and sends the notification.
+ * @author Karan
+ *
+ */
+
 public class NotificationService extends IntentService {
 	
 	public NotificationService() {
