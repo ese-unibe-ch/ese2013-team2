@@ -13,7 +13,8 @@
         android:gravity="center"
         android:text="Sport Name"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="30dip" />
+        android:textSize="30dip"
+        android:drawableBottom="@drawable/custom_divider" />
 
 
     <ExpandableListView
@@ -21,7 +22,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/sportName" >
+        android:layout_below="@+id/sportName" 
+        android:groupIndicator="@android:color/transparent">
     </ExpandableListView>
+
+    <Button
+        android:id="@+id/buttonTest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:text="Button" />
 
 </RelativeLayout>

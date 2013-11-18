@@ -31,6 +31,7 @@
         android:layout_below="@+id/textView:name"
         android:gravity="center"
         android:text="@string/favourite_courses"
+        android:drawableBottom="@drawable/custom_divider"
         android:textAppearance="?android:attr/textAppearanceLarge" />
     
      <TextView
@@ -47,27 +48,9 @@
          android:layout_width="match_parent"
          android:layout_height="wrap_content"
          android:layout_alignParentLeft="true"
-         android:layout_below="@+id/TextView:favHelp" >
+         android:layout_below="@+id/TextView:favHelp" 
+         android:groupIndicator="@android:color/transparent">
      </ExpandableListView>
     
-    
-     <TextView
-        android:id="@+id/TextView:upcoming"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/expandableListViewFavourites"
-        android:gravity="center"
-        android:text="@string/upcoming_courses"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-     <ExpandableListView
-         android:id="@+id/expandableListViewUpcoming"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_alignParentLeft="true"
-         android:layout_below="@+id/TextView:upcoming" >
-     </ExpandableListView>
      
 </RelativeLayout>

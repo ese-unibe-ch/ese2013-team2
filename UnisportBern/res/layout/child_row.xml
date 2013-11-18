@@ -11,13 +11,13 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:src="@drawable/map" />
-
+   
     <ImageButton
         android:id="@+id/button_reminder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@id/button_map"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/button_map"
         android:src="@drawable/time" />
 
     <TextView
@@ -27,7 +27,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:gravity="center"
-        android:layout_below="@id/button_map"
+        android:layout_below="@id/button_reminder"
         android:text="phases:" />
 
     <TextView
@@ -49,5 +49,25 @@
         android:layout_centerHorizontal="true"
         android:numStars="5"
         android:stepSize="1" />
+
+    <TextView
+        android:id="@+id/textViewAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/button_map"
+        android:layout_alignTop="@id/button_map"
+        android:gravity="center"
+        android:layout_toRightOf="@+id/button_map"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/textViewReminder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/button_reminder"
+        android:layout_alignTop="@+id/button_reminder"
+        android:layout_toRightOf="@+id/button_reminder"
+        android:text="TextView" />
+
 
 </RelativeLayout>

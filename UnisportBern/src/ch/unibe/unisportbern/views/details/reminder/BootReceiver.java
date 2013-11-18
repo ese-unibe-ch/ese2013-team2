@@ -52,7 +52,6 @@ public class BootReceiver extends BroadcastReceiver {
 		      //alarmMgr.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, calendar.getTimeInMillis(),
 		               //3000, pendingIntent);
 		      alarmMgr.set(AlarmManager.RTC, calendar.getTimeInMillis(), pendingIntent);
-		      
 		   }
 		
 	}

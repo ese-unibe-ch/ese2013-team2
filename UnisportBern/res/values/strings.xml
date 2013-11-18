@@ -9,6 +9,7 @@
 	<string name="upcoming_courses">Upcoming Courses</string>
 	<string name="FavHelpText">To add Favourite Courses either click AllSports and select one, or use the search to find your Sport.\nThen select a Course and click the Favourite Star beside its name to add it to your favourite Courses</string>
 	<string-array name="SpinnerReminderArray">
+	    <item >no reminder</item> 
 	    <item >2 hours before</item>
 	    <item >1 hour before</item>
 	    <item >30 minutes before</item>
@@ -16,6 +17,8 @@
 	    <item >at start time</item>
 	    <item >no reminder</item>
 	</string-array>
+	<string name="welcome">Welcome</string>
+	<string name="WelcomeHelperText">Welcome to Unisport Bern.\nPlease choose a username and password. This data will be used to sign you up automatically and you will not have to input them again on this device. If you have used our app before, sign this device up with the same login information as last time</string>
     
     
 </resources>

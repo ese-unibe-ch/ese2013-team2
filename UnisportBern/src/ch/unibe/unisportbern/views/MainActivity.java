@@ -9,11 +9,14 @@ import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends Activity {
 
+	boolean FIRSSTART = true;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,6 +40,11 @@ public class MainActivity extends Activity {
 		// Activate the database
 		DBMethodes dbMethodes = new DBMethodes(this);
 		dbMethodes.sportUpdate();
+		
+		if (FIRSSTART){
+			DialogFragment signupFragment = new SignUpDialog();
+			signupFragment.show(getFragmentManager(), "Welcome Dialog");
+		}			
 	}
 
 	@Override
