@@ -1,4 +1,4 @@
-package ch.unibe.unisportbern.views;
+package ch.unibe.unisportbern.views.dialogs;
 
 import ch.unibe.unisportbern.R;
 import ch.unibe.unisportbern.views.details.RemDialog;
