@@ -1,11 +1,14 @@
 package ch.unibe.unisportbern.views.details.reminder;
 
 
+
 import ch.unibe.unisportbern.R;
+import ch.unibe.unisportbern.views.MainActivity;
 
 import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 
 /**
@@ -27,9 +30,12 @@ public class NotificationService extends IntentService {
 
 	@Override
 	protected void onHandleIntent(Intent intent) {
+		Intent kintent = new Intent(this, MainActivity.class);
+	    PendingIntent pIntent = PendingIntent.getActivity(this, 0, kintent, 0);
 	  Notification noti = new Notification.Builder(this)
 	    .setContentTitle(intent.getStringExtra("sports") + " at "   + intent.getStringExtra("time"))
-	    .setContentText("Subject").setSmallIcon(R.drawable.unisport_logo).build();
+	    .setContentText("").setSmallIcon(R.drawable.unisport_logo)
+	  .setContentIntent(pIntent).build();
 	  NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 	  // hide the notification after its selected
 	  noti.flags |= Notification.FLAG_AUTO_CANCEL;
