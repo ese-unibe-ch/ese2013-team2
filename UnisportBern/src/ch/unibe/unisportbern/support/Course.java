@@ -61,6 +61,10 @@ public class Course {
 		return time;
 	}
 	
+	public String getStartTime(){
+		return time.substring(0, 5);
+	}
+	
 	public String getPhases(){
 		return phases;
 	}
@@ -89,7 +93,7 @@ public class Course {
 	 * 
 	 * @return
 	 */
-	public long getNextDay(){
+	public String getNextDay(){
 		Day day = new Day(this.day);
 		return day.getNextDay();
 	}

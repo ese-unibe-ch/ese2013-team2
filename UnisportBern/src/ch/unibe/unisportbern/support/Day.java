@@ -1,5 +1,5 @@
 package ch.unibe.unisportbern.support;
-import java.util.Date;
+import java.util.Calendar;
 
 public class Day {
 	
@@ -16,7 +16,7 @@ public class Day {
 		}
 	}
 	
-	public long getNextDay(){
+	/*public long getNextDay(){
 
 		Date date = new Date();
 		int isDay = date.getDay();
@@ -34,6 +34,27 @@ public class Day {
 		Date newDate = new Date(date.getYear(),date.getMonth(),(date.getDate()+offset));
 		
 		return newDate.getTime();
+	}*/
+	
+	public String getNextDay(){
+		Calendar c = Calendar.getInstance();
+		int isDay = c.get(Calendar.DAY_OF_WEEK);
+		int offset = 0;
+		
+		if(dayWanted < isDay){
+			dayWanted += 7;
+		}
+		
+		while(isDay <= dayWanted){
+			offset ++;
+			isDay ++;
+		}
+		int dayM= c.get(Calendar.DAY_OF_MONTH)+ offset;
+		
+		return dayM + "."+ c.get(Calendar.MONTH) + "."  + c.get(Calendar.YEAR);
+				
+		
+		
 	}
 
 }

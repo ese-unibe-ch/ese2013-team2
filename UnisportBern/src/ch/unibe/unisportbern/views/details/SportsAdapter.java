@@ -1,6 +1,5 @@
 package ch.unibe.unisportbern.views.details;
 
-import java.io.ObjectInputStream.GetField;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
@@ -138,11 +137,17 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 			}
 		});
 		
-		buttonReminder.setOnClickListener(new OnClickListener() {
+            buttonReminder.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
+				String time = course.getStartTime();
+				String date = course.getNextDay();
+				String name =  course.getName();
 				Intent intent = new Intent(context, OptionsActivity.class);
+				intent.putExtra("date", date);
+				intent.putExtra("time", time);
+				intent.putExtra("sports", name);
 				context.startActivity(intent);
 
 			}
