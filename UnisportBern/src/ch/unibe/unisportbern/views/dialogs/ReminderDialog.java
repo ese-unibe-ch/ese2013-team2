@@ -1,4 +1,4 @@
-package ch.unibe.unisportbern.views.details;
+package ch.unibe.unisportbern.views.dialogs;
 
 import ch.unibe.unisportbern.R;
 
@@ -14,7 +14,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-public class RemDialog extends DialogFragment {
+public class ReminderDialog extends DialogFragment {
 	
 	@Override
 	public Dialog onCreateDialog(Bundle SavedInstanceState) {
@@ -36,7 +36,7 @@ public class RemDialog extends DialogFragment {
 
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						RemDialog.this.getDialog().cancel();
+						ReminderDialog.this.getDialog().cancel();
 					}
 				});
 		

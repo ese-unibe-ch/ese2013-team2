@@ -1,8 +1,6 @@
 package ch.unibe.unisportbern.views.dialogs;
 
 import ch.unibe.unisportbern.R;
-import ch.unibe.unisportbern.views.details.RemDialog;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;

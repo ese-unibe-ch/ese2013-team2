@@ -7,6 +7,7 @@ import ch.unibe.unisportbern.R;
 import ch.unibe.unisportbern.support.Course;
 import ch.unibe.unisportbern.support.DBMethodes;
 import ch.unibe.unisportbern.support.Sport;
+import ch.unibe.unisportbern.views.dialogs.ReminderDialog;
 
 import android.app.Activity;
 import android.app.DialogFragment;
@@ -70,7 +71,7 @@ public class DActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 
-				DialogFragment dialog = new RemDialog();
+				DialogFragment dialog = new ReminderDialog();
 				dialog.show(getFragmentManager(), "dialog");
 			}
 		});
