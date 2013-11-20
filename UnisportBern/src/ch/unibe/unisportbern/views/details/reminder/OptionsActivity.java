@@ -64,7 +64,7 @@ import android.widget.Toast;
 						int idx = timeOptions.indexOfChild(radioButton);
 						int min=0;
 						switch(idx) {
-						case 0: min= 2;
+						case 0: min= 120;
 		                        break;
 		                case 1: min = 90;
 		                    
