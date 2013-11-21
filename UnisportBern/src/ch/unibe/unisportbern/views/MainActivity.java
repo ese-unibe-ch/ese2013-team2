@@ -13,6 +13,7 @@ import android.app.Activity;
 import android.app.DialogFragment;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ExpandableListView;
 
 public class MainActivity extends Activity {
 
@@ -45,7 +46,15 @@ public class MainActivity extends Activity {
 		if (FIRSSTART){
 			DialogFragment signupFragment = new SignUpDialog();
 			signupFragment.show(getFragmentManager(), "Welcome Dialog");
-		}			
+		}	
+		
+		int index = getIntent().getIntExtra("index", -1);
+		
+		// exception needed?
+		if (index != -1){
+			ExpandableListView list = (ExpandableListView) findViewById(R.id.expandableListViewFavourites);
+			list.expandGroup(index);
+		}
 	}
 
 	@Override

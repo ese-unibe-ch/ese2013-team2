@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/textViewSearchDialogTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:drawableBottom="@drawable/custom_divider"
+        android:layout_marginBottom="5dip"
+        android:gravity="center"
+        android:text="Title"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="@dimen/dialog_text_size"
+        android:textStyle="bold" />
+
+    <RadioButton
+        android:id="@+id/radioButtonSearchName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textViewSearchDialogTitle"
+        android:checked="true"
+        android:text="Search by Sportname" />
+
+    <RadioButton
+        android:id="@+id/radioButtonSearchTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/editTextSearchName"
+        android:checked="false"
+        android:text="Search by Time" />
+
+    <EditText
+        android:id="@+id/editTextSearchName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/radioButtonSearchName" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/radioButtonSearchTime" >
+
+        <Spinner
+            android:id="@+id/spinnerSearchDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:entries="@array/SpinnerEntriesDays"
+            android:visibility="gone" />
+
+        <Spinner
+            android:id="@+id/spinnerSearchTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+        	android:entries="@array/SpinnerEntriesTime"
+        	android:visibility="gone" />
+    </LinearLayout>
+
+</RelativeLayout>
