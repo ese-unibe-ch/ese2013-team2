@@ -1,6 +1,8 @@
 package ch.unibe.unisportbern.views.dialogs;
 
 import ch.unibe.unisportbern.R;
+import ch.unibe.unisportbern.parse.ParseMethodes;
+import ch.unibe.unisportbern.support.DBMethodes;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -8,6 +10,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 
 public class SignUpDialog extends DialogFragment {
 
@@ -16,7 +19,7 @@ public class SignUpDialog extends DialogFragment {
 		super.onCreate(savedInstanceState);
 
 		LayoutInflater inflater = getActivity().getLayoutInflater();
-		View view = inflater.inflate(R.layout.signup_layout, null);
+		final View view = inflater.inflate(R.layout.signup_layout, null);
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
@@ -26,7 +29,14 @@ public class SignUpDialog extends DialogFragment {
 
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				// TODO Store Username and PW to database
+				EditText username = (EditText) view.findViewById(R.id.editTextUsername);
+				EditText password = (EditText) view.findViewById(R.id.editTextPW);
+				
+				ParseMethodes parse = new ParseMethodes();
+				parse.signingUp(username.getText().toString(), password.getText().toString());
+				
+		    	DBMethodes db = new DBMethodes(getActivity());
+		    	db.setUser(username.toString(), password.toString());
 			}
 		}).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 

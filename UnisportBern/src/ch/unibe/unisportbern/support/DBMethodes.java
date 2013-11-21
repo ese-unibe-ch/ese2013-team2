@@ -22,78 +22,95 @@ public class DBMethodes {
 		this.dbHelper = new DBHelper(context);
 	}
 	
-	public void sportUpdate(){
-        
-        if(network.isOnline()){
-        	
-            SQLiteDatabase db = dbHelper.getWritableDatabase();
-            
-            ContentValues values = new ContentValues();
-        	
-        	JsonSport json = new JsonSport();
-            
-            ArrayList<Sport> list;
-			try {
-				list = json.getAllSports();
-				for(int a=0;a<list.size();a++){
-			    	
-    		        //Setup new Content Values and assign some dummy content
-    	        	int sid = a+1;
-    		
-    		        values.put("SID", a+1);
-    		        values.put("NAME", list.get(a).getName());
-    		
-    		        //Perform the insert/update
-    		        if(db.update(DBHelper.SPORTS,values,"SID = "+sid,null) == 0)
-    		        {
-    		        	db.insert(DBHelper.SPORTS,null, values);
-    		        }
-    	        }
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+	public void setUpDatabase(){
+		
+		if(this.network.isOnline()){
+			
+			if(this.isTableEmpty("sports")) this.sportUpdate(true);
+			else this.sportUpdate(false);
+			
+			if(this.isTableEmpty("courses")){
+				
+				for(int i=0;i<this.getAllSport().size();i++){
+					this.courseUpdate(this.getAllSport().get(i), true);
+				} 
+			} else{
+				/*for(int i=0;i<this.getAllSport().size();i++){
+					this.courseUpdate(this.getAllSport().get(i), false);					
+				}*/
 			}
-             
-    	      //Close the Database and the Helper
-    	      dbHelper.close();
-    	      db.close();
-        }
+		}
 	}
 	
-public void courseUpdate(Sport sport) throws JSONException, InterruptedException, ExecutionException, TimeoutException{
-		
+	private void sportUpdate(boolean update){
+        	
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         
         ContentValues values = new ContentValues();
+    	
+    	JsonSport json = new JsonSport();
         
-        JsonCourse json = new JsonCourse();
-
-        ArrayList<Course> allCourses = json.getAllCourses(sport);
-        Course course;
-        
-        for(int a=0;a<allCourses.size();a++){
-        	course = allCourses.get(a);
-        		
-        	values.put("SID", sport.getId());
-        	values.put("COURSENAME", course.getName());
-        	values.put("DAY", course.getDay());
-    	    values.put("TIME", course.getTime());
-    	    values.put("PHASES", course.getPhases());
-    	    values.put("LOCATION", course.getLocation());
-    	    values.put("INFORMATION", course.getInformation());
-    	    values.put("SUB", course.getSub());
-    	    values.put("KEW", course.getKew());
-
-    	        //Perform the insert/update
-    	        if(db.update(DBHelper.COURSES, values, "COURSENAME = \""+course.getName()+"\"",null) == 0)
-    	        {
-    	        	db.insert(DBHelper.COURSES, null, values);
-    	        }
-        }
-        //Close the Database and the Helper
-        dbHelper.close();
-        db.close();
+        ArrayList<Sport> list;
+		try {
+			list = json.getAllSports();
+			for(int a=0;a<list.size();a++){
+		    	
+		        //Setup new Content Values and assign some dummy content
+	        	int sid = a+1;
+		
+		        values.put("SID", a+1);
+		        values.put("NAME", list.get(a).getName());
+		
+		        //Perform the insert/update
+		        if(update) db.insert(DBHelper.SPORTS,null, values);
+		        else db.update(DBHelper.SPORTS,values,"SID = "+sid,null);
+	        }
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+         
+	      //Close the Database and the Helper
+	      dbHelper.close();
+	      db.close();
 	}
+	
+	private void courseUpdate(Sport sport, boolean update){	
+		 SQLiteDatabase db = dbHelper.getWritableDatabase();
+        
+		 ContentValues values = new ContentValues();
+        
+		 JsonCourse json = new JsonCourse();
+        
+		 try {
+			 ArrayList<Course> allCourses = json.getAllCourses(sport);
+			 Course course;
+	        
+			 for(int a=0;a<allCourses.size();a++){
+	        	course = allCourses.get(a);
+	        		
+	        	values.put("SID", sport.getId());
+	        	values.put("COURSENAME", course.getName());
+	        	values.put("DAY", course.getDay());
+	    	    values.put("TIME", course.getTime());
+	    	    values.put("PHASES", course.getPhases());
+	    	    values.put("LOCATION", course.getLocation());
+	    	    values.put("INFORMATION", course.getInformation());
+	    	    values.put("SUB", course.getSub());
+	    	    values.put("KEW", course.getKew());
+
+	    	    if(update) db.insert(DBHelper.COURSES, null, values);
+	    	    else db.update(DBHelper.COURSES, values, "COURSENAME = \""+course.getName()+"\"",null);
+			 }
+		 } catch (Exception e) {
+			 // TODO Auto-generated catch block
+			 e.printStackTrace();
+		 }
+		 
+		 //Close the Database and the Helper
+		 dbHelper.close();
+		 db.close();
+ 	}
 	
 	/**
 	 * returns a list with all sport names.
@@ -138,9 +155,6 @@ public void courseUpdate(Sport sport) throws JSONException, InterruptedException
 	public ArrayList<Course> getAllCourses (Sport sport) throws JSONException, InterruptedException, ExecutionException, TimeoutException{
 		
 		//If Network is connected to internet, Updating the database
-		if(network.isOnline()){
-			this.courseUpdate(sport);
-		}
 		
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 		int sid = sport.getId();
@@ -177,8 +191,7 @@ public void courseUpdate(Sport sport) throws JSONException, InterruptedException
 	public boolean isFavourite(Course course) {
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 		
-		Cursor cursor = dbHelper.query(db, "SELECT * FROM courses JOIN favorites ON courses.cid = favorites.cid  WHERE courses.coursename=\""+course.getName()+"\"");
-		// wosch ds ni übert id machä statt überä namä? fr ds isch ja t id..? evtl. heissä ja 2 kürs sogar glich si aber zum nä angerä zitpunkt.
+		Cursor cursor = dbHelper.query(db, "SELECT * FROM courses JOIN favorites ON courses.cid = favorites.cid  WHERE courses.cid=\""+course.getId()+"\"");
 		if(cursor.getCount() == 0) return false;
 		
 		else return true;
@@ -246,5 +259,32 @@ public void courseUpdate(Sport sport) throws JSONException, InterruptedException
 	public void setRating(Course course, float rating) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void setUser(String username, String password){
+		
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        
+        ContentValues values = new ContentValues();
+        
+        values.put("username", username);
+        values.put("password", password);
+
+        //Perform the insert/update
+    	db.insert(DBHelper.USER, null, values);
+
+        //Close the Database and the Helper
+        dbHelper.close();
+        db.close();
+	}
+
+	private boolean isTableEmpty(String table){
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		
+		Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM "+table, null);
+		cursor.moveToFirst();
+		
+		if(cursor.getInt(0) == 0) return true;
+		else return false;
 	}
 }

@@ -41,7 +41,7 @@ public class MainActivity extends Activity {
 		
 		// Activate the database
 		DBMethodes dbMethodes = new DBMethodes(this);
-		dbMethodes.sportUpdate();
+		dbMethodes.setUpDatabase();
 		
 		if (FIRSSTART){
 			DialogFragment signupFragment = new SignUpDialog();
