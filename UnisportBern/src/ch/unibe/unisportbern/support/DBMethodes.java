@@ -287,4 +287,31 @@ public class DBMethodes {
 		if(cursor.getInt(0) == 0) return true;
 		else return false;
 	}
+	
+	public ArrayList<Sport> searchSport(String search){
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+        
+        Cursor cursor = dbHelper.query(db, "SELECT * FROM sports WHERE name like '% "+search+" %'");
+
+        ArrayList<Sport> sportNames = new ArrayList<Sport>();
+        
+        cursor.moveToFirst();
+        
+        for(int a=0; a<cursor.getCount(); a++){
+        	
+        	sportNames.add(new Sport(cursor.getInt(0), cursor.getString(1)));
+        	cursor.moveToNext();
+        }
+        
+        //Close the Database and the Helper
+        db.close();
+        dbHelper.close();
+		
+		return sportNames;
+	}
+	
+	public ArrayList<Course> isNextTime(long time){
+		
+		return null;
+	}
 }
