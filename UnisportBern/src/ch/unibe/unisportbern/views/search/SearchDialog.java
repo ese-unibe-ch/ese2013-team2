@@ -1,4 +1,4 @@
-package ch.unibe.unisportbern.views.dialogs;
+package ch.unibe.unisportbern.views.search;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -83,18 +83,26 @@ public class SearchDialog extends DialogFragment {
 		}
 	
 	private Intent createSearchResult(View view) {
-		DBMethodes dbMechodes = new DBMethodes(getActivity());
-		
 		RadioButton rbName = (RadioButton) view.findViewById(R.id.radioButtonSearchName);
 		RadioButton rbTime = (RadioButton) view.findViewById(R.id.radioButtonSearchTime);
 		
 		EditText et = (EditText) view.findViewById(R.id.editTextSearchName);
 		
+		Spinner spinnerDay = (Spinner) view.findViewById(R.id.spinnerSearchDay);
+		Spinner spinnerTime = (Spinner) view.findViewById(R.id.spinnerSearchTime);
+		
 		Intent intent = new Intent();
+		SearchHandler handler;
 		
 		if (rbName.isChecked()){
-			dbMechodes.searchSport(et.getText().toString());
+			handler = new SearchHandler(0, et.getText().toString(), -1, -1);
+			intent.putExtra("parameter", handler);
 		}
+		else if(rbTime.isChecked()){
+			handler = new SearchHandler(1, null, spinnerDay.getSelectedItemPosition(), spinnerTime.getSelectedItemPosition());
+			intent.putExtra("parameter", handler);
+		}
+		
 		return null;
 	}
 	

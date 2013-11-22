@@ -319,4 +319,11 @@ public class DBMethodes {
 		
 		return null;
 	}
+
+	
+	//TODO: di bruchi no, söt o nä ArrayList<Sport> gä, de funktioniert t suächi ;)
+	public ArrayList<Sport> searchSport(int day, int time) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

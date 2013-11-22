@@ -1,9 +1,9 @@
 package ch.unibe.unisportbern.views;
 
 import ch.unibe.unisportbern.support.DBMethodes;
-import ch.unibe.unisportbern.views.dialogs.SearchDialog;
 import ch.unibe.unisportbern.views.dialogs.SignUpDialog;
 import ch.unibe.unisportbern.views.profile.ProfileFragment;
+import ch.unibe.unisportbern.views.search.SearchDialog;
 
 import ch.unibe.unisportbern.R;
 
