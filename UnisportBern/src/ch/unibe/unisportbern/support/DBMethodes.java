@@ -6,12 +6,9 @@ import java.util.concurrent.TimeoutException;
 
 import org.json.JSONException;
 
-import ch.unibe.unisportbern.views.dialogs.SearchDialog;
 import ch.unibe.unisportbern.views.dialogs.StandardMessageDialog;
 
-import android.app.DialogFragment;
-import android.app.Fragment;
-import android.app.FragmentManager;
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -45,8 +42,8 @@ public class DBMethodes {
 			}
 		}
 		else{
-			SearchDialog dialog = new SearchDialog();
-			//dialog.show(((Activity) context).getFragmentManager(), "Achtung", "Keine Netzwerkverbindung", "Keine Netzwerkverbindung");
+			StandardMessageDialog dialog = new StandardMessageDialog();
+			dialog.show(((Activity)context).getFragmentManager(), "Achtung", "Keine Netzwerkverbindung", "Keine Netzwerkverbindung");
 		}
 	}
 	
@@ -229,7 +226,7 @@ public class DBMethodes {
         return allFavorites;
 	}
 	
-	public void setRating(Course course, int rating){
+	public void setRating(Course course, float rating){
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 		
 		ContentValues values = new ContentValues();

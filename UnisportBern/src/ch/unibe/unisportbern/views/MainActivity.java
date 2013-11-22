@@ -1,6 +1,7 @@
 package ch.unibe.unisportbern.views;
 
 import ch.unibe.unisportbern.support.DBMethodes;
+import ch.unibe.unisportbern.views.dialogs.SearchDialog;
 import ch.unibe.unisportbern.views.dialogs.SignUpDialog;
 import ch.unibe.unisportbern.views.profile.ProfileFragment;
 
@@ -72,10 +73,13 @@ public class MainActivity extends Activity {
 	 */
 	public boolean onOptionsItemSelected(MenuItem item){
 		
-		if (item.getItemId() == R.id.action_search)
-			//TODO:
+		if (item.getItemId() == R.id.action_search){
+
+			SearchDialog searchDialog = new SearchDialog();
+			searchDialog.show(getFragmentManager(), "search");
+			
 			return true;
-		
+		}
 		return super.onOptionsItemSelected(item);
 	}
 
