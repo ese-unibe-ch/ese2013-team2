@@ -322,6 +322,14 @@ public class DBMethodes {
 
 	
 	//TODO: di bruchi no, söt o nä ArrayList<Sport> gä, de funktioniert t suächi ;)
+
+	/**
+	 * 
+	 * @param day from 0 to 7: any day, mo, tu, we, .. so
+	 * @param time from 0 to 3: whole day, 6:00 to 12:00, 10:00 to 14:00, 12:00 to 18:00, 16:00 to 6:00
+	 * 
+	 * @return an ArrayList<Sport> mathing the criteria
+	 */
 	public ArrayList<Sport> searchSport(int day, int time) {
 		// TODO Auto-generated method stub
 		return null;
