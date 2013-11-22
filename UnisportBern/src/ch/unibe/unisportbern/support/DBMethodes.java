@@ -6,6 +6,12 @@ import java.util.concurrent.TimeoutException;
 
 import org.json.JSONException;
 
+import ch.unibe.unisportbern.views.dialogs.SearchDialog;
+import ch.unibe.unisportbern.views.dialogs.StandardMessageDialog;
+
+import android.app.DialogFragment;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -16,10 +22,12 @@ public class DBMethodes {
 	
 	private Network network;
 	private DBHelper dbHelper;
+	private Context context;
 	
 	public DBMethodes(Context context){
 		this.network = new Network(context);
 		this.dbHelper = new DBHelper(context);
+		this.context = context;
 	}
 	
 	public void setUpDatabase(){
@@ -34,11 +42,11 @@ public class DBMethodes {
 				for(int i=0;i<this.getAllSport().size();i++){
 					this.courseUpdate(this.getAllSport().get(i), true);
 				} 
-			} else{
-				/*for(int i=0;i<this.getAllSport().size();i++){
-					this.courseUpdate(this.getAllSport().get(i), false);					
-				}*/
 			}
+		}
+		else{
+			SearchDialog dialog = new SearchDialog();
+			//dialog.show(((Activity) context).getFragmentManager(), "Achtung", "Keine Netzwerkverbindung", "Keine Netzwerkverbindung");
 		}
 	}
 	
@@ -252,15 +260,6 @@ public class DBMethodes {
 		return sub;
 	}
 	
-	/**
-	 * returns the rating of a course. if the course does not have a rating, the result should be 0.
-	 * 
-	 */
-	public void setRating(Course course, float rating) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 	public void setUser(String username, String password){
 		
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -276,6 +275,15 @@ public class DBMethodes {
         //Close the Database and the Helper
         dbHelper.close();
         db.close();
+	}
+	
+	public User getUser(){
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		
+		Cursor cursorUser = dbHelper.query(db, "SELECT * FROM user");
+        cursorUser.moveToFirst();
+        
+        return new User(cursorUser.getString(0), cursorUser.getString(1));
 	}
 
 	private boolean isTableEmpty(String table){
