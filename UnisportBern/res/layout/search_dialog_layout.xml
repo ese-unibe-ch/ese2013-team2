@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    tools:context=".views.dialogs.SearchDialog" >
 
     <TextView
         android:id="@+id/textViewSearchDialogTitle"
@@ -10,8 +12,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:drawableBottom="@drawable/custom_divider"
         android:layout_marginBottom="5dip"
+        android:drawableBottom="@drawable/custom_divider"
         android:gravity="center"
         android:text="Title"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -25,7 +27,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/textViewSearchDialogTitle"
-        android:checked="true"
+        android:checked="false"
+        android:focusable="true"
         android:text="Search by Sportname" />
 
     <RadioButton
@@ -36,6 +39,7 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/editTextSearchName"
         android:checked="false"
+        android:focusable="true"
         android:text="Search by Time" />
 
     <EditText
@@ -44,6 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
+        android:visibility="gone"
         android:layout_below="@+id/radioButtonSearchName" />
 
     <LinearLayout
@@ -65,8 +70,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-        	android:entries="@array/SpinnerEntriesTime"
-        	android:visibility="gone" />
+            android:entries="@array/SpinnerEntriesTime"
+            android:visibility="gone" />
     </LinearLayout>
 
 </RelativeLayout>
