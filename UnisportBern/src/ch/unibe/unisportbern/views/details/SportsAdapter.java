@@ -11,11 +11,14 @@ import ch.unibe.unisportbern.R;
 import ch.unibe.unisportbern.support.Course;
 import ch.unibe.unisportbern.support.DBMethodes;
 import ch.unibe.unisportbern.support.JsonCoordinate;
-import ch.unibe.unisportbern.views.details.reminder.OptionsActivity;
+import ch.unibe.unisportbern.views.dialogs.ReminderDialog;
 
+import android.app.Activity;
+import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -137,14 +140,18 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 			
 			@Override
 			public void onClick(View v) {
-				String time = course.getStartTime();
-				String date = course.getNextDay();
+				//String time = course.getStartTime();
+				//String date = course.getNextDay();
+				Bundle b = new Bundle();
+				String time = "16.32";
+				String date = "22.10.2013";
 				String name =  course.getName();
-				Intent intent = new Intent(context, OptionsActivity.class);
-				intent.putExtra("date", date);
-				intent.putExtra("time", time);
-				intent.putExtra("sports", name);
-				context.startActivity(intent);
+				b.putString("date", date);
+				b.putString("time", time);
+				b.putString("sports", name);
+				DialogFragment dialog = new ReminderDialog();
+				dialog.setArguments(b);
+				dialog.show(((Activity) context).getFragmentManager(), "dialog");
 
 			}
 		});
