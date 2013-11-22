@@ -140,15 +140,14 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 			
 			@Override
 			public void onClick(View v) {
-				//String time = course.getStartTime();
-				//String date = course.getNextDay();
+				String time = course.getStartTime();
+				String date = course.getNextDay();
 				Bundle b = new Bundle();
-				String time = "16.32";
-				String date = "22.10.2013";
 				String name =  course.getName();
 				b.putString("date", date);
 				b.putString("time", time);
 				b.putString("sports", name);
+				b.putInt("cid", course.getId());
 				DialogFragment dialog = new ReminderDialog();
 				dialog.setArguments(b);
 				dialog.show(((Activity) context).getFragmentManager(), "dialog");

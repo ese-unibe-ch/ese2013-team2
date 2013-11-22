@@ -26,6 +26,7 @@ public class ReminderDialog extends DialogFragment {
 	private String date;
 	private String sportsName;
 	private Spinner spinner;
+	private int cid;
 	
 	
 	@Override
@@ -33,6 +34,7 @@ public class ReminderDialog extends DialogFragment {
 		time = getArguments().getString("time");
 		date = getArguments().getString("date");
 		sportsName = getArguments().getString("sports");
+		cid = getArguments().getInt("cid");
 		
 		LayoutInflater inflater = getActivity().getLayoutInflater();
 		View view = inflater.inflate(R.layout.dialog_layout_spinner, null);
@@ -105,7 +107,7 @@ public class ReminderDialog extends DialogFragment {
 	}
 	
 	 private void saveSelectedItem(){
-		SharedPreferences sharedPref = getActivity().getSharedPreferences("FileName",0);
+		SharedPreferences sharedPref = getActivity().getSharedPreferences("FileName" + cid,0);
 		int spinnerValue = sharedPref.getInt("userChoiceSpinner",-1);
 		if(spinnerValue != -1) 
 		// set the value of the spinner 
@@ -114,7 +116,7 @@ public class ReminderDialog extends DialogFragment {
 	 }
 	 private void retrieveSelectedItem(){
 			int userChoice = spinner.getSelectedItemPosition();
-			SharedPreferences sharedPref = getActivity().getSharedPreferences("FileName",0);
+			SharedPreferences sharedPref = getActivity().getSharedPreferences("FileName" + cid,0);
 			SharedPreferences.Editor prefEditor = sharedPref.edit();
 			prefEditor.putInt("userChoiceSpinner",userChoice);
 			prefEditor.commit();
