@@ -328,10 +328,60 @@ public class DBMethodes {
 	 * @param day from 0 to 7: any day, mo, tu, we, .. so
 	 * @param time from 0 to 3: whole day, 6:00 to 12:00, 10:00 to 14:00, 12:00 to 18:00, 16:00 to 6:00
 	 * 
-	 * @return an ArrayList<Sport> mathing the criteria
+	 * @return an ArrayList<Sport> matching the criteria
 	 */
-	public ArrayList<Sport> searchSport(int day, int time) {
-		// TODO Auto-generated method stub
+	public ArrayList<Course> searchCourse(int day, int time) {
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+        
+        Cursor cursor = dbHelper.query(db, "SELECT * FROM courses");
+        String[] dayNames = new String[]{"Mo","Di","Mi","Do","Fr","Sa","So"};
+
+        ArrayList<Course> coursNames = new ArrayList<Course>();
+        
+        cursor.moveToFirst();
+        
+        for(int a=0; a<cursor.getCount(); a++){
+        	Cursor cursorSport = dbHelper.query(db, "SELECT sid, name FROM sports WHERE sid="+cursor.getInt(1));
+	        cursorSport.moveToFirst();
+        	
+        	//if certain Day is equal or any day
+        	if(cursor.getString(3).equals(dayNames[day]) || day == 0){
+        		switch(time){
+        		case 0: 
+        			if(cursor.getString(4).equals("ganzer Tag")){
+        				coursNames.add(new Course(cursor.getInt(0), new Sport(cursorSport.getInt(0),cursorSport.getString(1)), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7),sub(cursor.getInt(8)), cursor.getString(9)));
+        			}
+        		case 1:
+        			if(getHour(cursor.getString(4)) >= 600 && getHour(cursor.getString(4)) <= 1200){
+        				coursNames.add(new Course(cursor.getInt(0), new Sport(cursorSport.getInt(0),cursorSport.getString(1)), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7),sub(cursor.getInt(8)), cursor.getString(9)));
+        			}
+        		case 2:
+        			if(getHour(cursor.getString(4)) >= 1000 && getHour(cursor.getString(4)) <= 1400){
+        				coursNames.add(new Course(cursor.getInt(0), new Sport(cursorSport.getInt(0),cursorSport.getString(1)), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7),sub(cursor.getInt(8)), cursor.getString(9)));
+        			}
+        		case 3:
+        			if(getHour(cursor.getString(4)) >= 1200 && getHour(cursor.getString(4)) <= 1800){
+        				coursNames.add(new Course(cursor.getInt(0), new Sport(cursorSport.getInt(0),cursorSport.getString(1)), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7),sub(cursor.getInt(8)), cursor.getString(9)));
+        			}
+        		case 4:
+        			if((getHour(cursor.getString(4)) >= 1600 && getHour(cursor.getString(4)) <= 2400) || (getHour(cursor.getString(4)) >= 0000 && getHour(cursor.getString(4)) <= 600)){
+        				coursNames.add(new Course(cursor.getInt(0), new Sport(cursorSport.getInt(0),cursorSport.getString(1)), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7),sub(cursor.getInt(8)), cursor.getString(9)));
+        			}
+        		}
+        	}
+        	
+        	return coursNames;
+        }
+        
+        //Close the Database and the Helper
+        db.close();
+        dbHelper.close();
+        
 		return null;
+	}
+	
+	private int getHour(String time){
+		if(Integer.parseInt(time.substring(0,1))==0) return Integer.parseInt(time.substring(1,2))+Integer.parseInt(time.substring(3,5));
+		else return Integer.parseInt(time.substring(0,2))+Integer.parseInt(time.substring(3,5));
 	}
 }
