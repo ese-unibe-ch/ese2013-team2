@@ -14,7 +14,6 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import ch.unibe.unisportbern.R;
-import ch.unibe.unisportbern.support.DBMethodes;
 
 public class SearchDialog extends DialogFragment {
 
