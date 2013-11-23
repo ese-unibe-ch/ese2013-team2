@@ -6,7 +6,6 @@ import ch.unibe.unisportbern.views.details.SportsAdapter;
 import ch.unibe.unisportbern.R;
 
 import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,8 +28,8 @@ public class ProfileFragment extends Fragment{
 	protected final static String NAME = "SportName";
 	protected final static String ID = "SportID";
 	
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		
 		DBMethodes db = new DBMethodes(getActivity());
 		

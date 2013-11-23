@@ -78,5 +78,16 @@ public class SearchHandler implements Parcelable
 	private ArrayList<Sport> searchByTime(DBMethodes dbMethodes) {
 		return dbMethodes.searchSport(day, time);
 	}
+
+	public String[] toStringArray(Activity activity) {
+		ArrayList<Sport> sports = getSearchResult(activity);
+		String[] stringArray = new String[sports.size()];
+		
+		for (int i=0; i < sports.size(); i++){
+			stringArray[i] = sports.get(i).getName();
+		}
+		
+		return stringArray;
+	}
 }
 

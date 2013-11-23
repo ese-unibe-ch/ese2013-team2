@@ -4,6 +4,7 @@ import ch.unibe.unisportbern.support.DBMethodes;
 import ch.unibe.unisportbern.views.dialogs.SignUpDialog;
 import ch.unibe.unisportbern.views.profile.ProfileFragment;
 import ch.unibe.unisportbern.views.search.SearchDialog;
+import ch.unibe.unisportbern.views.sportsTab.SportsFragment;
 
 import ch.unibe.unisportbern.R;
 
@@ -27,6 +28,7 @@ public class MainActivity extends Activity {
 		ActionBar actionbar = getActionBar();
 		actionbar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		actionbar.setDisplayShowTitleEnabled(false);
+		actionbar.setBackgroundDrawable(getResources().getDrawable(R.drawable.custom_background_dark_oranges));
 		
 		Tab tab = actionbar.newTab();
 		tab.setText("Profile");
@@ -35,8 +37,8 @@ public class MainActivity extends Activity {
 		actionbar.addTab(tab);
 		
 		tab = actionbar.newTab();
-		tab.setText("Courses");
-		tab.setTabListener(new TabListener<CoursesFragment>(this, "Courses", CoursesFragment.class));
+		tab.setText("Sports");
+		tab.setTabListener(new TabListener<SportsFragment>(this, "Sports", SportsFragment.class));
 		
 		actionbar.addTab(tab);	
 		

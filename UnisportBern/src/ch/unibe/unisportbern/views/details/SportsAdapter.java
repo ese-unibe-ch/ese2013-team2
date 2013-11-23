@@ -54,7 +54,8 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 
 	@Override
 	public long getChildId(int index, int stub) {
-		return stub;
+		//TODO: changed here, returned stub before..
+		return courseList.get(index).getId();
 	}
 
 	/**
