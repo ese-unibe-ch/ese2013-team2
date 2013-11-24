@@ -293,12 +293,12 @@ public class DBMethodes {
 		else return false;
 	}
 	
-	public ArrayList<Sport> searchSport(String search){
+	public ArrayList<IEvent> searchSport(String search){
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
         
         Cursor cursor = dbHelper.query(db, "SELECT * FROM sports WHERE name like '% "+search+" %'");
 
-        ArrayList<Sport> sportNames = new ArrayList<Sport>();
+        ArrayList<IEvent> sportNames = new ArrayList<IEvent>();
         
         cursor.moveToFirst();
         
@@ -330,16 +330,17 @@ public class DBMethodes {
 	 * 
 	 * @return an ArrayList<Sport> matching the criteria
 	 */
-	public ArrayList<Course> searchCourse(int day, int time) {
+	public ArrayList<IEvent> searchCourse(int day, int time) {
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
         
         Cursor cursor = dbHelper.query(db, "SELECT * FROM courses");
         String[] dayNames = new String[]{"Mo","Di","Mi","Do","Fr","Sa","So"};
 
-        ArrayList<Course> coursNames = new ArrayList<Course>();
+        ArrayList<IEvent> coursNames = new ArrayList<IEvent>();
         
         cursor.moveToFirst();
         
+        // TODO: unreached?
         for(int a=0; a<cursor.getCount(); a++){
         	Cursor cursorSport = dbHelper.query(db, "SELECT sid, name FROM sports WHERE sid="+cursor.getInt(1));
 	        cursorSport.moveToFirst();

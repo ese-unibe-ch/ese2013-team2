@@ -2,7 +2,7 @@ package ch.unibe.unisportbern.views.search;
 
 import java.util.ArrayList;
 
-import ch.unibe.unisportbern.support.Sport;
+import ch.unibe.unisportbern.support.IEvent;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,7 +14,7 @@ public class SearchResultsActivity extends Activity {
 	Intent intent;
 	SearchHandler parameter;
 
-	ArrayList<Sport> result;
+	ArrayList<IEvent> result;
 	ListView listView;
 	
 	@Override

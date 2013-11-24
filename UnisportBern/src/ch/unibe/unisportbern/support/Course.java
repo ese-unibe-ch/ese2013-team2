@@ -11,7 +11,7 @@ import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
 
-public class Course {
+public class Course implements IEvent{
 
 	private int cid;
 	private Sport sport;
@@ -41,6 +41,7 @@ public class Course {
 		return courseName + " " + day +  " ("+getTime()+")";
 	}
 	
+	@Override
 	public Sport getSport(){
 		return sport;
 	}

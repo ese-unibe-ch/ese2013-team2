@@ -1,6 +1,6 @@
 package ch.unibe.unisportbern.support;
 
-public class Sport {
+public class Sport implements IEvent{
 	private int id;
 	private String name;
 
@@ -19,5 +19,10 @@ public class Sport {
 	
 	public String toString(){
 		return name;
+	}
+
+	@Override
+	public Sport getSport() {
+		return this;
 	}
 }

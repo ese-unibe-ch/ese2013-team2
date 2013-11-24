@@ -4,7 +4,7 @@ package ch.unibe.unisportbern.views.search;
 import java.util.ArrayList;
 
 import ch.unibe.unisportbern.support.DBMethodes;
-import ch.unibe.unisportbern.support.Sport;
+import ch.unibe.unisportbern.support.IEvent;
 
 import android.app.Activity;
 import android.os.Parcel;
@@ -58,8 +58,7 @@ public class SearchHandler implements Parcelable
         }
     };
     
-    public ArrayList<Sport> getSearchResult(Activity activity){
-		ArrayList<Sport> sports;
+    public ArrayList<IEvent> getSearchResult(Activity activity){
 		DBMethodes dbMethodes = new DBMethodes(activity);
 		
 		if (nameOrTime == 0)
@@ -71,16 +70,16 @@ public class SearchHandler implements Parcelable
 		return null;
     }
 
-	private ArrayList<Sport> searchByName(DBMethodes dbMethodes) {
+	private ArrayList<IEvent> searchByName(DBMethodes dbMethodes) {
 		return dbMethodes.searchSport(name);
 	}
 
-	private ArrayList<Sport> searchByTime(DBMethodes dbMethodes) {
-		return dbMethodes.searchSport(day, time);
+	private ArrayList<IEvent> searchByTime(DBMethodes dbMethodes) {
+		return dbMethodes.searchCourse(day, time);
 	}
 
 	public String[] toStringArray(Activity activity) {
-		ArrayList<Sport> sports = getSearchResult(activity);
+		ArrayList<IEvent> sports = getSearchResult(activity);
 		String[] stringArray = new String[sports.size()];
 		
 		for (int i=0; i < sports.size(); i++){

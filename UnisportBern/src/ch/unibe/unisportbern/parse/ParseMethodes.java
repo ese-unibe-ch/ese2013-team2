@@ -3,8 +3,6 @@ package ch.unibe.unisportbern.parse;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONArray;
-
 import android.net.ParseException;
 
 import ch.unibe.unisportbern.support.Course;
@@ -12,7 +10,6 @@ import ch.unibe.unisportbern.support.DBMethodes;
 import ch.unibe.unisportbern.support.User;
 
 import com.parse.FindCallback;
-import com.parse.GetCallback;
 import com.parse.LogInCallback;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
