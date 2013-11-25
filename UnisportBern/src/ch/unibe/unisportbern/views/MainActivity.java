@@ -1,5 +1,6 @@
 package ch.unibe.unisportbern.views;
 
+import ch.unibe.unisportbern.parse.ParseMethodes;
 import ch.unibe.unisportbern.support.DBMethodes;
 import ch.unibe.unisportbern.views.dialogs.SignUpDialog;
 import ch.unibe.unisportbern.views.profile.ProfileFragment;

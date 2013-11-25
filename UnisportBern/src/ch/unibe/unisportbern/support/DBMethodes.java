@@ -293,14 +293,14 @@ public class DBMethodes {
         db.close();
 	}
 	
-	public User getUser(){
+	/*public User getUser(){
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 		
 		Cursor cursorUser = dbHelper.query(db, "SELECT * FROM user");
         cursorUser.moveToFirst();
         
         return new User(cursorUser.getString(0), cursorUser.getString(1));
-	}
+	}*/
 
 	private boolean isTableEmpty(String table){
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
