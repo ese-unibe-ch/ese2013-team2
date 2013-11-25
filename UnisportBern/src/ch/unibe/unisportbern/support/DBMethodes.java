@@ -346,7 +346,7 @@ public class DBMethodes {
 	        cursorSport.moveToFirst();
         	
         	//if certain Day is equal or any day
-        	if(cursor.getString(3).equals(dayNames[day]) || day == 0){
+        	if(cursor.getString(3).equals(dayNames[day-1]) || day == 0){
         		switch(time){
         		case 0: 
         			if(cursor.getString(4).equals("ganzer Tag")){
