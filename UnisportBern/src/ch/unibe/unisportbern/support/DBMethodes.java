@@ -38,6 +38,10 @@ public class DBMethodes {
 				
 				for(int i=0;i<this.getAllSport().size();i++){
 					this.courseUpdate(this.getAllSport().get(i), true);
+					if(i == 2){
+						//do nothing
+						int b = 0;
+					}
 				} 
 			}
 		}
@@ -177,6 +181,19 @@ public class DBMethodes {
         }
         
         return courses;
+	}
+	
+	public Course getCourse(int courseId){
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		 Cursor cursor = dbHelper.query(db, "SELECT * FROM courses WHERE cid="+courseId);
+		 cursor.moveToFirst();
+		 
+		 if(cursor.getCount() == 0) return null;
+		 
+		 else{
+			 Cursor cursorSport = dbHelper.query(db, "SELECT sid, name FROM sports WHERE sid="+cursor.getInt(1));
+			 return new  Course(cursor.getInt(0), new Sport(cursorSport.getInt(0), cursorSport.getString(1)), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7),sub(cursor.getInt(8)), cursor.getString(9)); 
+		 } 
 	}
 	
 	public void addFavorite(Course course){
