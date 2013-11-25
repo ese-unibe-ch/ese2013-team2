@@ -45,11 +45,12 @@ public class MainActivity extends Activity {
 		// Activate the database
 		DBMethodes dbMethodes = new DBMethodes(this);
 		dbMethodes.setUpDatabase();
+		ParseMethodes parse = new ParseMethodes(this);
 		
-		if (FIRSSTART){
+		if (!parse.automaticLogin()){
 			DialogFragment signupFragment = new SignUpDialog();
 			signupFragment.show(getFragmentManager(), "Welcome Dialog");
-		}	
+		}		
 		
 		int index = getIntent().getIntExtra("index", -1);
 		

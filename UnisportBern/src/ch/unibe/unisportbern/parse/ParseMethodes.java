@@ -3,6 +3,7 @@ package ch.unibe.unisportbern.parse;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.Context;
 import android.net.ParseException;
 
 import ch.unibe.unisportbern.support.Course;
@@ -11,10 +12,12 @@ import ch.unibe.unisportbern.support.User;
 
 import com.parse.FindCallback;
 import com.parse.LogInCallback;
+import com.parse.Parse;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
+import com.parse.ParseAnalytics;
 
 public class ParseMethodes {
 	ParseUser user = new ParseUser();
@@ -22,9 +25,11 @@ public class ParseMethodes {
 	User dbuser;
 	DBMethodes db;
 	ArrayList<String> friends = new ArrayList();
+	Context context;
 	
-	public ParseMethodes(){
-		
+	public ParseMethodes(Context context){
+		this.context = context;
+		 Parse.initialize(context, "p2hZnDFwdzTSLTkPD9t1rWyosBUkJessBArNyAAJ", "vU9rXONSs6QTJYmk38wzHzhrjMGktFXmCf6rsmpM");
 	}
 	
 	public void signingUp(String username, String password){
@@ -50,6 +55,17 @@ public class ParseMethodes {
 		});
 	}
 	
+	public boolean automaticLogin(){
+		ParseUser currentUser = ParseUser.getCurrentUser();
+		if (currentUser != null) {
+		  // do stuff with the user
+			return true;
+		} else {
+		  // show the signup or login screen
+			return false;
+		}
+	}
+	
 	public void loggingIn(){
 		
 		user.logInInBackground(dbuser.getUsername(), dbuser.getPassword(), new LogInCallback() {
@@ -73,14 +89,24 @@ public class ParseMethodes {
 		return null;
 	}
 	
-	public void setFavorites() throws com.parse.ParseException{
+	public void updateFavorites() throws com.parse.ParseException{
+		ParseQuery<ParseObject> query = ParseQuery.getQuery("Userdata");
+		
+		// Retrieve the object by id
+		/*query.getInBackground(, new GetCallback<ParseObject>() {
+		  public void done(ParseObject userdata, ParseException e) {
+		    if (e == null) {
+		
 		ArrayList <Course> allFav = db.getAllFavorites();
-		ArrayList <Integer> cids = new ArrayList();
+		ArrayList <Integer> cids = new ArrayList <Integer>();
 		for(int i = 0; i < allFav.size(); i++){
 			cids.add(allFav.get(i).getId());	
 		}
-		userdata.put("favorites", cids);
+		userdata.put("favourites", cids);
 		userdata.save();
+		    }
+		  }
+		});*/
 	}
 	
 	public void searchByUsername(String username){

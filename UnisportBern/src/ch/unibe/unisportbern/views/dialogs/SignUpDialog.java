@@ -32,7 +32,7 @@ public class SignUpDialog extends DialogFragment {
 				EditText username = (EditText) view.findViewById(R.id.editTextUsername);
 				EditText password = (EditText) view.findViewById(R.id.editTextPW);
 				
-				ParseMethodes parse = new ParseMethodes();
+				ParseMethodes parse = new ParseMethodes(getActivity());
 				parse.signingUp(username.getText().toString(), password.getText().toString());
 				
 		    	DBMethodes db = new DBMethodes(getActivity());
