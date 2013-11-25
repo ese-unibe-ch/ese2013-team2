@@ -246,7 +246,9 @@ public class DBMethodes {
 		Cursor cursor = dbHelper.query(db, "SELECT * FROM rating WHERE cid="+course.getId());
         cursor.moveToFirst();
         
-        return cursor.getInt(2);
+        if (cursor.getCount() == 0 ) return 0;
+        
+        else return cursor.getInt(2);
 	}
 	
 	
