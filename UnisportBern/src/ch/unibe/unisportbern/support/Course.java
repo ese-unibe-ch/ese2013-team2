@@ -120,4 +120,12 @@ public class Course implements IEvent{
 		    
 		    return Double.toString(lat)+","+Double.toString(lon);
 	}
+
+	/**
+	 * 
+	 * @return a string representing the time a reminder is set or "no reminder" if there's no reminder
+	 */
+	public String getReminder() {
+		return "";
+	}
 }

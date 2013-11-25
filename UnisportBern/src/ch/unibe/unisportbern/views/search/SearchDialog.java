@@ -29,9 +29,8 @@ public class SearchDialog extends DialogFragment {
 
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				//TODO:
 				Intent results = createSearchResult(view);
-				
+				sendResult(results);
 			}
 		});
 
@@ -48,7 +47,11 @@ public class SearchDialog extends DialogFragment {
 
 		return builder.create();
 	}
-
+	
+	private void sendResult(Intent intent){
+		getTargetFragment().onActivityResult(0, 0, intent);
+	}
+	
 	private void setupRadioButtons(final View view) {
 		final RadioButton rbName = (RadioButton) view.findViewById(R.id.radioButtonSearchName);
 		final RadioButton rbTime = (RadioButton) view.findViewById(R.id.radioButtonSearchTime);
@@ -102,7 +105,7 @@ public class SearchDialog extends DialogFragment {
 			intent.putExtra("parameter", handler);
 		}
 		
-		return null;
+		return intent;
 	}
 	
 	private void showSpinners(View view) {

@@ -71,22 +71,12 @@ public class SearchHandler implements Parcelable
     }
 
 	private ArrayList<IEvent> searchByName(DBMethodes dbMethodes) {
-		return dbMethodes.searchSport(name);
+		ArrayList<IEvent> list = dbMethodes.searchSport(name);
+		return list;
 	}
 
 	private ArrayList<IEvent> searchByTime(DBMethodes dbMethodes) {
 		return dbMethodes.searchCourse(day, time);
-	}
-
-	public String[] toStringArray(Activity activity) {
-		ArrayList<IEvent> sports = getSearchResult(activity);
-		String[] stringArray = new String[sports.size()];
-		
-		for (int i=0; i < sports.size(); i++){
-			stringArray[i] = sports.get(i).getName();
-		}
-		
-		return stringArray;
 	}
 }
 

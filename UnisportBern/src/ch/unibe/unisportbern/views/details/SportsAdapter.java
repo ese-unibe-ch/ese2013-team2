@@ -80,7 +80,7 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 		
 		setUpButtons(convertView, course);
 		
-		//setUpRatingBar(convertView, course);
+		setUpRatingBar(convertView, course);
 		
 		return convertView;
 	}
@@ -156,16 +156,16 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 			}
 		});
 		
-		//setUpTextViews(convertView, address, reminder);
+		setUpTextViews(convertView, course);
 		
 	}
 
-	private void setUpTextViews(View convertView, String addr, String remindr) {
+	private void setUpTextViews(View convertView, Course course) {
 		TextView address = (TextView) convertView.findViewById(R.id.textViewAddress);
 		TextView reminder = (TextView) convertView.findViewById(R.id.textViewReminder);
 		
-		address.setText(addr);
-		reminder.setText(remindr);
+		address.setText(course.getLocation());
+		reminder.setText(course.getReminder());
 		
 	}
 

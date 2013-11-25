@@ -78,6 +78,7 @@ public class MainActivity extends Activity {
 		if (item.getItemId() == R.id.action_search){
 
 			SearchDialog searchDialog = new SearchDialog();
+			//searchDialog.setTargetFragment(this, 0);
 			searchDialog.show(getFragmentManager(), "search");
 			
 			return true;

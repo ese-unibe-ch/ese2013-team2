@@ -42,6 +42,12 @@ public class DBMethodesTest extends AndroidTestCase{
 	public void init(){
 		course = new Course(1, new Sport(1,"Fechten"), "Fechten", "monday", "12.00-13.00", "-2-45", "Hauptgebaeude", "", false, "3");
 		db = new DBMethodes(getContext());
+		db.setUpDatabase();
 		assertNotNull(db);
+	}
+	
+	public void testSearchByName(){
+		ArrayList<IEvent> list = db.searchSport("Ai");
+		assertFalse(list.isEmpty());
 	}
 }
