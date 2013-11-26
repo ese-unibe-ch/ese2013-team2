@@ -35,7 +35,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		String sql = String.format("CREATE TABLE %s (sid INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)", SPORTS);
 		db.execSQL(sql);
 		
-		sql = String.format("CREATE TABLE %s (cid INTEGER PRIMARY KEY AUTOINCREMENT, sid INTEGER, coursename TEXT, day TEXT, time TEXT, phases TEXT, location TEXT, information TEXT, sub INTEGER, kew STRING)", COURSES);
+		sql = String.format("CREATE TABLE %s (cid INTEGER PRIMARY KEY AUTOINCREMENT, sid INTEGER, coursename TEXT, day TEXT, time TEXT, phases TEXT, location TEXT, information TEXT, sub INTEGER, kew STRING, imageLink STRING)", COURSES);
 		db.execSQL(sql);
 		
 		sql = String.format("CREATE TABLE %s (fid INTEGER PRIMARY KEY AUTOINCREMENT, cid INTEGER)", FAVORITES);

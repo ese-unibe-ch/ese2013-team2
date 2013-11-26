@@ -31,7 +31,7 @@ public class JsonCourse {
 		{
 			JSONObject row = array.getJSONObject(i);
 
-			allCourses.add(new Course(i,sport,row.getString("course"),row.getString("day"),row.getString("time"),row.getString("period"),row.getString("place"),row.getString("info"), subscriptionRequired(row.getString("subscription")), row.getString("kew")));
+			allCourses.add(new Course(i,sport,row.getString("course"),row.getString("day"),row.getString("time"),row.getString("period"),row.getString("place"),row.getString("info"), subscriptionRequired(row.getString("subscription")), row.getString("kew"), row.getString("img")));
 		}
 		return allCourses;
 	}
