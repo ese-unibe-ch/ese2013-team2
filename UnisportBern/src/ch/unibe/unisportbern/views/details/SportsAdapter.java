@@ -17,6 +17,7 @@ import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -27,6 +28,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
@@ -40,10 +42,14 @@ import android.widget.TextView;
 public class SportsAdapter extends BaseExpandableListAdapter  {
 	private Context context;
 	private ArrayList<Course> courseList;
+	private ExpandableListView myList;
+	private View previousView;
+	private int previousListIndex;
 
-	public SportsAdapter(Context context, ArrayList<Course> courseList) {
+	public SportsAdapter(Context context, ArrayList<Course> courseList, ExpandableListView myList) {
 		this.context = context;
 		this.courseList = courseList;
+		this.myList = myList;
 	}
 
 	
@@ -231,7 +237,7 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 		
 		return convertView;
 	}
-
+	
 	@Override
 	public boolean hasStableIds() {
 		return true;

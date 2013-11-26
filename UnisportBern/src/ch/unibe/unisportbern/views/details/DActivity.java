@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ExpandableListView;
+import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.TextView;
 
 /**
@@ -55,8 +56,20 @@ public class DActivity extends Activity {
 		sportName.setText(sport.getName());
 
 		myList = (ExpandableListView) findViewById(R.id.expandableListView);
-		sportsadapter = new SportsAdapter(this, courses);
+		sportsadapter = new SportsAdapter(this, courses, myList);
 		myList.setAdapter(sportsadapter);
+		
+		/*myList.setOnChildClickListener(new OnChildClickListener() {
+			
+			@Override
+			public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+
+				int index = parent.getFlatListPosition(ExpandableListView.getPackedPositionForChild(groupPosition, childPosition));
+				parent.setItemChecked(index, true);
+				
+				return true;
+			}
+		});*/
 
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 

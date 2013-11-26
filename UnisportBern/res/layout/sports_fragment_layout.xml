@@ -28,6 +28,13 @@
             android:background="@drawable/custom_button_background" />
     </LinearLayout>
 
+     <TextView
+            android:id="@+id/textViewSportsFragmentEmptyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/EmptySearchHelperText"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    
     <ListView
         android:id="@+id/listViewSports"
         android:layout_width="match_parent"

@@ -36,7 +36,7 @@ public class ProfileFragment extends Fragment{
 		View view = inflater.inflate(R.layout.profile_layout, container, false);
 		
 		ExpandableListView listFavourites = (ExpandableListView) view.findViewById(R.id.expandableListViewFavourites);
-		listFavourites.setAdapter(new SportsAdapter(getActivity(), db.getAllFavorites()));
+		listFavourites.setAdapter(new SportsAdapter(getActivity(), db.getAllFavorites(), listFavourites));
 		
 		TextView textView = (TextView) view.findViewById(R.id.TextView_favHelp);
 		if (listFavourites.getCount() == 0)

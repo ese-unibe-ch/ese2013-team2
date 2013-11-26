@@ -1,10 +1,6 @@
 package ch.unibe.unisportbern.views.sportsTab;
 
-
-import java.util.ArrayList;
-
 import ch.unibe.unisportbern.R;
-import ch.unibe.unisportbern.support.IEvent;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -23,11 +19,6 @@ public class CustomArrayAdapter extends ArrayAdapter<String> {
 		
 		this.context = context;
 		this.values = values;
-	}
-	
-	private String[] convertValues(ArrayList<IEvent> values2) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override

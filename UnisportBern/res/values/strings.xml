@@ -34,10 +34,11 @@
 	</string-array>
 	
 	<string-array name="SpinnerEntriesTime">
-	    <item >Whole Day</item>
+	    <item >Any Time</item>
 	    <item >Morning</item>
 	    <item >Afternoon</item>
 	    <item >Evening</item>
 	</string-array>
+	<string name="EmptySearchHelperText">Your search did not match with any Sport. Retry with another search value or press All Sports to see a list of all Sports available.</string>
     
 </resources>
