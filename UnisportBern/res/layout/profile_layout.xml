@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/textView:name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:text="Masus04"
+        android:textColor="#b0b0b0"
+        android:textStyle="bold"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="3"
+        android:background="@drawable/profile_stub"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="@dimen/profile_title" />
+
+    <TextView
+        android:id="@+id/TextView:favourite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textView:name"
+        android:gravity="center"
+        android:text="@string/favourite_courses"
+        android:drawableBottom="@drawable/custom_divider"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+     <TextView
+         android:id="@+id/TextView:favHelp"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentLeft="true"
+         android:layout_alignParentRight="true"
+         android:layout_below="@+id/TextView:favourite"
+         android:text="TextView" />
+
+    <ExpandableListView
+         android:id="@+id/expandableListViewFavourites"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_alignParentLeft="true"
+         android:layout_below="@+id/TextView:favHelp" 
+         android:groupIndicator="@android:color/transparent">
+     </ExpandableListView>
+    
+     
+</RelativeLayout>

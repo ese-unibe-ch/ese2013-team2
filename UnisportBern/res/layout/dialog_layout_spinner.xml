@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textViewReminderDialogHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Set Reminder"
+        android:textSize="@dimen/dialog_text_size"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:paddingTop="10dip"
+        android:paddingBottom="10dip"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:drawableBottom="@drawable/custom_divider" />
+    
+    <Spinner
+        android:id="@+id/spinnerReminderDialog"
+        android:layout_width="fill_parent"
+        android:layout_gravity="center"
+        android:paddingBottom="15dip"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
