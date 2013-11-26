@@ -3,8 +3,8 @@ package ch.unibe.unisportbern.views;
 import ch.unibe.unisportbern.parse.ParseMethodes;
 import ch.unibe.unisportbern.support.DBMethodes;
 import ch.unibe.unisportbern.views.dialogs.SignUpDialog;
+import ch.unibe.unisportbern.views.friends.FriendsFragment;
 import ch.unibe.unisportbern.views.profile.ProfileFragment;
-import ch.unibe.unisportbern.views.search.SearchDialog;
 import ch.unibe.unisportbern.views.sportsTab.SportsFragment;
 
 import ch.unibe.unisportbern.R;
@@ -14,8 +14,6 @@ import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.app.DialogFragment;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ExpandableListView;
 
 public class MainActivity extends Activity {
@@ -42,6 +40,12 @@ public class MainActivity extends Activity {
 		tab.setTabListener(new TabListener<SportsFragment>(this, "Sports", SportsFragment.class));
 		
 		actionbar.addTab(tab);	
+		
+		tab = actionbar.newTab();
+		tab.setText("Friends");
+		tab.setTabListener(new TabListener<FriendsFragment>(this, "Friends", FriendsFragment.class));
+		
+		actionbar.addTab(tab);
 		
 		// Activate the database
 		DBMethodes dbMethodes = new DBMethodes(this);

@@ -24,6 +24,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -79,10 +80,16 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 		}
 		
 		setUpButtons(convertView, course);
-		
 		setUpRatingBar(convertView, course);
+		//setupImage(convertView, course);
 		
 		return convertView;
+	}
+
+
+	private void setupImage(View convertView, Course course) {
+		WebView web = (WebView) convertView.findViewById(R.id.webViewDetails);
+		web.loadUrl(course.getUrl());
 	}
 
 

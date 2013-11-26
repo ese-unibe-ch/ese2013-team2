@@ -23,6 +23,7 @@ public class Course implements IEvent{
 	private String information;
 	private boolean subscriptionRequired;
 	private String kew;
+	private String url;
 	
 	public Course (int cid, Sport sport, String courseName, String day, String time, String phases, String location, String information, boolean subscriptionRequired, String kew){
 		this.cid = cid;
@@ -35,6 +36,7 @@ public class Course implements IEvent{
 		this.information = information;
 		this.subscriptionRequired = subscriptionRequired;
 		this.kew = kew;
+		this.url = url;
 	}
 	
 	public String toString(){
@@ -127,5 +129,9 @@ public class Course implements IEvent{
 	 */
 	public String getReminder() {
 		return "";
+	}
+
+	public String getUrl() {
+		return url;
 	}
 }
