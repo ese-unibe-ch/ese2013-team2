@@ -8,7 +8,7 @@
         android:id="@+id/textViewMessageTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Medium Text"
+        android:text="No Network Connection"
         android:gravity="center"
         android:paddingBottom="5dip"
         android:textSize="@dimen/dialog_text_size"
@@ -20,6 +20,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="5dip"
-        android:text="TextView" />
+        android:text="Please ensure internet connection to run the app with scope of operation" />
 
 </LinearLayout>

@@ -1,16 +1,5 @@
 package ch.unibe.unisportbern.support;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeoutException;
-
-import org.json.JSONException;
-
-import android.content.Context;
-import android.location.Address;
-import android.location.Geocoder;
-
 public class Course implements IEvent{
 
 	private int cid;
@@ -23,9 +12,13 @@ public class Course implements IEvent{
 	private String information;
 	private boolean subscriptionRequired;
 	private String kew;
+<<<<<<< HEAD
 	private String url;
+=======
+	private String imageLink;
+>>>>>>> 4e63ad33e5ad358e9a368674ecd9c00bf7b530fe
 	
-	public Course (int cid, Sport sport, String courseName, String day, String time, String phases, String location, String information, boolean subscriptionRequired, String kew){
+	public Course (int cid, Sport sport, String courseName, String day, String time, String phases, String location, String information, boolean subscriptionRequired, String kew, String imageLink){
 		this.cid = cid;
 		this.sport = sport;
 		this.courseName = courseName;
@@ -36,7 +29,11 @@ public class Course implements IEvent{
 		this.information = information;
 		this.subscriptionRequired = subscriptionRequired;
 		this.kew = kew;
+<<<<<<< HEAD
 		this.url = url;
+=======
+		this.imageLink = imageLink;
+>>>>>>> 4e63ad33e5ad358e9a368674ecd9c00bf7b530fe
 	}
 	
 	public String toString(){
@@ -80,6 +77,13 @@ public class Course implements IEvent{
 		return information;
 	}
 	
+	public String getImageLink(){
+		if(this.imageLink != null) this.imageLink.replace(" ","");
+		else this.imageLink = "";
+		
+		return this.imageLink;
+	}
+	
 	/**
 	 * @return true if a subscribtion is required for attending the course
 	 * @return
@@ -99,28 +103,6 @@ public class Course implements IEvent{
 	public String getNextDay(){
 		Day day = new Day(this.day);
 		return day.getNextDay();
-	}
-	
-	public String getCoordinate(Context context) throws IOException, JSONException, InterruptedException, ExecutionException, TimeoutException{
-		Geocoder geocoder = new Geocoder(context); 
-		double lat = 1;
-		double lon = 1;
-		//try {
-		    List<Address> geoResults = geocoder.getFromLocationName("Murtenstrasse 51, Bargen BE", 1);
-		    while (geoResults.size()==0) {
-		        geoResults = geocoder.getFromLocationName("Murtenstrasse 51, Bargen BE", 1);
-		    }
-		    if (geoResults.size()>0) {
-		        Address addr = geoResults.get(0);
-		        lat = addr.getLatitude();
-		        lon = addr.getLongitude();
-		    }
-  
-		//} catch (Exception e) {
-		   // System.out.print(e.getMessage());
-		//}
-		    
-		    return Double.toString(lat)+","+Double.toString(lon);
 	}
 
 	/**

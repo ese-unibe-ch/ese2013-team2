@@ -25,6 +25,7 @@ public class User {
 		this.favourites = new ArrayList<Course>();
 		this.context = context;
 		this.parse = new ParseMethodes(context);
+		friends = parse.getFriends();
 	}
 	
 	public String getUsername(){
