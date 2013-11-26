@@ -78,12 +78,6 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 			   convertView = inflater.inflate(R.layout.child_row, null);
 		}
 		
-		TextView phases = (TextView) convertView.findViewById(R.id.phases);
-		phases.setText("phases:\n" + course.getPhases());
-		
-		TextView info = (TextView) convertView.findViewById(R.id.info);
-		info.setText(course.getInformation());
-		
 		setUpButtons(convertView, course);
 		
 		setUpRatingBar(convertView, course);
@@ -171,7 +165,13 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 		TextView reminder = (TextView) convertView.findViewById(R.id.textViewReminder);
 		
 		address.setText(course.getLocation());
-		reminder.setText(course.getReminder());
+		reminder.setText(course.getDay() + " " + course.getTime());
+		
+		TextView phases = (TextView) convertView.findViewById(R.id.phases);
+		phases.setText("phases: " + course.getPhases());
+		
+		TextView info = (TextView) convertView.findViewById(R.id.info);
+		info.setText(course.getInformation());
 		
 	}
 

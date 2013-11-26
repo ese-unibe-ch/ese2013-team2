@@ -68,24 +68,5 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main_activity_actions, menu);
 		return true;
 	}
-	
-	@Override
-	/**
-	 * defines the action performed when a button is clicked
-	 * 
-	 * @item	the button that has been clicked
-	 */
-	public boolean onOptionsItemSelected(MenuItem item){
-		
-		if (item.getItemId() == R.id.action_search){
-
-			SearchDialog searchDialog = new SearchDialog();
-			//searchDialog.setTargetFragment(this, 0);
-			searchDialog.show(getFragmentManager(), "search");
-			
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
 
 }
