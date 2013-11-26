@@ -72,22 +72,6 @@ public class DActivity extends Activity {
 		});*/
 
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-
-		setDialogButton();
-
-	}
-
-	private void setDialogButton() {
-		Button testButton = (Button) findViewById(R.id.buttonTest);
-		testButton.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-
-				DialogFragment dialog = new ReminderDialog();
-				dialog.show(getFragmentManager(), "dialog");
-			}
-		});
 	}
 
 	private void getCourses() {
