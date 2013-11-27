@@ -2,7 +2,7 @@ package ch.unibe.unisportbern.views;
 
 
 
-import com.example.unisportbern.R;
+import ch.unibe.unisportbern.R;
 
 import android.app.Fragment;
 import android.os.Bundle;
