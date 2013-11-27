@@ -25,16 +25,19 @@ import com.parse.ParseAnalytics;
 
 public class ParseMethodes {
 	ParseUser user = new ParseUser();
-	ParseObject userdata = new ParseObject("Userdata");
+	//ParseObject userdata = new ParseObject("Userdata");
 	User dbuser;
 	DBMethodes db;
 	ArrayList<String> friends = new ArrayList();
 	Context context;
+	private ArrayList <Integer> cid;
+	private User users;
 	
 	
 	public ParseMethodes(Context context){
 		this.context = context;
 		 Parse.initialize(context, "p2hZnDFwdzTSLTkPD9t1rWyosBUkJessBArNyAAJ", "vU9rXONSs6QTJYmk38wzHzhrjMGktFXmCf6rsmpM");
+		 db = new DBMethodes(context);
 	}
 	
 	public void signingUp(String username, String password){
@@ -58,7 +61,6 @@ public class ParseMethodes {
 		}
 		});
 	}
-	
 	public boolean automaticLogin(){
 		ParseUser currentUser = ParseUser.getCurrentUser();
 		if (currentUser != null) {
@@ -70,9 +72,10 @@ public class ParseMethodes {
 		}
 	}
 	
-	public void loggingIn(){
+	
+	public void loggingIn(String username, String password ){
 		
-		ParseUser.logInInBackground(dbuser.getUsername(), dbuser.getPassword(), new LogInCallback() {
+		ParseUser.logInInBackground(dbuser.getUsername(), password,  new LogInCallback() {
 
 			@Override
 			public void done(ParseUser user, com.parse.ParseException e) {
@@ -86,120 +89,94 @@ public class ParseMethodes {
 			}
 		});
 	}
-
-	
 	public String getUsername(){
 		return null;
 	}
 	
-	public void updateFavorites() throws com.parse.ParseException{
-		ParseQuery<ParseObject> query = ParseQuery.getQuery("Userdata");
-		
-		// Retrieve the object by id
-		query.getInBackground(user.getObjectId(), new GetCallback<ParseObject>() {
-
-			@Override
-			public void done(ParseObject userdata, com.parse.ParseException e) {
-				
-				// TODO Auto-generated method stub
-                    if (e == null) {
-					ArrayList <Course> allFav = db.getAllFavorites();
-					ArrayList <Integer> cids = new ArrayList <Integer>();
-					for(int i = 0; i < allFav.size(); i++){
-						cids.add(allFav.get(i).getId());	
-					}
-					userdata.put("favourites", cids);
-					userdata.saveInBackground();
-					}
-				
-			}
-			
-		});		
+	public void addFavourites(Course favourite, String username){
+		ParseObject favourites = new ParseObject ("FAVOURTIES");
+		favourites.put("username", username);
+		favourites.put("cid", favourite.getId());
+		favourites.saveEventually();	
 	}
 	
-	public void searchByUsername(String username){
+	public ArrayList <Course> getFriendsFavorites(String friendsUsername){
+		final ArrayList <Course> favoritesList = new ArrayList <Course>();
+		ParseQuery<ParseObject> query = ParseQuery.getQuery("FAVOURITES");
+		query.whereEqualTo("username", friendsUsername);
+		query.findInBackground(new FindCallback<ParseObject>(){
+			
+			@Override
+			public void done(List<ParseObject> objects, com.parse.ParseException e) {
+				// TODO Auto-generated method stub
+				if (e == null) {
+					for (int i = 0 ; i< objects.size(); i++){
+						favoritesList.add(db.getCourse(objects.get(i).getInt("cid")));
+			        // The query was successful.
+					}
+			    } else {
+			        // Something went wrong.
+			      }	
+			}
+		});
+		return favoritesList;
+	}
+	
+	public void addFriend(String friend, String username){
+		ParseObject friends = new ParseObject ("FRIENDS");
+		friends.put("username", username );
+		friends.put("friendsID", friend);
+		friends.saveEventually();
+	}
+	
+	public ArrayList<User> getFriends(String myUsername){
+		final ArrayList<User> friendsList = new ArrayList<User>();
+		ParseQuery<ParseObject> query = ParseQuery.getQuery("FRIENDS");
+		query.whereEqualTo("username", myUsername);
+		query.findInBackground(new FindCallback<ParseObject>(){
+			
+			@Override
+			public void done(List<ParseObject> objects, com.parse.ParseException e) {
+				// TODO Auto-generated method stub
+				if (e == null) {
+					for (int i = 0 ; i< objects.size(); i++){
+						friendsList.add(makeUser(objects.get(i).getString("friendsID")));
+			        // The query was successful.
+					}
+			    } else {
+			        // Something went wrong.
+			      }	
+			}
+		});
+		return friendsList;
+	}
+	
+	
+	public User searchUser(String username){
 		ParseQuery<ParseUser> query = ParseUser.getQuery();
 		query.whereEqualTo("username", username);
-		query.findInBackground(new FindCallback<ParseUser>() {
-		  public void done(List<ParseUser> objects, ParseException e) {
-		    if (e == null) {
-		    	
-		        // The query was successful.
-		    } else {
-		        // Something went wrong.
-		    }
-		  }
-
-		@Override
-		public void done(List<ParseUser> arg0, com.parse.ParseException arg1) {
-			// TODO Auto-generated method stub
-			
-		}
-		});
-		
-	}
-	
-	public void addFriend(User friend){
-		String username = friend.getUsername();
-		user.put("friends", username);
-	}
-	
-	public ArrayList<User> getFriends(){
-		ArrayList<User> friends = new ArrayList<User>();
-		ArrayList<String> friendsUser = convertToArrayList(user.getJSONArray("friends"));
-		for(int i=0; i<friendsUser.size(); i++){
-		    friends.add(this.getParseUsers(friendsUser.get(i)).get(i));
-		}
-		
-		return friends;
-	}
-	
-	private User makeUser(ParseUser object){
-		return dbuser = new User(object.getString("username"), object.getString("password"), context);
-	}
-	
-	private ArrayList<String> convertToArrayList(JSONArray array){
-		ArrayList<String> list = new ArrayList<String>();
-		if (array!=null){
-			for (int i = 0; i<array.length();i++){
-				try {
-					list.add(array.get(i).toString());
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}
-		return list;
-	}
-	
-	private ArrayList <User> getParseUsers(String friendUser){
-		
-		ParseQuery<ParseUser> query = ParseUser.getQuery();
-		final ArrayList<User> userList = new ArrayList<User>();
-		query.whereEqualTo("friends", friendUser);
 		query.findInBackground(new FindCallback<ParseUser>() {
 			@Override
 			public void done(List<ParseUser> objects, com.parse.ParseException e) {
 				
 				if (e == null) {
-					
-					for (int i=0; i<objects.size(); i++){
-						userList.add(makeUser(objects.get(i)));
-					}
+				    users = makeUser(objects.get(0).getString("username"));
 			        // The query was successful.
 			    } else {
 			        // Something went wrong.
 			    }
 				
 			}
-		  
-		    
-	
 
 		});
-		return userList;
+		return users;
 	}
+	
+	private User makeUser(String user){
+		return new User(user, context);
+	}
+	
+	
 
 
 }

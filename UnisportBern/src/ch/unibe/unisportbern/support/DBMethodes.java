@@ -296,7 +296,7 @@ public class DBMethodes {
 		Cursor cursorUser = dbHelper.query(db, "SELECT * FROM user");
         cursorUser.moveToFirst();
         
-        return new User(cursorUser.getString(0), cursorUser.getString(1), context);
+        return new User(cursorUser.getString(0), context);
 	}
 
 	private boolean isTableEmpty(String table){

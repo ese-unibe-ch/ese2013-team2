@@ -28,7 +28,7 @@ public class FriendsFragment extends Fragment{
 		
 		// -- //
 		friends = new ArrayList<User>();
-		friends.add(new User("masus04", "pw", getActivity()));
+		friends.add(new User("masus04", getActivity()));
 		// __ //
 		
 		ListView list = (ListView) view.findViewById(R.id.listViewFriends);
