@@ -119,7 +119,7 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 			
 			@Override
 			public void onClick(View v) {
-				JsonCoordinate jsoncoordinate = new JsonCoordinate();
+				JsonCoordinate jsoncoordinate = new JsonCoordinate(context);
 				
 				try {
 					String str = jsoncoordinate.getCoordinate(course);

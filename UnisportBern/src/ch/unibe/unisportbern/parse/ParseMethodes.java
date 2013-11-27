@@ -25,7 +25,7 @@ import com.parse.ParseAnalytics;
 
 public class ParseMethodes {
 	ParseUser user = new ParseUser();
-	//ParseObject userdata = new ParseObject("Userdata");
+	ParseObject userdata = new ParseObject("Userdata");
 	User dbuser;
 	DBMethodes db;
 	ArrayList<String> friends = new ArrayList();
@@ -100,6 +100,7 @@ public class ParseMethodes {
 
 			@Override
 			public void done(ParseObject userdata, com.parse.ParseException e) {
+				
 				// TODO Auto-generated method stub
                     if (e == null) {
 					ArrayList <Course> allFav = db.getAllFavorites();
