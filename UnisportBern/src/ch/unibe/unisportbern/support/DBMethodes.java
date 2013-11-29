@@ -42,15 +42,6 @@ public class DBMethodes {
 					this.courseUpdate(this.getAllSport().get(i), true);
 				}
 			}
-		} else {
-			StandardMessageDialog dialog = new StandardMessageDialog();
-
-			Bundle bundle = new Bundle();
-			bundle.putString("title", "No Network Connection");
-			bundle.putString("message", "Keine Netzwerkverbindung");
-
-			dialog.setArguments(bundle);
-			dialog.show(((Activity) context).getFragmentManager(), "Atention");
 		}
 	}
 

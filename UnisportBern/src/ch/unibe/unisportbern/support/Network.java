@@ -22,14 +22,8 @@ public class Network {
 		NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
 		if(activeNetwork != null && activeNetwork.isConnectedOrConnecting()) return true;
 		else{
-			StandardMessageDialog dialog = new StandardMessageDialog();
-			
-			Bundle bundle = new Bundle();
-			bundle.putString("title", "No Network Connection");
-			bundle.putString("message", "Keine Netzwerkverbindung");
-			
-			dialog.setArguments(bundle);
-			dialog.show(((Activity)context).getFragmentManager(), "Atention");
+			StandardMessageDialog dialog = new StandardMessageDialog();	
+			dialog.showDialog(context, "No Network Connection", "Please ensure your Network Connection!","attention");
 			return false;
 		}
 	}
