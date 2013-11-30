@@ -38,7 +38,7 @@ public class FriendsFragment extends Fragment{
 			
 			@Override
 			public void onItemClick(AdapterView<?> adapterV, View view, int position, long arg3) {
-				Intent intent = new Intent(getActivity(), ProfileFragment.class);
+				Intent intent = new Intent(getActivity(), ProfileWrapperActivity.class);
 				intent.putExtra("FriendName", friends.get(position).getUsername());
 				startActivity(intent);
 			}
