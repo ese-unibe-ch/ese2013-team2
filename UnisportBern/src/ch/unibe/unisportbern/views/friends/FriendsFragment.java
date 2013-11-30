@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import ch.unibe.unisportbern.R;
 import ch.unibe.unisportbern.support.User;
-import ch.unibe.unisportbern.views.profile.ProfileFragment;
 import ch.unibe.unisportbern.views.sportsTab.CustomArrayAdapter;
 import android.app.Fragment;
 import android.content.Intent;

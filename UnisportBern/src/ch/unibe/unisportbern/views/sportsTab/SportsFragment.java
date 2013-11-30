@@ -47,7 +47,7 @@ public class SportsFragment extends Fragment {
 		// search results available
 		else if (searchHandler != null)
 			setEventsToSearchResults();
-
+		
 		updateList();
 
 		listView.setOnItemClickListener(new OnItemClickListener() {

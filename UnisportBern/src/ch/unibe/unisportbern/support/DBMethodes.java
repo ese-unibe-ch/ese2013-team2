@@ -6,14 +6,10 @@ import java.util.concurrent.TimeoutException;
 
 import org.json.JSONException;
 
-import ch.unibe.unisportbern.views.dialogs.StandardMessageDialog;
-
-import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Bundle;
 
 public class DBMethodes {
 

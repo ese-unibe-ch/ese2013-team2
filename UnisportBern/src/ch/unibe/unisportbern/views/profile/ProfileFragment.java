@@ -1,5 +1,8 @@
 package ch.unibe.unisportbern.views.profile;
 
+import java.util.ArrayList;
+
+import ch.unibe.unisportbern.support.Course;
 import ch.unibe.unisportbern.support.DBMethodes;
 import ch.unibe.unisportbern.views.details.SportsAdapter;
 
@@ -25,25 +28,37 @@ import android.widget.TextView;
  */
 public class ProfileFragment extends Fragment{
 	
-	protected final static String NAME = "SportName";
-	protected final static String ID = "SportID";
+	String userName;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		
-		DBMethodes db = new DBMethodes(getActivity());
-		
 		View view = inflater.inflate(R.layout.profile_layout, container, false);
 		
 		ExpandableListView listFavourites = (ExpandableListView) view.findViewById(R.id.expandableListViewFavourites);
-		listFavourites.setAdapter(new SportsAdapter(getActivity(), db.getAllFavorites(), listFavourites));
+		listFavourites.setAdapter(new SportsAdapter(getActivity(), getList(), listFavourites));
+		
+		TextView tv = (TextView) view.findViewById(R.id.textView_name);
+		tv.setText(getUsername());
 		
 		TextView textView = (TextView) view.findViewById(R.id.TextView_favHelp);
 		if (listFavourites.getCount() == 0)
 			textView.setText(R.string.FavHelpText);	 
 		else textView.setText("");
 		
-		return view; 
+		return view;
+	}
+	
+	protected ArrayList<Course> getList(){
+		DBMethodes db = new DBMethodes(getActivity());
+		
+		return db.getAllFavorites();
+	}
+	
+	protected String getUsername(){
+		//DBMethodes db = new DBMethodes(getActivity());
+		//return db.getUser().getUsername();
+		return "Name";
 	}
 	
 }

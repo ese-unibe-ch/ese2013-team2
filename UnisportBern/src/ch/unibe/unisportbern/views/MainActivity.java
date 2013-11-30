@@ -29,6 +29,18 @@ public class MainActivity extends Activity {
 		actionbar.setDisplayShowTitleEnabled(false);
 		actionbar.setBackgroundDrawable(getResources().getDrawable(R.drawable.custom_background_dark_oranges));
 		
+		// Activate the database
+		DBMethodes dbMethodes = new DBMethodes(this);
+		dbMethodes.setUpDatabase();
+		ParseMethodes parse = new ParseMethodes(this);
+		
+		if (!parse.automaticLogin()){
+			DialogFragment signupFragment = new SignUpDialog();
+			signupFragment.show(getFragmentManager(), "Welcome Dialog");
+		}		
+		
+		int index = getIntent().getIntExtra("index", -1);
+		
 		Tab tab = actionbar.newTab();
 		tab.setText("Profile");
 		tab.setTabListener(new TabListener<ProfileFragment>(this, "Profile", ProfileFragment.class));
@@ -46,18 +58,6 @@ public class MainActivity extends Activity {
 		tab.setTabListener(new TabListener<FriendsFragment>(this, "Friends", FriendsFragment.class));
 		
 		actionbar.addTab(tab);
-		
-		// Activate the database
-		DBMethodes dbMethodes = new DBMethodes(this);
-		dbMethodes.setUpDatabase();
-		ParseMethodes parse = new ParseMethodes(this);
-		
-		if (!parse.automaticLogin()){
-			DialogFragment signupFragment = new SignUpDialog();
-			signupFragment.show(getFragmentManager(), "Welcome Dialog");
-		}		
-		
-		int index = getIntent().getIntExtra("index", -1);
 		
 		// exception needed?
 		if (index != -1){
