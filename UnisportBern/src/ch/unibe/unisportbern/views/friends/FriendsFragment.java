@@ -3,6 +3,8 @@ package ch.unibe.unisportbern.views.friends;
 import java.util.ArrayList;
 
 import ch.unibe.unisportbern.R;
+import ch.unibe.unisportbern.parse.ParseMethodes;
+import ch.unibe.unisportbern.support.DBMethodes;
 import ch.unibe.unisportbern.support.User;
 import ch.unibe.unisportbern.views.sportsTab.CustomArrayAdapter;
 import android.app.Fragment;
@@ -25,6 +27,9 @@ public class FriendsFragment extends Fragment{
 		
 		view = inflater.inflate(R.layout.friends_fragment_layout, container, false);
 		
+		ParseMethodes pm = new ParseMethodes(getActivity());
+		friends = pm.getFriends(new DBMethodes(getActivity()).getUser().getUsername());
+		
 		// -- //
 		friends = new ArrayList<User>();
 		friends.add(new User("masus04", getActivity()));
@@ -38,7 +43,7 @@ public class FriendsFragment extends Fragment{
 			@Override
 			public void onItemClick(AdapterView<?> adapterV, View view, int position, long arg3) {
 				Intent intent = new Intent(getActivity(), ProfileWrapperActivity.class);
-				intent.putExtra("FriendName", friends.get(position).getUsername());
+				intent.putExtra("friendName", friends.get(position).getUsername());
 				startActivity(intent);
 			}
 		});

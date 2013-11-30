@@ -28,37 +28,48 @@ import android.widget.TextView;
  */
 public class ProfileFragment extends Fragment{
 	
-	String userName;
+	protected String userName;
+	private ExpandableListView listFavourites;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		
 		View view = inflater.inflate(R.layout.profile_layout, container, false);
 		
-		ExpandableListView listFavourites = (ExpandableListView) view.findViewById(R.id.expandableListViewFavourites);
-		listFavourites.setAdapter(new SportsAdapter(getActivity(), getList(), listFavourites));
+		listFavourites = (ExpandableListView) view.findViewById(R.id.expandableListViewFavourites);
+		listFavourites.setAdapter(new SportsAdapter(getActivity(), getCourses(), listFavourites));
 		
 		TextView tv = (TextView) view.findViewById(R.id.textView_name);
-		tv.setText(getUsername());
+		setUsername();
+		tv.setText(userName);
 		
-		TextView textView = (TextView) view.findViewById(R.id.TextView_favHelp);
-		if (listFavourites.getCount() == 0)
-			textView.setText(R.string.FavHelpText);	 
-		else textView.setText("");
+		setHelpText(view, isHelpTextDisplayed());
 		
 		return view;
 	}
+
+	protected boolean isHelpTextDisplayed() {
+		return (listFavourites.getCount() == 0);
+	}
+
+	private void setHelpText(View view, boolean isHelpTextDisplayed) {
+		TextView textView = (TextView) view.findViewById(R.id.TextView_favHelp);
+		if (isHelpTextDisplayed())
+			textView.setText(R.string.FavHelpText);	 
+		else textView.setText("");
+	}
 	
-	protected ArrayList<Course> getList(){
+	protected ArrayList<Course> getCourses(){
 		DBMethodes db = new DBMethodes(getActivity());
 		
 		return db.getAllFavorites();
 	}
 	
-	protected String getUsername(){
+	protected void setUsername(){
+		//TODO:
 		//DBMethodes db = new DBMethodes(getActivity());
-		//return db.getUser().getUsername();
-		return "Name";
+		//userName = db.getUser().getUsername();
+		userName = "UserName";
 	}
 	
 }

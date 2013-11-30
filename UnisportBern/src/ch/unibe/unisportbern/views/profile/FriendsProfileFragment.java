@@ -2,20 +2,25 @@ package ch.unibe.unisportbern.views.profile;
 
 import java.util.ArrayList;
 
+import ch.unibe.unisportbern.parse.ParseMethodes;
 import ch.unibe.unisportbern.support.Course;
 
 public class FriendsProfileFragment extends ProfileFragment {
 	
 	@Override
-	protected ArrayList<Course> getList(){
+	protected ArrayList<Course> getCourses(){
 		// TODO: retrieve list from parse.com
-		return new ArrayList<Course>();
+		ParseMethodes pm = new ParseMethodes(getActivity());
+		return pm.getFriendsFavorites(userName);
 	}
 	
 	@Override
-	protected String getUsername(){
-		// TODO: get username from parse.com
-		return "not yet implemented";
+	protected void setUsername(){
+		userName = getArguments().getString("friendName");
 	}
 
+	@Override
+	protected boolean isHelpTextDisplayed() {
+		return false;
+	}
 }

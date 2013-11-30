@@ -1,27 +1,26 @@
 package ch.unibe.unisportbern.views.friends;
 
 import ch.unibe.unisportbern.R;
+import ch.unibe.unisportbern.views.profile.FriendsProfileFragment;
 import ch.unibe.unisportbern.views.profile.ProfileFragment;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 public class ProfileWrapperActivity extends Activity{
 
 	ProfileFragment fragment;
-	String friendName;
 	
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_wrapper_layout);
         
-        getFriendName();
+        FriendsProfileFragment fragment = new FriendsProfileFragment();
+        fragment.setArguments(getIntent().getExtras());
+        
+        getFragmentManager().beginTransaction().add(R.id.profile_wrapper_layout, fragment, "friend").commit();
         
         // TODO: add when working
         //getActionBar().setDisplayHomeAsUpEnabled(true);
-    }
-
-	private void getFriendName() {
-		friendName = getIntent().getStringExtra("friendName");
-	}
-	
+    }	
 }
