@@ -6,6 +6,8 @@ import java.util.concurrent.TimeoutException;
 
 import org.json.JSONException;
 
+import com.androidquery.AQuery;
+
 import ch.unibe.unisportbern.R;
 
 import ch.unibe.unisportbern.support.Course;
@@ -17,7 +19,6 @@ import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -28,8 +29,8 @@ import android.webkit.WebView;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
@@ -43,14 +44,9 @@ import android.widget.TextView;
 public class SportsAdapter extends BaseExpandableListAdapter  {
 	private Context context;
 	private ArrayList<Course> courseList;
-	private ExpandableListView myList;
-	private View previousView;
-	private int previousListIndex;
-
-	public SportsAdapter(Context context, ArrayList<Course> courseList, ExpandableListView myList) {
+	public SportsAdapter(Context context, ArrayList<Course> courseList) {
 		this.context = context;
 		this.courseList = courseList;
-		this.myList = myList;
 	}
 
 	
@@ -81,15 +77,15 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 		
 		setUpButtons(convertView, course);
 		setUpRatingBar(convertView, course);
-		//setupImage(convertView, course);
+		setupImage(convertView, course);
 		
 		return convertView;
 	}
 
 
 	private void setupImage(View convertView, Course course) {
-		WebView web = (WebView) convertView.findViewById(R.id.webViewDetails);
-		web.loadUrl(course.getUrl());
+		String url = course.getUrl();
+		new AQuery(context).id(R.id.ImageViewDetails).image(url);
 	}
 
 

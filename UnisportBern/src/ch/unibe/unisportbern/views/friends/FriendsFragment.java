@@ -28,7 +28,7 @@ public class FriendsFragment extends Fragment{
 		view = inflater.inflate(R.layout.friends_fragment_layout, container, false);
 		
 		ParseMethodes pm = new ParseMethodes(getActivity());
-		friends = pm.getFriends(new DBMethodes(getActivity()).getUser().getUsername());
+		//friends = pm.getFriends(new DBMethodes(getActivity()).getUser().getUsername());
 		
 		// -- //
 		friends = new ArrayList<User>();

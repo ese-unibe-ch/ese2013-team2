@@ -4,7 +4,6 @@ import ch.unibe.unisportbern.R;
 import ch.unibe.unisportbern.views.profile.FriendsProfileFragment;
 import ch.unibe.unisportbern.views.profile.ProfileFragment;
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 
 public class ProfileWrapperActivity extends Activity{

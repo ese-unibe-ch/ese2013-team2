@@ -7,17 +7,11 @@ import ch.unibe.unisportbern.R;
 import ch.unibe.unisportbern.support.Course;
 import ch.unibe.unisportbern.support.DBMethodes;
 import ch.unibe.unisportbern.support.Sport;
-import ch.unibe.unisportbern.views.dialogs.ReminderDialog;
 
 import android.app.Activity;
-import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.ExpandableListView;
-import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.TextView;
 
 /**
@@ -56,7 +50,7 @@ public class DActivity extends Activity {
 		sportName.setText(sport.getName());
 
 		myList = (ExpandableListView) findViewById(R.id.expandableListView);
-		sportsadapter = new SportsAdapter(this, courses, myList);
+		sportsadapter = new SportsAdapter(this, courses);
 		myList.setAdapter(sportsadapter);
 		
 		/*myList.setOnChildClickListener(new OnChildClickListener() {
