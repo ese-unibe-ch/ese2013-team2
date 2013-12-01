@@ -84,8 +84,11 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 
 
 	private void setupImage(View convertView, Course course) {
-		String url = course.getUrl();
-		new AQuery(context).id(R.id.ImageViewDetails).image(url);
+		String url = course.getImageLink();
+		ImageView iv = (ImageView) convertView.findViewById(R.id.ImageViewDetails);
+		
+		AQuery aq = new AQuery(iv);
+		aq.id(iv).image(url).visible();
 	}
 
 

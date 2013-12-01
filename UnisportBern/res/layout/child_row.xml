@@ -8,22 +8,24 @@
         android:id="@+id/layoutAllExceptRating"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:paddingLeft="5dip"
+        android:paddingRight="5dip" >
 
         <ImageView
             android:id="@+id/ImageViewDetails"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:contentDescription="Sports Image"
-             />
+            android:contentDescription="Sports Image" />
 
         <LinearLayout
             android:id="@+id/LayoutDetailsInfoRight"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:paddingLeft="5dip" >
 
             <LinearLayout
                 android:id="@+id/layoutMap"

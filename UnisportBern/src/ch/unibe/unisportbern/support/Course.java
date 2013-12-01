@@ -12,11 +12,8 @@ public class Course implements IEvent{
 	private String information;
 	private boolean subscriptionRequired;
 	private String kew;
-//<<<<<<< HEAD
-	private String url;
-//=======
+	
 	private String imageLink;
-//>>>>>>> 4e63ad33e5ad358e9a368674ecd9c00bf7b530fe
 	
 	public Course (int cid, Sport sport, String courseName, String day, String time, String phases, String location, String information, boolean subscriptionRequired, String kew, String imageLink){
 		this.cid = cid;
@@ -29,11 +26,7 @@ public class Course implements IEvent{
 		this.information = information;
 		this.subscriptionRequired = subscriptionRequired;
 		this.kew = kew;
-//<<<<<<< HEAD
-		this.url = url;
-//=======
 		this.imageLink = imageLink;
-//>>>>>>> 4e63ad33e5ad358e9a368674ecd9c00bf7b530fe
 	}
 	
 	public String toString(){
@@ -111,9 +104,5 @@ public class Course implements IEvent{
 	 */
 	public String getReminder() {
 		return "";
-	}
-
-	public String getUrl() {
-		return url;
 	}
 }
