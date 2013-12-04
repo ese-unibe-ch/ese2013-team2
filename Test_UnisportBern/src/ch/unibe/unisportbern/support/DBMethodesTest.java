@@ -1,55 +1,54 @@
 package ch.unibe.unisportbern.support;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeoutException;
+
+import org.json.JSONException;
 
 import android.test.AndroidTestCase;
-import android.test.mock.MockContext;
 
 public class DBMethodesTest extends AndroidTestCase{
 	
-	private Course course;
-	MockContext context = new MockContext();
-	private DBMethodes db = new DBMethodes(context);
+	DBMethodes db;
+	ArrayList<Sport> sports;
+	ArrayList<Course> courses;
 	
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		init();
-     }
-	
+		db = new DBMethodes(getContext());
+		db.setUpDatabase();
+		this.sports = new ArrayList<Sport>();
+		this.courses = new ArrayList<Course>();
+		this.tearDown();
+		this.dbNotEmptyTest();
+		this.getAllSportsTest();
+		this.getAllCoursesTest();
+		this.isTableEmptyTest();
+	}
 	
 	@Override
     protected void tearDown() throws Exception {
-            super.tearDown();
-            
+            super.tearDown();      
     }
 	
-	public void testDBSports() throws Exception{
-		init();
-		
-		assertNotNull(db);
-				
-		ArrayList<Sport> sports = db.getAllSport();
-		
+	protected void dbNotEmptyTest(){
+		assertNotNull(db); 
+	}
+	
+	protected void getAllSportsTest(){
+		this.sports = db.getAllSport();
 		assertNotNull(sports);
-		//assertEquals(0, sports.get(0).getId());
 	}
 	
-	public void init(){
-		db = new DBMethodes(getContext());
-		db.setUpDatabase();
-		course = db.getCourse(1);
-		
+	protected void getAllCoursesTest(){
+		this.courses = db.getAllCourses(this.sports.get(1));
+		assertNotNull(courses);
 	}
 	
-	public void testIsFavorite(){
-		db.addFavorite(this.course);
-		assertTrue(db.isFavourite(this.course));
-	}
-	
-	
-	public void testSearchByName(){
-		ArrayList<IEvent> list = db.searchSport("Ai");
-		assertFalse(list.isEmpty());
+	protected void isTableEmptyTest(){
+		assertFalse(db.isTableEmpty("sports"));
+		assertFalse(db.isTableEmpty("courses"));
 	}
 }
