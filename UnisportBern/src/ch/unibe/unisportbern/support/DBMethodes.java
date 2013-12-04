@@ -156,8 +156,7 @@ public class DBMethodes {
 	 * @throws InterruptedException
 	 * @throws JSONException
 	 */
-	public ArrayList<Course> getAllCourses(Sport sport) throws JSONException, InterruptedException, ExecutionException,
-			TimeoutException {
+	public ArrayList<Course> getAllCourses(Sport sport) {
 
 		// If Network is connected to internet, Updating the database
 
