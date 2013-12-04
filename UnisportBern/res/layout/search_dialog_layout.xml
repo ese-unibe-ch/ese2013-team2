@@ -27,10 +27,10 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/textViewSearchDialogTitle"
-        android:checked="false"
+        android:checked="true"
         android:focusable="true"
-        android:text="Search by Sportname" />
-
+        android:text="Search by Sportname" /> 
+    
     <RadioButton
         android:id="@+id/radioButtonSearchTime"
         android:layout_width="wrap_content"
@@ -48,9 +48,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:visibility="gone"
+        android:visibility="visible"
+        android:focusableInTouchMode="true"
         android:layout_below="@+id/radioButtonSearchName" />
-
+    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

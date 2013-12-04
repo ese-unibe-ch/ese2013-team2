@@ -17,6 +17,8 @@ import ch.unibe.unisportbern.R;
 
 public class SearchDialog extends DialogFragment {
 
+	
+	
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -29,6 +31,7 @@ public class SearchDialog extends DialogFragment {
 
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
+				
 				Intent results = createSearchResult(view);
 				sendResult(results);
 			}
@@ -44,7 +47,7 @@ public class SearchDialog extends DialogFragment {
 		});
 
 		setupRadioButtons(view);
-
+		
 		return builder.create();
 	}
 	

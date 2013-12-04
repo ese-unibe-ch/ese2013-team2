@@ -11,7 +11,10 @@
 	<string name="WelcomeHelperText">Welcome to Unisport Bern.\nPlease choose a username and password. This data will be used to sign you up automatically and you will not have to input them again on this device. If you have used our app before, sign this device up with the same login information as last time</string>
 	<string name="EmptySearchHelperText">Your search did not match with any Sport. Retry with another search value or press All Sports to see a list of all Sports available.</string>
 	<string name="url_stub">http//:www.zssw.unibe.ch/usp/uspangebot/bilder/aerobic.jpg</string>
-    
+    <string name="SignUpCancelToastText">The registration has been canceled, social features are disabled. You will be asked again next time</string>
+	<string name="ToastCourseAdded">This course has been added to your favourite courses. You can see your favourite courses in your profile.</string>
+	<string name="ToastCourseDeleted">This course has been deleted from your favourite courses. Click the star again to undo</string>
+	
 	<string-array name="SpinnerReminderArray">
 	    <item >no reminder</item> 
 	    <item >2 hours before</item>
@@ -40,6 +43,6 @@
 	    <item >Afternoon</item>
 	    <item >Evening</item>
 	</string-array>
-	<string name="SignUpCancelToastText">The registration has been canceled, social features are disabled. You will be asked again next time</string>
+	
 	
 </resources>

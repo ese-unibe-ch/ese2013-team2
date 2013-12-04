@@ -25,7 +25,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -35,6 +34,7 @@ import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * is responsible for filling up the ExpandableList in DActivity
@@ -233,11 +233,15 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 				Course course = courseList.get(groupPosition);
 				DBMethodes db = new DBMethodes(context);
 				
-				if (isChecked && !db.isFavourite(course))
+				if (isChecked && !db.isFavourite(course)){
 					db.addFavorite(course);
-				
-				else if (!isChecked && db.isFavourite(course))
-						db.deleteFavorite(course);
+					Toast.makeText(context, R.string.ToastCourseAdded, Toast.LENGTH_LONG).show();
+				}
+					
+				else if (!isChecked && db.isFavourite(course)){
+					db.deleteFavorite(course);
+					Toast.makeText(context, R.string.ToastCourseDeleted, Toast.LENGTH_LONG).show();
+				}
 			}
 		});
 		
