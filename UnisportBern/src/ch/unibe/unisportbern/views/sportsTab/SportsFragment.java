@@ -56,8 +56,8 @@ public class SportsFragment extends Fragment {
 			public void onItemClick(AdapterView<?> adapterV, View view, int position, long arg3) {
 
 				Intent intent = new Intent(getActivity(), DActivity.class);
-				intent.putExtra(NAME, events.get(position).getName());
-				intent.putExtra(ID, events.get(position).getId());
+				intent.putExtra(NAME, events.get(position).getSport().getName());
+				intent.putExtra(ID, events.get(position).getSport().getId());
 				startActivity(intent);
 			}
 		});

@@ -133,7 +133,20 @@ public class ParseMethodes {
 		final ArrayList<User> friendsList = new ArrayList<User>();
 		ParseQuery<ParseObject> query = ParseQuery.getQuery("FRIENDS");
 		query.whereEqualTo("username", myUsername);
-		query.findInBackground(new FindCallback<ParseObject>(){
+		
+		// -- //
+		try {
+			List<ParseObject> objList = query.find();
+			for (int i = 0 ; i< objList.size(); i++){
+				friendsList.add(makeUser(objList.get(i).getString("friendsID")));
+				}
+		} catch (com.parse.ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// -- //
+		
+		/*query.findInBackground(new FindCallback<ParseObject>(){
 			
 			@Override
 			public void done(List<ParseObject> objects, com.parse.ParseException e) {
@@ -147,7 +160,8 @@ public class ParseMethodes {
 			        // Something went wrong.
 			      }	
 			}
-		});
+		});*/
+		
 		return friendsList;
 	}
 	

@@ -40,5 +40,6 @@
 	    <item >Afternoon</item>
 	    <item >Evening</item>
 	</string-array>
+	<string name="SignUpCancelToastText">The registration has been canceled, social features are disabled. You will be asked again next time</string>
 	
 </resources>
