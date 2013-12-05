@@ -190,10 +190,13 @@ public class DBMethodes {
 
 		else {
 			Cursor cursorSport = dbHelper.query(db, "SELECT sid, name FROM sports WHERE sid=" + cursor.getInt(1));
-			return new Course(cursor.getInt(0), new Sport(cursorSport.getInt(0), cursorSport.getString(1)),
-					cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5),
-					cursor.getString(6), cursor.getString(7), sub(cursor.getInt(8)), cursor.getString(9),
-					cursor.getString(10));
+			if(cursor.getCount() == 0) return null;
+			else{
+				return new Course(cursor.getInt(0), new Sport(cursorSport.getInt(0), cursorSport.getString(1)),
+						cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5),
+						cursor.getString(6), cursor.getString(7), sub(cursor.getInt(8)), cursor.getString(9),
+						cursor.getString(10));
+			}
 		}
 	}
 
@@ -314,7 +317,7 @@ public class DBMethodes {
 		return new User(cursorUser.getString(0), context);
 	}
 
-	private boolean isTableEmpty(String table) {
+	protected boolean isTableEmpty(String table) {
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 
 		Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM " + table, null);
@@ -347,14 +350,6 @@ public class DBMethodes {
 
 		return sportNames;
 	}
-
-	public ArrayList<Course> isNextTime(long time) {
-
-		return null;
-	}
-
-	// TODO: di bruchi no, söt o nä ArrayList<Sport> gä, de funktioniert t
-	// suächi ;)
 
 	/**
 	 * 
@@ -459,6 +454,5 @@ public class DBMethodes {
 		} catch (NumberFormatException ex) {
 			return 0;
 		}
-
 	}
 }
