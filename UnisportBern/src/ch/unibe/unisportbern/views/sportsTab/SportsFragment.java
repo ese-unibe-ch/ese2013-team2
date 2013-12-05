@@ -36,7 +36,8 @@ public class SportsFragment extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
+		searchActive = false;
+		
 		view = inflater.inflate(R.layout.sports_fragment_layout, container, false);
 
 		ListView listView = (ListView) view.findViewById(R.id.listViewSports);
@@ -64,7 +65,7 @@ public class SportsFragment extends Fragment {
 				startActivity(intent);
 			}
 		});
-
+		
 		return view;
 	}
 
@@ -79,7 +80,7 @@ public class SportsFragment extends Fragment {
 			events = searchHandler.getSearchResult(getActivity());
 
 			handleEmptyMessage();
-			
+			searchActive = true;
 			updateList();
 		}
 	}
@@ -107,8 +108,8 @@ public class SportsFragment extends Fragment {
 		//controll buttonText
 		Button button = (Button) view.findViewById(R.id.buttonAllSports);
 		if (searchActive)
-			button.setText("All Sports");
-		else button.setText("Cancel Search");
+			button.setText("Cancel Search");
+		else button.setText("All Sports");
 	}
 
 	private void setupButtons(View view) {
@@ -121,6 +122,7 @@ public class SportsFragment extends Fragment {
 			@Override
 			public void onClick(View arg0) {
 				setEventsToAllSports();
+				searchActive = false;
 				updateList();
 			}
 		});

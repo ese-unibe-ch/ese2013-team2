@@ -38,15 +38,6 @@ public class FriendsFragment extends Fragment{
 		ListView list = (ListView) view.findViewById(R.id.listViewFriends);
 		
 		list.setAdapter(new CustomFriendListAdapter(getActivity(), friendsToString()));	
-		list.setOnItemClickListener(new OnItemClickListener() {
-			
-			@Override
-			public void onItemClick(AdapterView<?> adapterV, View view, int position, long arg3) {
-				Intent intent = new Intent(getActivity(), ProfileWrapperActivity.class);
-				intent.putExtra("friendName", friends.get(position).getUsername());
-				startActivity(intent);
-			}
-		});
 		
 		Button button = (Button) view.findViewById(R.id.buttonAddFriend);
 		

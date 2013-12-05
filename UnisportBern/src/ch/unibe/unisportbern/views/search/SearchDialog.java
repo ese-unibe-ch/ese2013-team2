@@ -16,8 +16,6 @@ import android.widget.Spinner;
 import ch.unibe.unisportbern.R;
 
 public class SearchDialog extends DialogFragment {
-
-	
 	
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {

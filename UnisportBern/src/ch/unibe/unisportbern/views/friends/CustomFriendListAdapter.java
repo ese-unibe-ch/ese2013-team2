@@ -1,6 +1,7 @@
 package ch.unibe.unisportbern.views.friends;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +14,11 @@ import ch.unibe.unisportbern.R;
 public class CustomFriendListAdapter extends ArrayAdapter<String> {
 
 	private String[] values;
+	private Context context;
 
 	public CustomFriendListAdapter(Context context, String[] values) {
 		super(context, R.layout.listview_friends_layout, values);
-
+		this.context = context;
 		this.values = values;
 	}
 
@@ -39,6 +41,16 @@ public class CustomFriendListAdapter extends ArrayAdapter<String> {
 			@Override
 			public void onClick(View v) {
 				// TODO: delete friend(friendName)
+			}
+		});
+
+		view.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(context, ProfileWrapperActivity.class);
+				intent.putExtra("friendName", values[position]);
+				context.startActivity(intent);
 			}
 		});
 

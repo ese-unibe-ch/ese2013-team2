@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
     
     <item
-        android:id="@+id/action_search"
-        android:icon="@drawable/ic_action_search"
+        android:id="@+id/notifications"
+        android:icon="@drawable/ic_action_email"
         android:showAsAction="ifRoom"
-        android:title="@string/action_search"/>
+        android:title="notifications"/>
 
 </menu>
