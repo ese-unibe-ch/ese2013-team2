@@ -54,8 +54,7 @@
 
         <service
             android:name="ch.unibe.unisportbern.views.details.reminder.NotificationService"
-            android:enabled="true" />
->>>>>>> cac7b47a6aa66098dd00d4b2a2d7d8b147475ae8
+            android:enabled="true" />
     </application>
 
 </manifest>

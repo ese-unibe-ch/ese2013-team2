@@ -24,8 +24,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/sportName" 
         android:groupIndicator="@android:color/transparent" 
-        android:choiceMode="singleChoice"
-        android:background="@drawable/list_highlighter" >
+        android:choiceMode="singleChoice" >
     </ExpandableListView>
 
 </RelativeLayout>

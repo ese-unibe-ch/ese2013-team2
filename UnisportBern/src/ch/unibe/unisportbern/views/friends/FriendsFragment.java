@@ -5,14 +5,15 @@ import java.util.ArrayList;
 import ch.unibe.unisportbern.R;
 import ch.unibe.unisportbern.parse.ParseMethodes;
 import ch.unibe.unisportbern.support.User;
-import ch.unibe.unisportbern.views.sportsTab.CustomArrayAdapter;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
@@ -36,7 +37,7 @@ public class FriendsFragment extends Fragment{
 		
 		ListView list = (ListView) view.findViewById(R.id.listViewFriends);
 		
-		list.setAdapter(new CustomArrayAdapter(getActivity(), friendsToString()));	
+		list.setAdapter(new CustomFriendListAdapter(getActivity(), friendsToString()));	
 		list.setOnItemClickListener(new OnItemClickListener() {
 			
 			@Override
@@ -44,6 +45,17 @@ public class FriendsFragment extends Fragment{
 				Intent intent = new Intent(getActivity(), ProfileWrapperActivity.class);
 				intent.putExtra("friendName", friends.get(position).getUsername());
 				startActivity(intent);
+			}
+		});
+		
+		Button button = (Button) view.findViewById(R.id.buttonAddFriend);
+		
+		button.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO addFriend(friendName)
+				
 			}
 		});
 		

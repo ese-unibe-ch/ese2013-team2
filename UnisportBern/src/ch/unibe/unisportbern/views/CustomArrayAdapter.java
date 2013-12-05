@@ -1,4 +1,4 @@
-package ch.unibe.unisportbern.views.sportsTab;
+package ch.unibe.unisportbern.views;
 
 import ch.unibe.unisportbern.R;
 
@@ -11,13 +11,11 @@ import android.widget.TextView;
 
 public class CustomArrayAdapter extends ArrayAdapter<String> {
 
-	Context context;
-	String[] values;
+	private String[] values;
 
 	public CustomArrayAdapter(Context context, String[] values) {
 		super(context, R.layout.list_view_layout, values);
 		
-		this.context = context;
 		this.values = values;
 	}
 

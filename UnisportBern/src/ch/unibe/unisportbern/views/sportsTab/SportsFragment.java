@@ -6,6 +6,7 @@ import ch.unibe.unisportbern.R;
 import ch.unibe.unisportbern.support.DBMethodes;
 import ch.unibe.unisportbern.support.IEvent;
 import ch.unibe.unisportbern.support.Sport;
+import ch.unibe.unisportbern.views.CustomArrayAdapter;
 import ch.unibe.unisportbern.views.details.DActivity;
 import ch.unibe.unisportbern.views.search.SearchDialog;
 import ch.unibe.unisportbern.views.search.SearchHandler;
@@ -27,9 +28,11 @@ public class SportsFragment extends Fragment {
 
 	protected static final String NAME = "SportName";
 	protected static final String ID = "SportID";
-	View view;
-	SearchHandler searchHandler;
-	ArrayList<IEvent> events;
+	private View view;
+	private SearchHandler searchHandler;
+	private ArrayList<IEvent> events;
+	private boolean searchActive;
+	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -96,10 +99,16 @@ public class SportsFragment extends Fragment {
 		
 		TextView tv = (TextView) view.findViewById(R.id.textViewSportsFragmentEmptyText);
 		
+		//helptext
 		if (events.isEmpty())
 			tv.setVisibility(View.VISIBLE);
 		else tv.setVisibility(View.GONE);
-			
+		
+		//controll buttonText
+		Button button = (Button) view.findViewById(R.id.buttonAllSports);
+		if (searchActive)
+			button.setText("All Sports");
+		else button.setText("Cancel Search");
 	}
 
 	private void setupButtons(View view) {
@@ -148,5 +157,9 @@ public class SportsFragment extends Fragment {
 		}
 
 		return stringArray;
+	}
+	
+	public void setSearchActive(boolean isit){
+		searchActive = isit;
 	}
 }

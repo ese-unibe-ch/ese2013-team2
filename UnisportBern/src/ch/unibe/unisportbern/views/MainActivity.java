@@ -27,7 +27,7 @@ public class MainActivity extends Activity {
 		ActionBar actionbar = getActionBar();
 		actionbar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		actionbar.setDisplayShowTitleEnabled(false);
-		actionbar.setBackgroundDrawable(getResources().getDrawable(R.drawable.custom_background_dark_oranges));
+		actionbar.setBackgroundDrawable(getResources().getDrawable(R.drawable.custom_background_light_orange));
 		
 		// Activate the database
 		DBMethodes dbMethodes = new DBMethodes(this);
