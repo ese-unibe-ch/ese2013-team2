@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
@@ -21,23 +22,25 @@ public class FriendsFragment extends Fragment{
 
 	View view;
 	ArrayList<User> friends;
+	BaseAdapter adapter;
+	ParseMethodes pm = new ParseMethodes(getActivity());
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		
 		view = inflater.inflate(R.layout.friends_fragment_layout, container, false);
 		
-		ParseMethodes pm = new ParseMethodes(getActivity());
+		
 		//friends = pm.getFriends(new DBMethodes(getActivity()).getUser().getUsername());
 		
 		// -- //
-		friends = new ArrayList<User>();
-		friends.add(new User("masus04", getActivity()));
+		//friends = new ArrayList<User>();
+		//friends.add(new User("masus04", getActivity()));
 		// __ //
 		
 		ListView list = (ListView) view.findViewById(R.id.listViewFriends);
-		
-		list.setAdapter(new CustomFriendListAdapter(getActivity(), friendsToString()));	
+		adapter = new FriendsArrayAdapter (getActivity());
+		list.setAdapter(adapter);	
 		
 		Button button = (Button) view.findViewById(R.id.buttonAddFriend);
 		

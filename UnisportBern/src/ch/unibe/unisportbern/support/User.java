@@ -21,11 +21,14 @@ public class User {
 		this.friends = new ArrayList<User>();
 		this.context = context;
 		this.parse = new ParseMethodes(context);
-		friends = parse.getFriends(username);
 	}
 	
 	public String getUsername(){
 		return this.username;
+	}
+	
+	public void fetchFriends(){
+		friends = parse.getFriends();
 	}
 	
 	public ArrayList<User> getFriends(){

@@ -2,6 +2,7 @@ package ch.unibe.unisportbern.parse;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -12,6 +13,7 @@ import android.net.ParseException;
 import ch.unibe.unisportbern.support.Course;
 import ch.unibe.unisportbern.support.DBMethodes;
 import ch.unibe.unisportbern.support.User;
+import ch.unibe.unisportbern.views.friends.FriendsFragment;
 
 import com.parse.FindCallback;
 import com.parse.GetCallback;
@@ -23,7 +25,7 @@ import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 import com.parse.ParseAnalytics;
 
-public class ParseMethodes {
+public class ParseMethodes extends Observable {
 	ParseUser user = new ParseUser();
 	//ParseObject userdata = new ParseObject("Userdata");
 	User dbuser;
@@ -32,6 +34,7 @@ public class ParseMethodes {
 	Context context;
 	private ArrayList <Integer> cid;
 	private User users;
+	private ArrayList<User> friendsList = new ArrayList<User>();
 	
 	
 	public ParseMethodes(Context context){
@@ -129,24 +132,23 @@ public class ParseMethodes {
 		friends.saveEventually();
 	}
 	
-	public ArrayList<User> getFriends(String myUsername){
-		final ArrayList<User> friendsList = new ArrayList<User>();
+	public ArrayList<User> getFriends(){
+		return friendsList;
+	}
+	
+	public void fillFriendsList(String myUsername){
 		ParseQuery<ParseObject> query = ParseQuery.getQuery("FRIENDS");
 		query.whereEqualTo("username", myUsername);
-		
-		// -- //
-		try {
-			List<ParseObject> objList = query.find();
-			for (int i = 0 ; i< objList.size(); i++){
-				friendsList.add(makeUser(objList.get(i).getString("friendsID")));
-				}
+		/*try {
+			List <ParseObject> list = query.find();
+			for (int i = 0 ; i< list.size(); i++){
+				friendsList.add(makeUser(list.get(i).getString("friendsID")));
+			}
 		} catch (com.parse.ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		// -- //
-		
-		/*query.findInBackground(new FindCallback<ParseObject>(){
+		}*/
+		query.findInBackground(new FindCallback<ParseObject>(){
 			
 			@Override
 			public void done(List<ParseObject> objects, com.parse.ParseException e) {
@@ -154,15 +156,18 @@ public class ParseMethodes {
 				if (e == null) {
 					for (int i = 0 ; i< objects.size(); i++){
 						friendsList.add(makeUser(objects.get(i).getString("friendsID")));
+						
 			        // The query was successful.
 					}
+					System.out.println("jdkdann");
+					ParseMethodes.this.setChanged();
+					ParseMethodes.this.notifyObservers(friendsList);
+					
 			    } else {
 			        // Something went wrong.
 			      }	
 			}
-		});*/
-		
-		return friendsList;
+		});
 	}
 	
 	
