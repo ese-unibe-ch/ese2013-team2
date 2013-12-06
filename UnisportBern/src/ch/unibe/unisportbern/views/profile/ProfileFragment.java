@@ -30,6 +30,7 @@ public class ProfileFragment extends Fragment{
 	
 	protected String userName;
 	private ExpandableListView listFavourites;
+	protected SportsAdapter adapter;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,7 +38,8 @@ public class ProfileFragment extends Fragment{
 		View view = inflater.inflate(R.layout.profile_layout, container, false);
 		
 		listFavourites = (ExpandableListView) view.findViewById(R.id.expandableListViewFavourites);
-		listFavourites.setAdapter(new SportsAdapter(getActivity(), getCourses()));
+		adapter = new SportsAdapter(getActivity(), getCourses());
+		listFavourites.setAdapter(adapter);
 		
 		TextView tv = (TextView) view.findViewById(R.id.textView_name);
 		setUsername();

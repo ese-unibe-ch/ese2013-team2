@@ -29,12 +29,12 @@ public class ParseMethodes extends Observable {
 	ParseUser user = new ParseUser();
 	//ParseObject userdata = new ParseObject("Userdata");
 	User dbuser;
-	DBMethodes db;
-	ArrayList<String> friends = new ArrayList();
+	private DBMethodes db;
 	Context context;
 	private ArrayList <Integer> cid;
 	private User users;
 	private ArrayList<User> friendsList = new ArrayList<User>();
+	private ArrayList <Course> favoritesList = new ArrayList <Course>();
 	
 	
 	public ParseMethodes(Context context){
@@ -100,12 +100,15 @@ public class ParseMethodes extends Observable {
 		ParseObject favourites = new ParseObject ("FAVOURTIES");
 		favourites.put("username", username);
 		favourites.put("cid", favourite.getId());
-		favourites.saveEventually();	
+		favourites.saveEventually();
 	}
 	
-	public ArrayList <Course> getFriendsFavorites(String friendsUsername){
-		final ArrayList <Course> favoritesList = new ArrayList <Course>();
-		ParseQuery<ParseObject> query = ParseQuery.getQuery("FAVOURITES");
+	public ArrayList <Course> getFriendsFavorites(){
+		return favoritesList;
+	}
+	
+	public ArrayList <Course> fillFriendsFavorites(String friendsUsername){
+		ParseQuery<ParseObject> query = ParseQuery.getQuery("FAVOURTIES");
 		query.whereEqualTo("username", friendsUsername);
 		query.findInBackground(new FindCallback<ParseObject>(){
 			
@@ -117,6 +120,8 @@ public class ParseMethodes extends Observable {
 						favoritesList.add(db.getCourse(objects.get(i).getInt("cid")));
 			        // The query was successful.
 					}
+					ParseMethodes.this.setChanged();
+					ParseMethodes.this.notifyObservers();
 			    } else {
 			        // Something went wrong.
 			      }	
@@ -125,11 +130,57 @@ public class ParseMethodes extends Observable {
 		return favoritesList;
 	}
 	
+	public void deleteFavourite(String myUsername, int cid){
+		ParseQuery<ParseObject> query = ParseQuery.getQuery("FAVOURTIES");
+		query.whereEqualTo("username", myUsername);
+		query.whereEqualTo("cid", cid);
+		query.findInBackground(new FindCallback<ParseObject>(){
+			
+			@Override
+			public void done(List<ParseObject> objects, com.parse.ParseException e) {
+				// TODO Auto-generated method stub
+				if (e == null) {
+					objects.get(0).deleteEventually();
+			        // The query was successful.
+				}
+			     else {
+			        // Something went wrong.
+			     }
+			}
+			
+		});
+	}
+	
 	public void addFriend(String friend, String username){
 		ParseObject friends = new ParseObject ("FRIENDS");
 		friends.put("username", username );
 		friends.put("friendsID", friend);
 		friends.saveEventually();
+		ParseMethodes.this.setChanged();
+		ParseMethodes.this.notifyObservers();
+	}
+	
+	public void deleteFriend(String myUsername, String friendUsername){
+		ParseQuery<ParseObject> query = ParseQuery.getQuery("FRIENDS");
+		query.whereEqualTo("username", myUsername);
+		query.whereEqualTo("friendsID" , friendUsername);
+		query.findInBackground(new FindCallback<ParseObject>(){
+			
+			@Override
+			public void done(List<ParseObject> objects, com.parse.ParseException e) {
+				// TODO Auto-generated method stub
+				if (e == null) {
+					objects.get(0).deleteEventually();
+					ParseMethodes.this.setChanged();
+					ParseMethodes.this.notifyObservers();
+			        // The query was successful.
+				}
+			     else {
+			        // Something went wrong.
+			     }
+			}
+			
+		});
 	}
 	
 	public ArrayList<User> getFriends(){
@@ -139,15 +190,6 @@ public class ParseMethodes extends Observable {
 	public void fillFriendsList(String myUsername){
 		ParseQuery<ParseObject> query = ParseQuery.getQuery("FRIENDS");
 		query.whereEqualTo("username", myUsername);
-		/*try {
-			List <ParseObject> list = query.find();
-			for (int i = 0 ; i< list.size(); i++){
-				friendsList.add(makeUser(list.get(i).getString("friendsID")));
-			}
-		} catch (com.parse.ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
 		query.findInBackground(new FindCallback<ParseObject>(){
 			
 			@Override
@@ -159,9 +201,8 @@ public class ParseMethodes extends Observable {
 						
 			        // The query was successful.
 					}
-					System.out.println("jdkdann");
 					ParseMethodes.this.setChanged();
-					ParseMethodes.this.notifyObservers(friendsList);
+					ParseMethodes.this.notifyObservers();
 					
 			    } else {
 			        // Something went wrong.

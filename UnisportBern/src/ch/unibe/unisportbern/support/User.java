@@ -40,7 +40,7 @@ public class User {
 	}
 	
 	public ArrayList<Course> getFriendsFavourites(String username){
-		return parse.getFriendsFavorites(username);
+		return parse.getFriendsFavorites();
 	}
 	
 	public void addFavourites(Course favourite, String myUsername){

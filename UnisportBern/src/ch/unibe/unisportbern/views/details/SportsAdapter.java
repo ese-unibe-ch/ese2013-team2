@@ -257,5 +257,9 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 	public boolean isChildSelectable(int groupPosition, int childPosition) {
 		return true;
 	}
+	
+	public void setCourseList(ArrayList <Course> favourites){
+		courseList = favourites;
+	}
 
 }
