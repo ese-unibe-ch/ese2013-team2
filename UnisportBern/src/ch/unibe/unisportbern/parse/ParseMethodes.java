@@ -9,7 +9,10 @@ import org.json.JSONException;
 
 import android.content.Context;
 import android.net.ParseException;
+import android.os.UserManager;
 
+import ch.unibe.unisportbern.notification.FriendsFavouriteNotification;
+import ch.unibe.unisportbern.notification.FriendsNotification;
 import ch.unibe.unisportbern.support.Course;
 import ch.unibe.unisportbern.support.DBMethodes;
 import ch.unibe.unisportbern.support.User;
@@ -33,7 +36,7 @@ public class ParseMethodes extends Observable {
 	Context context;
 	private ArrayList <Integer> cid;
 	private User users;
-	private ArrayList<User> friendsList = new ArrayList<User>();
+	private ArrayList<User> usersList = new ArrayList<User>();
 	private ArrayList <Course> favoritesList = new ArrayList <Course>();
 	
 	
@@ -155,10 +158,53 @@ public class ParseMethodes extends Observable {
 		ParseObject friends = new ParseObject ("FRIENDS");
 		friends.put("username", username );
 		friends.put("friendsID", friend);
+		friends.put("notification", true);
 		friends.saveEventually();
 		ParseMethodes.this.setChanged();
 		ParseMethodes.this.notifyObservers();
 	}
+	
+	public void deleteFriendNotification(FriendsNotification notification){
+		ParseQuery<ParseObject> query = ParseQuery.getQuery("FRIENDS");
+		query.whereEqualTo("friendsID", notification.getFriend());
+		query.whereEqualTo("username", ParseUser.getCurrentUser().getString("username"));
+		query.findInBackground(new FindCallback<ParseObject>() {
+
+			@Override
+			public void done(List<ParseObject> objects,
+					com.parse.ParseException e) {
+				for (int i = 0 ; i< objects.size(); i++){
+					objects.get(i).put("notification", false);
+					objects.get(i).saveEventually();
+				}
+				
+				
+			}
+			
+		});
+		 
+	}
+	
+	public void deleteFriendsFavouriteNotification(FriendsFavouriteNotification notification){
+		ParseQuery<ParseObject> query = ParseQuery.getQuery("FAVOURTIES");
+		query.whereEqualTo("cid", notification.getCourse().getId());
+		query.whereEqualTo("friendsID", notification.getFriend());
+		query.findInBackground(new FindCallback<ParseObject>() {
+
+			@Override
+			public void done(List<ParseObject> objects,
+					com.parse.ParseException e) {
+				for (int i = 0 ; i< objects.size(); i++){
+					objects.get(i).put("notification", false);
+					objects.get(i).saveEventually();
+				}
+				
+			}
+			
+		});
+		 
+	}
+		
 	
 	public void deleteFriend(String myUsername, String friendUsername){
 		ParseQuery<ParseObject> query = ParseQuery.getQuery("FRIENDS");
@@ -183,8 +229,8 @@ public class ParseMethodes extends Observable {
 		});
 	}
 	
-	public ArrayList<User> getFriends(){
-		return friendsList;
+	public ArrayList<User> getUsers(){
+		return usersList;
 	}
 	
 	public void fillFriendsList(String myUsername){
@@ -197,7 +243,7 @@ public class ParseMethodes extends Observable {
 				// TODO Auto-generated method stub
 				if (e == null) {
 					for (int i = 0 ; i< objects.size(); i++){
-						friendsList.add(makeUser(objects.get(i).getString("friendsID")));
+						usersList.add(makeUser(objects.get(i).getString("friendsID")));
 						
 			        // The query was successful.
 					}
@@ -212,16 +258,21 @@ public class ParseMethodes extends Observable {
 	}
 	
 	
-	public User searchUser(String username){
+	public void orderSearch (String otherUser){
 		ParseQuery<ParseUser> query = ParseUser.getQuery();
-		query.whereEqualTo("username", username);
+		query.whereEqualTo("username", otherUser);
 		query.findInBackground(new FindCallback<ParseUser>() {
 			@Override
 			public void done(List<ParseUser> objects, com.parse.ParseException e) {
 				
 				if (e == null) {
-				    users = makeUser(objects.get(0).getString("username"));
+					for (int i = 0 ; i< objects.size(); i++){
+						usersList.add(makeUser(objects.get(i).getString("username")));
+					}
+					setChanged();
+					notifyObservers();
 			        // The query was successful.
+					
 			    } else {
 			        // Something went wrong.
 			    }
@@ -229,12 +280,12 @@ public class ParseMethodes extends Observable {
 			}
 
 		});
-		return users;
 	}
 	
 	private User makeUser(String user){
-		return new User(user, context);
+		return new User(user);
 	}
+
 	
 	
 

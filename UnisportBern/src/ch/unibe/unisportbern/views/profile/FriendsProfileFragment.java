@@ -11,16 +11,18 @@ import android.view.ViewGroup;
 
 import ch.unibe.unisportbern.parse.ParseMethodes;
 import ch.unibe.unisportbern.support.Course;
+import ch.unibe.unisportbern.support.FavouritesManager;
 
-public class FriendsProfileFragment extends ProfileFragment implements Observer {
+public class FriendsProfileFragment extends ProfileFragment {
 	
-	private ParseMethodes pm = new ParseMethodes(getActivity());
 	@Override
 	protected ArrayList<Course> getCourses(){
 		this.setUsername();
-		pm.fillFriendsFavorites(userName);
-		return pm.getFriendsFavorites();
-		// TODO: Please return an empty list so that getFriendsFavorites is not called twice
+		FavouritesManager manager = new FavouritesManager(adapter, getActivity());
+		manager.fillFriendsFavouritesList(userName);
+		return null;
+		// TODO: Please return an empty list so that getFriendsFavorites is not called twice, because in FavManger 
+		// it is called. Please look at how I did it in FriendsFragment.
 	}
 	
 	@Override
@@ -33,10 +35,4 @@ public class FriendsProfileFragment extends ProfileFragment implements Observer 
 		return false;
 	}
 
-	@Override
-	public void update(Observable observable, Object data) {
-		adapter.setCourseList(pm.getFriendsFavorites());
-		adapter.notifyDataSetChanged();
-		
-	}
 }

@@ -18,18 +18,15 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class FriendsArrayAdapter extends BaseAdapter implements Observer {
+public class FriendsArrayAdapter extends BaseAdapter{
 
-	Context context;
+	protected Context context;
 	private List<User> values = new ArrayList<User>();
-	ParseMethodes pm;
+	protected ParseMethodes pm;
 
 	public FriendsArrayAdapter(Context context) {
 		super();
 		this.context = context;
-		pm = new ParseMethodes(context);
-		pm.addObserver(this);
-		pm.fillFriendsList(ParseUser.getCurrentUser().getString("username"));
 	}
 
 	@Override
@@ -52,12 +49,6 @@ public class FriendsArrayAdapter extends BaseAdapter implements Observer {
 	}
 
 	@Override
-	public void update(Observable arg0, Object arg1) {
-		values = pm.getFriends();
-		notifyDataSetChanged();
-	}
-
-	@Override
 	public Object getItem(int position) {
 		// TODO Auto-generated method stub
 		return values.get(position);
@@ -67,6 +58,10 @@ public class FriendsArrayAdapter extends BaseAdapter implements Observer {
 	public long getItemId(int position) {
 		// TODO Auto-generated method stub
 		return position;
+	}
+	
+	public void setValues(List<User> user){
+		values = user;
 	}
 
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import ch.unibe.unisportbern.R;
 import ch.unibe.unisportbern.parse.ParseMethodes;
 import ch.unibe.unisportbern.support.User;
+import ch.unibe.unisportbern.support.UserManager;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,26 +21,18 @@ import android.widget.ListView;
 
 public class FriendsFragment extends Fragment{
 
-	View view;
-	ArrayList<User> friends;
-	BaseAdapter adapter;
-	ParseMethodes pm = new ParseMethodes(getActivity());
+	private View view;
+	private FriendsArrayAdapter adapter;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		
 		view = inflater.inflate(R.layout.friends_fragment_layout, container, false);
-		
-		
-		//friends = pm.getFriends(new DBMethodes(getActivity()).getUser().getUsername());
-		
-		// -- //
-		//friends = new ArrayList<User>();
-		//friends.add(new User("masus04", getActivity()));
-		// __ //
-		
 		ListView list = (ListView) view.findViewById(R.id.listViewFriends);
 		adapter = new FriendsArrayAdapter (getActivity());
+		UserManager manager = new UserManager(adapter, getActivity());
+		//manager.orderSearchOtherUser("karan");
+		manager.fillUserList();
 		list.setAdapter(adapter);	
 		
 		Button button = (Button) view.findViewById(R.id.buttonAddFriend);
@@ -54,16 +47,6 @@ public class FriendsFragment extends Fragment{
 		});
 		
 		return view;
-	}
-
-	private String[] friendsToString() {
-
-		String[] strings = new String[friends.size()];
-		
-		for (int i=0; i<friends.size(); i++)
-			strings[i] = friends.get(i).getUsername();
-		
-		return strings;
 	}
 	
 }
