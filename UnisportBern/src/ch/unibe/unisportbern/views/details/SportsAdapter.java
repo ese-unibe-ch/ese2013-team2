@@ -177,7 +177,7 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 		phases.setText("phases: " + course.getPhases());
 		
 		TextView info = (TextView) convertView.findViewById(R.id.info);
-		info.setText(course.getImageLink());
+		info.setText(course.getInformation());
 		
 	}
 

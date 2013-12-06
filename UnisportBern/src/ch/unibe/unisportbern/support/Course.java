@@ -67,12 +67,14 @@ public class Course implements IEvent{
 	}
 	
 	public String getInformation(){
-		return information;
+		String furtherInformation = "Further Information: ";
+		if(!this.information.isEmpty()) return furtherInformation+this.information;
+		else return information;
 	}
 	
 	public String getImageLink(){
-		if(this.imageLink != null) this.imageLink.replace(" ","");
-		else this.imageLink = "";
+		if(!this.imageLink.isEmpty()) this.imageLink.replace(" ","");
+		else this.imageLink = "http://www.berkowits.in/Upload/ProductImageTh/31_634257293270063750_NO%20IMAGE.jpg";
 		
 		return this.imageLink;
 	}
