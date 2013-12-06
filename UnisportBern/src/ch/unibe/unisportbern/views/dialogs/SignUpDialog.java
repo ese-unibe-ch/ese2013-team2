@@ -36,8 +36,8 @@ public class SignUpDialog extends DialogFragment {
 				ParseMethodes parse = new ParseMethodes(getActivity());
 				parse.signingUp(username.getText().toString(), password.getText().toString());
 				
-		    	DBMethodes db = new DBMethodes(getActivity());
-		    	db.setUser(username.getText().toString(), password.getText().toString());
+		    	//DBMethodes db = new DBMethodes(getActivity());
+		    	//db.setUser(username.getText().toString(), password.getText().toString());
 			}
 		}).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 

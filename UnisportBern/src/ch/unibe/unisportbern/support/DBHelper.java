@@ -14,7 +14,6 @@ public class DBHelper extends SQLiteOpenHelper {
 	public static final String SPORTS = "sports";
 	public static final String FAVORITES = "favorites";
 	public static final String RATING = "rating";
-	public static final String USER = "user";
 	
 	public static final boolean Debug = false;
 	public DBHelper(Context context) {
@@ -43,8 +42,6 @@ public class DBHelper extends SQLiteOpenHelper {
 		
 		sql = String.format("CREATE TABLE %s (rid INTEGER PRIMARY KEY AUTOINCREMENT, cid INTEGER, rating INTEGER)", RATING);
 		db.execSQL(sql);
-		
-		sql = String.format("CREATE TABLE %s (uid INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT)", USER);
 		
 		if (Debug) {
 			Log.d(TAG, "onCreate Called.");

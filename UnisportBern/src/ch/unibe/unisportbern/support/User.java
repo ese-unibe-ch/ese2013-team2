@@ -1,11 +1,7 @@
 package ch.unibe.unisportbern.support;
 
 import java.util.ArrayList;
-
-import com.parse.ParseException;
-
 import android.content.Context;
-
 import ch.unibe.unisportbern.parse.ParseMethodes;
 
 public class User {

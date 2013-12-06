@@ -68,6 +68,8 @@ public class MainActivity extends Activity {
 			ExpandableListView list = (ExpandableListView) findViewById(R.id.expandableListViewFavourites);
 			list.expandGroup(index);
 		}
+		
+		dbMethodes.getCourse(2);
 	}
 
 	@Override

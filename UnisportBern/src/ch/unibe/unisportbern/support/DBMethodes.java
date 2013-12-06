@@ -1,11 +1,6 @@
 package ch.unibe.unisportbern.support;
 
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeoutException;
-
-import org.json.JSONException;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -15,14 +10,20 @@ public class DBMethodes {
 
 	private Network network;
 	private DBHelper dbHelper;
-	private Context context;
-
+	
 	public DBMethodes(Context context) {
 		this.network = new Network(context);
 		this.dbHelper = new DBHelper(context);
-		this.context = context;
 	}
-
+	
+	/**
+	 * sets up the Database in the first start with all sports and courses from the API.
+	 * Actualises the Database only, when internet is available and the database is not up to date
+	 * 
+	 * @param
+	 * @return
+	 * 
+	 */
 	public void setUpDatabase() {
 
 		if (this.network.isOnline()) {
@@ -41,6 +42,10 @@ public class DBMethodes {
 		}
 	}
 
+	/**
+	 * Helpermethode of setUpDatabase. Updates or insert the local database with all sports
+	 * @param update
+	 */
 	private void sportUpdate(boolean update) {
 
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -76,6 +81,11 @@ public class DBMethodes {
 		db.close();
 	}
 
+	/**
+	 * Helpermethode of setUpDatabase. Updates or inserts all courses from a certain sport
+	 * @param sport
+	 * @param update
+	 */
 	private void courseUpdate(Sport sport, boolean update) {
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 
@@ -118,9 +128,7 @@ public class DBMethodes {
 
 	/**
 	 * returns a list with all sport names.
-	 * 
-	 * @param context
-	 * @return ArrayList<Sport>
+	 * @return
 	 */
 	public ArrayList<Sport> getAllSport() {
 
@@ -151,10 +159,6 @@ public class DBMethodes {
 	 * @param context
 	 * @param sid
 	 * @return ArryList<Course>
-	 * @throws TimeoutException
-	 * @throws ExecutionException
-	 * @throws InterruptedException
-	 * @throws JSONException
 	 */
 	public ArrayList<Course> getAllCourses(Sport sport) {
 
@@ -180,6 +184,11 @@ public class DBMethodes {
 		return courses;
 	}
 
+	/**
+	 * Returns a Course-Object for a certain course-id
+	 * @param courseId
+	 * @return
+	 */
 	public Course getCourse(int courseId) {
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 		Cursor cursor = dbHelper.query(db, "SELECT * FROM courses WHERE cid=" + courseId);
@@ -189,9 +198,11 @@ public class DBMethodes {
 			return null;
 
 		else {
-			Cursor cursorSport = dbHelper.query(db, "SELECT sid, name FROM sports WHERE sid=" + cursor.getInt(1));
-			if(cursor.getCount() == 0) return null;
+			Cursor cursorSport = dbHelper.query(db, "SELECT * FROM sports WHERE sid=" + cursor.getInt(1));
+			cursorSport.moveToFirst();
+			if(cursorSport.getCount() == 0) return null;
 			else{
+		
 				return new Course(cursor.getInt(0), new Sport(cursorSport.getInt(0), cursorSport.getString(1)),
 						cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5),
 						cursor.getString(6), cursor.getString(7), sub(cursor.getInt(8)), cursor.getString(9),
@@ -200,6 +211,10 @@ public class DBMethodes {
 		}
 	}
 
+	/**
+	 * Add a course to the favorite-table in the local database
+	 * @param course
+	 */
 	public void addFavorite(Course course) {
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 		ContentValues values = new ContentValues();
@@ -210,11 +225,20 @@ public class DBMethodes {
 			db.insert(DBHelper.FAVORITES, null, values);
 	}
 
+	/**
+	 * Delete a course from the favorite-table in the local database
+	 * @param course
+	 */
 	public void deleteFavorite(Course course) {
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 		db.delete(DBHelper.FAVORITES, "cid = " + Integer.toString(course.getId()), null);
 	}
 
+	/**
+	 * checks if a certain course is a favorite course
+	 * @param course
+	 * @return
+	 */
 	public boolean isFavourite(Course course) {
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 
@@ -229,6 +253,10 @@ public class DBMethodes {
 			return true;
 	}
 
+	/**
+	 * returns a list of all favorite courses
+	 * @return
+	 */
 	public ArrayList<Course> getAllFavorites() {
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 
@@ -256,6 +284,11 @@ public class DBMethodes {
 		return allFavorites;
 	}
 
+	/**
+	 * saves the rating from a certain course in the local database
+	 * @param course
+	 * @param rating
+	 */
 	public void setRating(Course course, float rating) {
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 
@@ -269,6 +302,11 @@ public class DBMethodes {
 		}
 	}
 
+	/**
+	 * returns the rating of a certain course
+	 * @param course
+	 * @return
+	 */
 	public int getRating(Course course) {
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 
@@ -282,41 +320,11 @@ public class DBMethodes {
 			return cursor.getInt(2);
 	}
 
-	private boolean sub(int i) {
-		boolean sub;
-		if (i == 1)
-			sub = true;
-		else
-			sub = false;
-		return sub;
-	}
-
-	public void setUser(String username, String password) {
-
-		SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-		ContentValues values = new ContentValues();
-
-		values.put("username", username);
-		values.put("password", password);
-
-		// Perform the insert/update
-		db.insert(DBHelper.USER, null, values);
-
-		// Close the Database and the Helper
-		dbHelper.close();
-		db.close();
-	}
-
-	public User getUser() {
-		SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-		Cursor cursorUser = dbHelper.query(db, "SELECT * FROM user");
-		cursorUser.moveToFirst();
-
-		return new User(cursorUser.getString(0), context);
-	}
-
+	/**
+	 * Helper-Methode to check if a certain Table is empty
+	 * @param table
+	 * @return
+	 */
 	protected boolean isTableEmpty(String table) {
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 
@@ -329,6 +337,11 @@ public class DBMethodes {
 			return false;
 	}
 
+	/**
+	 * Searching in all sports
+	 * @param search
+	 * @return
+	 */
 	public ArrayList<IEvent> searchSport(String search) {
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 
@@ -352,7 +365,7 @@ public class DBMethodes {
 	}
 
 	/**
-	 * 
+	 * Search in all courses
 	 * @param day
 	 *            from 0 to 7: any day, mo, tu, we, .. so
 	 * @param time
@@ -367,7 +380,7 @@ public class DBMethodes {
 		Cursor cursor = dbHelper.query(db, "SELECT * FROM courses");
 		String[] dayNames = new String[] { "Mo", "Di", "Mi", "Do", "Fr", "Sa", "So" };
 
-		ArrayList<IEvent> coursNames = new ArrayList<IEvent>();
+		ArrayList<IEvent> courseSearchResult = new ArrayList<IEvent>();
 
 		cursor.moveToFirst();
 
@@ -385,14 +398,14 @@ public class DBMethodes {
 			if (cursor.getString(3).equals(dayNames[index]) || day == 0) {
 				switch (time) {
 				case 0:
-					coursNames.add(new Course(cursor.getInt(0), new Sport(cursorSport.getInt(0), cursorSport
+					courseSearchResult.add(new Course(cursor.getInt(0), new Sport(cursorSport.getInt(0), cursorSport
 							.getString(1)), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor
 							.getString(5), cursor.getString(6), cursor.getString(7), sub(cursor.getInt(8)), cursor
 							.getString(9), cursor.getString(10)));
 					break;
 				case 1:
 					if (getHour(cursor.getString(4)) >= 600 && getHour(cursor.getString(4)) <= 1215) {
-						coursNames.add(new Course(cursor.getInt(0), new Sport(cursorSport.getInt(0), cursorSport
+						courseSearchResult.add(new Course(cursor.getInt(0), new Sport(cursorSport.getInt(0), cursorSport
 								.getString(1)), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor
 								.getString(5), cursor.getString(6), cursor.getString(7), sub(cursor.getInt(8)), cursor
 								.getString(9), cursor.getString(10)));
@@ -401,7 +414,7 @@ public class DBMethodes {
 
 				case 2:
 					if (getHour(cursor.getString(4)) >= 1000 && getHour(cursor.getString(4)) <= 1400) {
-						coursNames.add(new Course(cursor.getInt(0), new Sport(cursorSport.getInt(0), cursorSport
+						courseSearchResult.add(new Course(cursor.getInt(0), new Sport(cursorSport.getInt(0), cursorSport
 								.getString(1)), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor
 								.getString(5), cursor.getString(6), cursor.getString(7), sub(cursor.getInt(8)), cursor
 								.getString(9), cursor.getString(10)));
@@ -410,7 +423,7 @@ public class DBMethodes {
 
 				case 3:
 					if (getHour(cursor.getString(4)) >= 1200 && getHour(cursor.getString(4)) <= 1800) {
-						coursNames.add(new Course(cursor.getInt(0), new Sport(cursorSport.getInt(0), cursorSport
+						courseSearchResult.add(new Course(cursor.getInt(0), new Sport(cursorSport.getInt(0), cursorSport
 								.getString(1)), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor
 								.getString(5), cursor.getString(6), cursor.getString(7), sub(cursor.getInt(8)), cursor
 								.getString(9), cursor.getString(10)));
@@ -420,7 +433,7 @@ public class DBMethodes {
 				case 4:
 					if ((getHour(cursor.getString(4)) >= 1600 && getHour(cursor.getString(4)) <= 2400)
 							|| (getHour(cursor.getString(4)) >= 0000 && getHour(cursor.getString(4)) <= 600)) {
-						coursNames.add(new Course(cursor.getInt(0), new Sport(cursorSport.getInt(0), cursorSport
+						courseSearchResult.add(new Course(cursor.getInt(0), new Sport(cursorSport.getInt(0), cursorSport
 								.getString(1)), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor
 								.getString(5), cursor.getString(6), cursor.getString(7), sub(cursor.getInt(8)), cursor
 								.getString(9), cursor.getString(10)));
@@ -430,16 +443,20 @@ public class DBMethodes {
 				cursor.moveToNext();
 			} else
 				cursor.moveToNext();
-
 		}
 
 		// Close the Database and the Helper
 		db.close();
 		dbHelper.close();
 
-		return coursNames;
+		return courseSearchResult;
 	}
 
+	/**
+	 * Helper-Methode to parse the time string from the API to an integer time value
+	 * @param time
+	 * @return
+	 */
 	private int getHour(String time) {
 
 		try {
@@ -454,5 +471,19 @@ public class DBMethodes {
 		} catch (NumberFormatException ex) {
 			return 0;
 		}
+	}
+	
+	/**
+	 * Helper-Methode to parse int to boolean
+	 * @param i
+	 * @return
+	 */
+	private boolean sub(int i) {
+		boolean sub;
+		if (i == 1)
+			sub = true;
+		else
+			sub = false;
+		return sub;
 	}
 }
