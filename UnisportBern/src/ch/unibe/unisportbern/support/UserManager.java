@@ -11,6 +11,7 @@ import ch.unibe.unisportbern.parse.ParseMethodes;
 import ch.unibe.unisportbern.views.friends.FriendsArrayAdapter;
 
 import android.content.Context;
+import android.widget.ListView;
 
 public class UserManager implements Observer {
 	
@@ -20,8 +21,7 @@ public class UserManager implements Observer {
 	private Context context;
 	private static final String username = ParseUser.getCurrentUser().getString("username");
 	
-	public UserManager(FriendsArrayAdapter adapter, Context context){
-		this.adapter = adapter;
+	public UserManager(Context context){
 		this.context = context;
 		parse = new ParseMethodes(context);
 		parse.addObserver(this);
@@ -53,6 +53,14 @@ public class UserManager implements Observer {
 		user = parse.getUsers();
 		adapter.setValues(user);
 		adapter.notifyDataSetChanged();
+		
+	}
+	public void createView(FriendsArrayAdapter friendsAdapter, ListView list) {
+		adapter = friendsAdapter;
+		this.fillUserList();
+		list.setAdapter(adapter);	
+		
+		
 		
 	}
 	

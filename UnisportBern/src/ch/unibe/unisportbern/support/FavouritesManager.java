@@ -8,6 +8,7 @@ import ch.unibe.unisportbern.parse.ParseMethodes;
 import ch.unibe.unisportbern.views.details.SportsAdapter;
 
 import android.content.Context;
+import android.widget.ExpandableListView;
 
 public class FavouritesManager implements Observer {
 	
@@ -16,8 +17,7 @@ public class FavouritesManager implements Observer {
 	private ParseMethodes parse;
 	private Context context;
 	
-	public FavouritesManager(SportsAdapter adapter, Context context){
-		this.adapter = adapter;
+	public FavouritesManager(Context context){
 		this.context = context;
 		parse = new ParseMethodes(context);
 		parse.addObserver(this);
@@ -45,6 +45,11 @@ public class FavouritesManager implements Observer {
 		adapter.setCourseList(favourites);
 		adapter.notifyDataSetChanged();
 		
+	}
+	
+	public void createView(ExpandableListView view){
+		adapter = new SportsAdapter(context, new ArrayList<Course>());
+		view.setAdapter(adapter);
 	}
 	
 	

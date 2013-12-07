@@ -23,10 +23,9 @@ public class FriendsFragment extends Fragment{
 		view = inflater.inflate(R.layout.friends_fragment_layout, container, false);
 		ListView list = (ListView) view.findViewById(R.id.listViewFriends);
 		adapter = new FriendsArrayAdapter (getActivity());
-		UserManager manager = new UserManager(adapter, getActivity());
+		UserManager manager = new UserManager(getActivity());
 		//manager.orderSearchOtherUser("karan");
-		manager.fillUserList();
-		list.setAdapter(adapter);	
+		manager.createView(adapter, list);
 		
 		Button button = (Button) view.findViewById(R.id.buttonAddFriend);
 		
@@ -34,8 +33,8 @@ public class FriendsFragment extends Fragment{
 			
 			@Override
 			public void onClick(View v) {
-				SearchFriendDialog dialog = new SearchFriendDialog();
-				dialog.show(getFragmentManager(), "searchFriend");				
+				// TODO addFriend(friendName)
+				
 			}
 		});
 		

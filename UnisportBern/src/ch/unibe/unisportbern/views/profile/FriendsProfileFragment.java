@@ -32,10 +32,8 @@ public class FriendsProfileFragment extends Fragment{
 		tv.setText(userName);
 		
 		listView = (ExpandableListView) view.findViewById(R.id.expandableListViewFavourites);
-		
-		adapter = new SportsAdapter(getActivity(), new ArrayList<Course>());
-		
-		FavouritesManager manager = new FavouritesManager(adapter, getActivity());
+		FavouritesManager manager = new FavouritesManager(getActivity());
+		manager.createView(listView);
 		manager.fillFriendsFavouritesList(userName);
 		
 		//FavouritesManager manager = new FavouritesManager(context);
