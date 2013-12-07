@@ -1,4 +1,4 @@
-package ch.unibe.unisportbern.views.dialogs;
+package ch.unibe.unisportbern.notification;
 
 import java.util.ArrayList;
 
@@ -11,10 +11,11 @@ import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
 public class NotificationsDialog extends DialogFragment{
 
-	//ArrayList<Notification> notifications;
+	ArrayList<INotification> notifications;
 	
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -22,6 +23,18 @@ public class NotificationsDialog extends DialogFragment{
 		
 		LayoutInflater inflater = getActivity().getLayoutInflater();
 		final View view = inflater.inflate(R.layout.notifications_dialog_layout, null);
+		
+		notifications = new ArrayList<INotification>();
+		
+		//TODO: get notifications
+		
+		if(notifications.isEmpty()){
+			
+			TextView tv = (TextView) view.findViewById(R.id.textViewNotificationDialogEmptyListText);
+			tv.setText("There are no new Notifications available");
+			tv.setVisibility(View.VISIBLE);
+		}
+			
 		
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 

@@ -3,6 +3,7 @@ package ch.unibe.unisportbern.views.dialogs;
 import ch.unibe.unisportbern.R;
 import ch.unibe.unisportbern.parse.ParseMethodes;
 import ch.unibe.unisportbern.support.DBMethodes;
+import ch.unibe.unisportbern.views.MainActivity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;

@@ -16,6 +16,16 @@
         android:textSize="@dimen/dialog_text_size"
         android:textStyle="bold" />
 
+    <TextView
+        android:id="@+id/textViewNotificationDialogEmptyListText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:paddingTop="5dip"
+        android:paddingBottom="5dip"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="" />
+
     <ListView
         android:id="@+id/listViewNotificationsDialog"
         android:layout_width="match_parent"

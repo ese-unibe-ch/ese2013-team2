@@ -1,8 +1,8 @@
 package ch.unibe.unisportbern.views;
 
+import ch.unibe.unisportbern.notification.NotificationsDialog;
 import ch.unibe.unisportbern.parse.ParseMethodes;
 import ch.unibe.unisportbern.support.DBMethodes;
-import ch.unibe.unisportbern.views.dialogs.NotificationsDialog;
 import ch.unibe.unisportbern.views.dialogs.SignUpDialog;
 import ch.unibe.unisportbern.views.friends.FriendsFragment;
 import ch.unibe.unisportbern.views.profile.ProfileFragment;
@@ -14,7 +14,6 @@ import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.app.DialogFragment;
-import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ExpandableListView;
@@ -22,7 +21,7 @@ import android.widget.ExpandableListView;
 public class MainActivity extends Activity {
 
 	boolean FIRSSTART = true;
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -95,5 +94,4 @@ public class MainActivity extends Activity {
 		
 		return super.onOptionsItemSelected(item);
 	}
-
 }

@@ -34,8 +34,8 @@ public class FriendsFragment extends Fragment{
 			
 			@Override
 			public void onClick(View v) {
-				// TODO addFriend(friendName)
-				
+				SearchFriendDialog dialog = new SearchFriendDialog();
+				dialog.show(getFragmentManager(), "searchFriend");				
 			}
 		});
 		

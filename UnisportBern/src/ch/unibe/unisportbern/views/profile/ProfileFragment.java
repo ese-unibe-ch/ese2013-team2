@@ -2,8 +2,11 @@ package ch.unibe.unisportbern.views.profile;
 
 import java.util.ArrayList;
 
+import com.parse.ParseUser;
+
 import ch.unibe.unisportbern.support.Course;
 import ch.unibe.unisportbern.support.DBMethodes;
+import ch.unibe.unisportbern.views.MainActivity;
 import ch.unibe.unisportbern.views.details.SportsAdapter;
 
 import ch.unibe.unisportbern.R;
@@ -69,9 +72,14 @@ public class ProfileFragment extends Fragment{
 	
 	protected void setUsername(){
 		//TODO:
+		
+		try{
+			userName = ParseUser.getCurrentUser().getString("username");
+		}catch(Exception e){
+			userName="";
+		}
 		//DBMethodes db = new DBMethodes(getActivity());
 		//userName = db.getUser().getUsername();
-		userName = "UserName";
 	}
 	
 }
