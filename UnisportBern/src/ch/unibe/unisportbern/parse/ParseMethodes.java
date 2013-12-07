@@ -260,7 +260,8 @@ public class ParseMethodes extends Observable {
 	
 	public void orderSearch (String otherUser){
 		ParseQuery<ParseUser> query = ParseUser.getQuery();
-		query.whereEqualTo("username", otherUser);
+		query.whereContains("username", otherUser);
+		//query.whereEqualTo("username", otherUser);
 		query.findInBackground(new FindCallback<ParseUser>() {
 			@Override
 			public void done(List<ParseUser> objects, com.parse.ParseException e) {

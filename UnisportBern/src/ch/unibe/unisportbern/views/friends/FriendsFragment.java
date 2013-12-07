@@ -24,7 +24,8 @@ public class FriendsFragment extends Fragment{
 		ListView list = (ListView) view.findViewById(R.id.listViewFriends);
 		adapter = new FriendsArrayAdapter (getActivity());
 		UserManager manager = new UserManager(getActivity());
-		//manager.orderSearchOtherUser("karan");
+		manager.fillUserList();
+		//manager.orderSearchOtherUser("k");
 		manager.createView(adapter, list);
 		
 		Button button = (Button) view.findViewById(R.id.buttonAddFriend);

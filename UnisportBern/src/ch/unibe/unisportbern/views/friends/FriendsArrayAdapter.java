@@ -8,17 +8,19 @@ import ch.unibe.unisportbern.parse.ParseMethodes;
 import ch.unibe.unisportbern.support.User;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class FriendsArrayAdapter extends BaseAdapter{
 
-	protected Context context;
+	private Context context;
 	private List<User> values = new ArrayList<User>();
-	protected ParseMethodes pm;
 
 	public FriendsArrayAdapter(Context context) {
 		super();
@@ -37,6 +39,26 @@ public class FriendsArrayAdapter extends BaseAdapter{
 		
 		textV.setText(values.get(position).getUsername());
 
+		/*ImageButton delete = (ImageButton) view.findViewById(R.id.buttonDeleteFriend);
+
+		delete.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO: delete friend(friendName)
+			}
+		});
+
+		view.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(context, ProfileWrapperActivity.class);
+				intent.putExtra("friendName", values.get(position).getUsername());
+				context.startActivity(intent);
+			}
+		});*/
+		
 		return view;
 	}
 	@Override

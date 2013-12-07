@@ -57,7 +57,7 @@ public class UserManager implements Observer {
 	}
 	public void createView(FriendsArrayAdapter friendsAdapter, ListView list) {
 		adapter = friendsAdapter;
-		this.fillUserList();
+		//this.fillUserList();
 		list.setAdapter(adapter);	
 		
 		
