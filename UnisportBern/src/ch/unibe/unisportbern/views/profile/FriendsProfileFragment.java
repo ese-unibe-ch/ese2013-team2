@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import ch.unibe.unisportbern.R;
@@ -28,6 +27,10 @@ public class FriendsProfileFragment extends Fragment{
 		
 		View view = inflater.inflate(R.layout.profile_layout, container, false);
 		
+		TextView tv = (TextView) view.findViewById(R.id.textView_name);
+		setUsername();
+		tv.setText(userName);
+		
 		listView = (ExpandableListView) view.findViewById(R.id.expandableListViewFavourites);
 		
 		adapter = new SportsAdapter(getActivity(), new ArrayList<Course>());
@@ -37,10 +40,6 @@ public class FriendsProfileFragment extends Fragment{
 		
 		//FavouritesManager manager = new FavouritesManager(context);
 		//manager.fillFriendsFavouritesList(friendsUsername, listView, adapter);
-		
-		TextView tv = (TextView) view.findViewById(R.id.textView_name);
-		setUsername();
-		tv.setText(userName);
 		
 		return view;
 	}
