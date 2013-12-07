@@ -1,5 +1,7 @@
 package ch.unibe.unisportbern.views.friends;
 
+import java.util.List;
+
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -10,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import ch.unibe.unisportbern.R;
+import ch.unibe.unisportbern.support.User;
 
 public class CustomFriendListAdapter extends ArrayAdapter<String> {
 
@@ -55,5 +58,10 @@ public class CustomFriendListAdapter extends ArrayAdapter<String> {
 		});
 
 		return view;
+	}
+	
+	@Override
+	public int getCount(){
+		return values.length;
 	}
 }

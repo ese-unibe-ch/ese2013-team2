@@ -2,10 +2,6 @@ package ch.unibe.unisportbern.views.friends;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
-
-import com.parse.ParseUser;
 
 import ch.unibe.unisportbern.R;
 import ch.unibe.unisportbern.parse.ParseMethodes;
