@@ -1,4 +1,4 @@
-package ch.unibe.unisportbern.views.sportsTab;
+package ch.unibe.unisportbern.views;
 
 import java.util.ArrayList;
 
@@ -6,7 +6,6 @@ import ch.unibe.unisportbern.R;
 import ch.unibe.unisportbern.support.DBMethodes;
 import ch.unibe.unisportbern.support.IEvent;
 import ch.unibe.unisportbern.support.Sport;
-import ch.unibe.unisportbern.views.CustomArrayAdapter;
 import ch.unibe.unisportbern.views.details.DActivity;
 import ch.unibe.unisportbern.views.search.SearchDialog;
 import ch.unibe.unisportbern.views.search.SearchHandler;

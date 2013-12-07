@@ -6,7 +6,6 @@ import ch.unibe.unisportbern.views.dialogs.NotificationsDialog;
 import ch.unibe.unisportbern.views.dialogs.SignUpDialog;
 import ch.unibe.unisportbern.views.friends.FriendsFragment;
 import ch.unibe.unisportbern.views.profile.ProfileFragment;
-import ch.unibe.unisportbern.views.sportsTab.SportsFragment;
 
 import ch.unibe.unisportbern.R;
 

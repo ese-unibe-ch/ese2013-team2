@@ -1,38 +1,52 @@
 package ch.unibe.unisportbern.views.profile;
 
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListView;
+import android.widget.ListView;
+import android.widget.TextView;
 
-import ch.unibe.unisportbern.parse.ParseMethodes;
+import ch.unibe.unisportbern.R;
 import ch.unibe.unisportbern.support.Course;
 import ch.unibe.unisportbern.support.FavouritesManager;
+import ch.unibe.unisportbern.views.details.SportsAdapter;
 
-public class FriendsProfileFragment extends ProfileFragment {
+public class FriendsProfileFragment extends Fragment{
+	
+	protected String userName;
+	protected ExpandableListView listView;
+	protected SportsAdapter adapter;
+	
 	
 	@Override
-	protected ArrayList<Course> getCourses(){
-		this.setUsername();
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		
+		View view = inflater.inflate(R.layout.profile_layout, container, false);
+		
+		listView = (ExpandableListView) view.findViewById(R.id.expandableListViewFavourites);
+		
+		adapter = new SportsAdapter(getActivity(), new ArrayList<Course>());
+		
 		FavouritesManager manager = new FavouritesManager(adapter, getActivity());
 		manager.fillFriendsFavouritesList(userName);
-		return null;
-		// TODO: Please return an empty list so that getFriendsFavorites is not called twice, because in FavManger 
-		// it is called. Please look at how I did it in FriendsFragment.
+		
+		//FavouritesManager manager = new FavouritesManager(context);
+		//manager.fillFriendsFavouritesList(friendsUsername, listView, adapter);
+		
+		TextView tv = (TextView) view.findViewById(R.id.textView_name);
+		setUsername();
+		tv.setText(userName);
+		
+		return view;
 	}
 	
-	@Override
 	protected void setUsername(){
 		userName = getArguments().getString("friendName");
-	}
-
-	@Override
-	protected boolean isHelpTextDisplayed() {
-		return false;
 	}
 
 }

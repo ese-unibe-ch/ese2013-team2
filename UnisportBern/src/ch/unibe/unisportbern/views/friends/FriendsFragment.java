@@ -1,22 +1,15 @@
 package ch.unibe.unisportbern.views.friends;
 
-import java.util.ArrayList;
 
 import ch.unibe.unisportbern.R;
-import ch.unibe.unisportbern.parse.ParseMethodes;
-import ch.unibe.unisportbern.support.User;
 import ch.unibe.unisportbern.support.UserManager;
 import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 public class FriendsFragment extends Fragment{

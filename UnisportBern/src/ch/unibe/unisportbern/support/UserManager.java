@@ -11,7 +11,6 @@ import ch.unibe.unisportbern.parse.ParseMethodes;
 import ch.unibe.unisportbern.views.friends.FriendsArrayAdapter;
 
 import android.content.Context;
-import android.widget.BaseAdapter;
 
 public class UserManager implements Observer {
 	
