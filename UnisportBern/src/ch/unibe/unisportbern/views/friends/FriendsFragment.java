@@ -2,6 +2,8 @@ package ch.unibe.unisportbern.views.friends;
 
 
 import ch.unibe.unisportbern.R;
+import ch.unibe.unisportbern.notification.NotificationArrayAdapter;
+import ch.unibe.unisportbern.notification.NotificationManager;
 import ch.unibe.unisportbern.support.UserManager;
 import android.app.Fragment;
 import android.os.Bundle;
@@ -15,14 +17,19 @@ import android.widget.ListView;
 public class FriendsFragment extends Fragment{
 
 	private View view;
-	private FriendsArrayAdapter adapter;
+	//private NotificationArrayAdapter adapter;
+	private CustomFriendListAdapter adapter;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		
 		view = inflater.inflate(R.layout.friends_fragment_layout, container, false);
 		ListView list = (ListView) view.findViewById(R.id.listViewFriends);
-		adapter = new FriendsArrayAdapter (getActivity());
+		//adapter = new NotificationArrayAdapter(getActivity(), new String[0]);
+		adapter = new CustomFriendListAdapter(getActivity(), new String[0]);
+		//NotificationManager manager = new NotificationManager(getActivity());
+		//manager.checkNotification();
+		//manager.createView(adapter, list);
 		UserManager manager = new UserManager(getActivity());
 		manager.fillUserList();
 		//manager.orderSearchOtherUser("k");

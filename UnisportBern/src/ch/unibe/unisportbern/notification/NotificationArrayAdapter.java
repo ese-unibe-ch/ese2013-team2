@@ -1,6 +1,12 @@
-package ch.unibe.unisportbern.views.friends;
+package ch.unibe.unisportbern.notification;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import ch.unibe.unisportbern.R;
+import ch.unibe.unisportbern.parse.ParseMethodes;
+import ch.unibe.unisportbern.support.User;
+import ch.unibe.unisportbern.views.friends.ProfileWrapperActivity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,19 +15,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import ch.unibe.unisportbern.R;
-import ch.unibe.unisportbern.support.User;
 
-public class CustomFriendListAdapter extends ArrayAdapter<String> {
+public class NotificationArrayAdapter extends ArrayAdapter<String>{
 
-	private String[] values;
 	private Context context;
 
-	public CustomFriendListAdapter(Context context, String[] values) {
-		super(context, R.layout.listview_friends_layout, values);
-		this.context = context;
+	private String[] values;
+
+	public NotificationArrayAdapter(Context context, String[] values) {
+		super(context, R.layout.list_view_layout, values);
+		
 		this.values = values;
 	}
 
@@ -37,7 +43,7 @@ public class CustomFriendListAdapter extends ArrayAdapter<String> {
 
 		textV.setText(values[position]);
 
-		ImageButton delete = (ImageButton) view.findViewById(R.id.buttonDeleteFriend);
+		/*ImageButton delete = (ImageButton) view.findViewById(R.id.buttonDeleteFriend);
 
 		delete.setOnClickListener(new OnClickListener() {
 
@@ -55,7 +61,7 @@ public class CustomFriendListAdapter extends ArrayAdapter<String> {
 				intent.putExtra("friendName", values[position]);
 				context.startActivity(intent);
 			}
-		});
+		});*/
 
 		return view;
 	}
@@ -65,8 +71,10 @@ public class CustomFriendListAdapter extends ArrayAdapter<String> {
 		return values.length;
 	}
 
-	public void setValues(String[] array) {
+	
+	public void setValues(String array[]){
 		values = array;
-		
 	}
+
 }
+

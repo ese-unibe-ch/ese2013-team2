@@ -2,6 +2,7 @@ package ch.unibe.unisportbern.views;
 
 import ch.unibe.unisportbern.notification.NotificationsDialog;
 import ch.unibe.unisportbern.parse.ParseMethodes;
+import ch.unibe.unisportbern.support.Course;
 import ch.unibe.unisportbern.support.DBMethodes;
 import ch.unibe.unisportbern.views.dialogs.SignUpDialog;
 import ch.unibe.unisportbern.views.friends.FriendsFragment;
@@ -40,6 +41,8 @@ public class MainActivity extends Activity {
 			DialogFragment signupFragment = new SignUpDialog();
 			signupFragment.show(getFragmentManager(), "Welcome Dialog");
 		}
+		parse.addFavourites(new Course(2, null, "", "", "", "", "", "", false, "", ""), "mmm");
+		parse.addFriend("kkk", "iii");
 
 		int index = getIntent().getIntExtra("index", -1);
 

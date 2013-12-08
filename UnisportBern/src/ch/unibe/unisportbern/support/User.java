@@ -12,4 +12,7 @@ public class User {
 	public String getUsername(){
 		return this.username;
 	}
+	public String toString(){
+		return this.username;
+	}
 }

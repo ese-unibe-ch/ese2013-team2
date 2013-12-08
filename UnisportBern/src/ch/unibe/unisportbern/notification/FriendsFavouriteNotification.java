@@ -24,5 +24,30 @@ public class FriendsFavouriteNotification implements INotification {
 	public User getFriend(){
 		return friend;
 	}
+	
+	@Override
+	public String toString(){
+		return friend.getUsername() + " is taking part in " + favourite.getName();
+	}
+
+
+	@Override
+	public boolean isFriendsNotification() {
+		return false;
+	}
+
+
+	@Override
+	public String getUserName() {
+		return "";
+	}
+
+
+	@Override
+	public String getFriendName() {
+		return getFriend().getUsername();
+	}
+
+
 
 }

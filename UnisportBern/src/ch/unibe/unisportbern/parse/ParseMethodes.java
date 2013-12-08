@@ -13,6 +13,7 @@ import android.os.UserManager;
 
 import ch.unibe.unisportbern.notification.FriendsFavouriteNotification;
 import ch.unibe.unisportbern.notification.FriendsNotification;
+import ch.unibe.unisportbern.notification.INotification;
 import ch.unibe.unisportbern.support.Course;
 import ch.unibe.unisportbern.support.DBMethodes;
 import ch.unibe.unisportbern.support.User;
@@ -30,14 +31,13 @@ import com.parse.ParseAnalytics;
 
 public class ParseMethodes extends Observable {
 	ParseUser user = new ParseUser();
-	//ParseObject userdata = new ParseObject("Userdata");
 	User dbuser;
 	private DBMethodes db;
 	Context context;
-	private ArrayList <Integer> cid;
-	private User users;
 	private ArrayList<User> usersList = new ArrayList<User>();
 	private ArrayList <Course> favoritesList = new ArrayList <Course>();
+	private ArrayList <INotification> notificationList = new ArrayList <INotification>();
+	private ArrayList <INotification> tmpNotificationList = new ArrayList<INotification>();
 	
 	
 	public ParseMethodes(Context context){
@@ -100,10 +100,11 @@ public class ParseMethodes extends Observable {
 	}
 	
 	public void addFavourites(Course favourite, String username){
-		ParseObject favourites = new ParseObject ("FAVOURTIES");
+		ParseObject favourites = new ParseObject ("FRIENDSFAV");
 		favourites.put("username", username);
 		favourites.put("cid", favourite.getId());
-		favourites.saveEventually();
+		favourites.put("notification", true);
+		favourites.saveInBackground();
 	}
 	
 	public ArrayList <Course> getFriendsFavorites(){
@@ -111,7 +112,7 @@ public class ParseMethodes extends Observable {
 	}
 	
 	public ArrayList <Course> fillFriendsFavorites(String friendsUsername){
-		ParseQuery<ParseObject> query = ParseQuery.getQuery("FAVOURTIES");
+		ParseQuery<ParseObject> query = ParseQuery.getQuery("FRIENDSFAV");
 		query.whereEqualTo("username", friendsUsername);
 		query.findInBackground(new FindCallback<ParseObject>(){
 			
@@ -120,6 +121,7 @@ public class ParseMethodes extends Observable {
 				// TODO Auto-generated method stub
 				if (e == null) {
 					for (int i = 0 ; i< objects.size(); i++){
+						if(objects.get(i).getString("friendsID")==null)
 						favoritesList.add(db.getCourse(objects.get(i).getInt("cid")));
 			        // The query was successful.
 					}
@@ -134,7 +136,7 @@ public class ParseMethodes extends Observable {
 	}
 	
 	public void deleteFavourite(String myUsername, int cid){
-		ParseQuery<ParseObject> query = ParseQuery.getQuery("FAVOURTIES");
+		ParseQuery<ParseObject> query = ParseQuery.getQuery("FRIENDSFAV");
 		query.whereEqualTo("username", myUsername);
 		query.whereEqualTo("cid", cid);
 		query.findInBackground(new FindCallback<ParseObject>(){
@@ -155,59 +157,19 @@ public class ParseMethodes extends Observable {
 	}
 	
 	public void addFriend(String friend, String username){
-		ParseObject friends = new ParseObject ("FRIENDS");
+		ParseObject friends = new ParseObject ("FRIENDSFAV");
 		friends.put("username", username );
 		friends.put("friendsID", friend);
 		friends.put("notification", true);
-		friends.saveEventually();
+		friends.saveInBackground();
 		ParseMethodes.this.setChanged();
 		ParseMethodes.this.notifyObservers();
 	}
 	
-	public void deleteFriendNotification(FriendsNotification notification){
-		ParseQuery<ParseObject> query = ParseQuery.getQuery("FRIENDS");
-		query.whereEqualTo("friendsID", notification.getFriend());
-		query.whereEqualTo("username", ParseUser.getCurrentUser().getString("username"));
-		query.findInBackground(new FindCallback<ParseObject>() {
-
-			@Override
-			public void done(List<ParseObject> objects,
-					com.parse.ParseException e) {
-				for (int i = 0 ; i< objects.size(); i++){
-					objects.get(i).put("notification", false);
-					objects.get(i).saveEventually();
-				}
-				
-				
-			}
-			
-		});
-		 
-	}
 	
-	public void deleteFriendsFavouriteNotification(FriendsFavouriteNotification notification){
-		ParseQuery<ParseObject> query = ParseQuery.getQuery("FAVOURTIES");
-		query.whereEqualTo("cid", notification.getCourse().getId());
-		query.whereEqualTo("friendsID", notification.getFriend());
-		query.findInBackground(new FindCallback<ParseObject>() {
-
-			@Override
-			public void done(List<ParseObject> objects,
-					com.parse.ParseException e) {
-				for (int i = 0 ; i< objects.size(); i++){
-					objects.get(i).put("notification", false);
-					objects.get(i).saveEventually();
-				}
-				
-			}
-			
-		});
-		 
-	}
-		
 	
 	public void deleteFriend(String myUsername, String friendUsername){
-		ParseQuery<ParseObject> query = ParseQuery.getQuery("FRIENDS");
+		ParseQuery<ParseObject> query = ParseQuery.getQuery("FRIENDSFAV");
 		query.whereEqualTo("username", myUsername);
 		query.whereEqualTo("friendsID" , friendUsername);
 		query.findInBackground(new FindCallback<ParseObject>(){
@@ -234,7 +196,7 @@ public class ParseMethodes extends Observable {
 	}
 	
 	public void fillFriendsList(String myUsername){
-		ParseQuery<ParseObject> query = ParseQuery.getQuery("FRIENDS");
+		ParseQuery<ParseObject> query = ParseQuery.getQuery("FRIENDSFAV");
 		query.whereEqualTo("username", myUsername);
 		query.findInBackground(new FindCallback<ParseObject>(){
 			
@@ -243,6 +205,7 @@ public class ParseMethodes extends Observable {
 				// TODO Auto-generated method stub
 				if (e == null) {
 					for (int i = 0 ; i< objects.size(); i++){
+						if(objects.get(i).getString("friendsID")!=null)
 						usersList.add(makeUser(objects.get(i).getString("friendsID")));
 						
 			        // The query was successful.
@@ -282,6 +245,92 @@ public class ParseMethodes extends Observable {
 
 		});
 	}
+	
+	
+	
+	public void deleteFriendNotification(FriendsNotification notification){
+		ParseQuery<ParseObject> query = ParseQuery.getQuery("FRIENDSFAV");
+		query.whereEqualTo("friendsID", notification.getFriend());
+		query.whereEqualTo("username", ParseUser.getCurrentUser().getString("username"));
+		query.findInBackground(new FindCallback<ParseObject>() {
+
+			@Override
+			public void done(List<ParseObject> objects,
+					com.parse.ParseException e) {
+				for (int i = 0 ; i< objects.size(); i++){
+					objects.get(i).put("notification", false);
+					objects.get(i).saveEventually();
+				}
+				
+				
+			}
+			
+		});
+		 
+	}
+	
+	
+	
+	public void deleteFriendsFavouriteNotification(FriendsFavouriteNotification notification){
+		ParseQuery<ParseObject> query = ParseQuery.getQuery("FRIENDSFAV");
+		query.whereEqualTo("cid", notification.getCourse().getId());
+		query.whereEqualTo("friendsID", notification.getFriend());
+		query.findInBackground(new FindCallback<ParseObject>() {
+
+			@Override
+			public void done(List<ParseObject> objects,
+					com.parse.ParseException e) {
+				for (int i = 0 ; i< objects.size(); i++){
+					objects.get(i).put("notification", false);
+					objects.get(i).saveEventually();
+				}
+				
+			}
+			
+		});
+		 
+	}
+	
+	public ArrayList <INotification> getNotifications(){
+		for(int i=0; i< tmpNotificationList.size(); i++){
+			if(tmpNotificationList.get(i).isFriendsNotification()==true && tmpNotificationList.get(i).getUserName()== ParseUser.getCurrentUser().getString("username"))
+				notificationList.add(tmpNotificationList.get(i));
+			
+			if ((tmpNotificationList.get(i).isFriendsNotification()==true) && ("kkk"!=ParseUser.getCurrentUser().getString("username")))
+				notificationList.add(tmpNotificationList.get(i));
+			
+			
+			
+		}
+		return notificationList;
+	}
+	
+	public void fillNotificationList(){
+		ParseQuery<ParseObject> query = ParseQuery.getQuery("FRIENDSFAV");
+		query.whereEqualTo("notification", true);
+		query.whereEqualTo("username", ParseUser.getCurrentUser().getString("username"));
+		query.findInBackground(new FindCallback<ParseObject>() {
+
+			@Override
+			public void done(List<ParseObject> objects,
+					com.parse.ParseException e) {
+				for (int i = 0 ; i< objects.size(); i++){
+					if(objects.get(i).getString("friendsID")==null)
+					tmpNotificationList.add(new FriendsFavouriteNotification(makeUser(objects.get(i).getString("username")), db.getCourse(objects.get(i).getInt("cid")))); 
+					
+					else {
+						tmpNotificationList.add(new FriendsNotification(makeUser(objects.get(i).getString("friendsID")), makeUser(ParseUser.getCurrentUser().getString("username"))));
+					}
+			    }
+				setChanged();
+				notifyObservers();
+			}
+		});
+	}
+					
+			
+				
+		
 	
 	private User makeUser(String user){
 		return new User(user);

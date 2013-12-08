@@ -4,4 +4,12 @@ import java.util.ArrayList;
 
 public interface INotification {
 	
+	public String toString();
+
+	public boolean isFriendsNotification();
+
+	public String getUserName();
+
+	public String getFriendName();
+	
 }
