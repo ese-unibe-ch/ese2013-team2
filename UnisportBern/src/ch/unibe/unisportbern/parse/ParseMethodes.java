@@ -162,8 +162,6 @@ public class ParseMethodes extends Observable {
 		friends.put("friendsID", friend);
 		friends.put("notification", true);
 		friends.saveInBackground();
-		ParseMethodes.this.setChanged();
-		ParseMethodes.this.notifyObservers();
 	}
 	
 	

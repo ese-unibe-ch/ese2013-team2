@@ -8,15 +8,14 @@ import java.util.Observer;
 import com.parse.ParseUser;
 
 import ch.unibe.unisportbern.parse.ParseMethodes;
-import ch.unibe.unisportbern.views.friends.CustomFriendListAdapter;
-import ch.unibe.unisportbern.views.friends.FriendsArrayAdapter;
+import ch.unibe.unisportbern.views.friends.CustomAdapter;
 
 import android.content.Context;
 import android.widget.ListView;
 
 public class UserManager implements Observer {
 	
-	private CustomFriendListAdapter adapter;
+	private CustomAdapter adapter;
 	private List <User> user;
 	private ParseMethodes parse;
 	private Context context;
@@ -56,8 +55,8 @@ public class UserManager implements Observer {
 		adapter.notifyDataSetChanged();
 		
 	}
-	public void createView(CustomFriendListAdapter friendsAdapter, ListView list) {
-		adapter = friendsAdapter;
+	public void createView(CustomAdapter customAdapter, ListView list) {
+		adapter = customAdapter;
 		list.setAdapter(adapter);	
 		
 		
@@ -70,6 +69,12 @@ public class UserManager implements Observer {
 			friends[i]= user.get(i).toString();
 		}
 		return friends;
+	}
+
+
+	public void addFriend(int position, String string) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

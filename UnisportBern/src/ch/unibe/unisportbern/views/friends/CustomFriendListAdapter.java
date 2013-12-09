@@ -1,28 +1,20 @@
 package ch.unibe.unisportbern.views.friends;
 
-import java.util.List;
-
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import ch.unibe.unisportbern.R;
-import ch.unibe.unisportbern.support.User;
+import ch.unibe.unisportbern.support.UserManager;
 
-public class CustomFriendListAdapter extends ArrayAdapter<String> {
-
-	private String[] values;
-	private Context context;
+public class CustomFriendListAdapter extends CustomAdapter {
 
 	public CustomFriendListAdapter(Context context, String[] values) {
 		super(context, R.layout.listview_friends_layout, values);
-		this.context = context;
-		this.values = values;
 	}
 
 	@Override
@@ -43,7 +35,8 @@ public class CustomFriendListAdapter extends ArrayAdapter<String> {
 
 			@Override
 			public void onClick(View v) {
-				// TODO: delete friend(friendName)
+				UserManager manager = new UserManager(getContext());
+				//manager.deleteFriend();
 			}
 		});
 
@@ -60,13 +53,5 @@ public class CustomFriendListAdapter extends ArrayAdapter<String> {
 		return view;
 	}
 	
-	@Override
-	public int getCount(){
-		return values.length;
-	}
-
-	public void setValues(String[] array) {
-		values = array;
-		
-	}
+	
 }
