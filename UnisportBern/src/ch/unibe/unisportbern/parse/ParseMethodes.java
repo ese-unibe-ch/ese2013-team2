@@ -195,16 +195,48 @@ public class ParseMethodes extends Observable implements Comparator<ParseObject>
 		});
 	}
 	
-	public void addFriend(String friend, String username) {
+	public void addFriend(final String friend, String username) {
+		ParseQuery<ParseObject> query = ParseQuery.getQuery("FRIENDS");
+		query.whereEqualTo("username", ParseUser.getCurrentUser().getString("username"));
+		query.findInBackground(new FindCallback<ParseObject>() {
+
+			@Override
+			public void done(List<ParseObject> objects, com.parse.ParseException e) {
+				// TODO Auto-generated method stub
+				if (e == null) {
+					for(int i = 0; i<objects.size(); i++){
+						friendsUsername.add(objects.get(i).getString("friendsID"));
+					}
+					if (isFriendAdded(friend)!=true){
+						fillFriendRows(friend);
+					}
+					// The query was successful.
+				} else {
+					// Something went wrong.
+				}
+			}
+
+		});
+	}
+	
+	private boolean isFriendAdded(String friend){
+		for (int i = 0; i< friendsUsername.size(); i++){
+			if(friendsUsername.get(i).equals(friend))
+				return true;
+		}
+		return false;
+	}
+
+	
+	private void fillFriendRows(String friend){
 		ParseObject friends = new ParseObject("FRIENDS");
-		friends.put("username", username);
+		friends.put("username", ParseUser.getCurrentUser().getString("username"));
 		friends.put("friendsID", friend);
 		friends.put("notification", true);
 		usersList.add(new User(friend));
 		friends.saveInBackground();
 		setChanged();
 		notifyObservers();
-
 	}
 	
 	
