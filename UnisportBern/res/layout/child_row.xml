@@ -16,7 +16,7 @@
             android:id="@+id/ImageViewDetails"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="1"
+            android:layout_weight="1.5"
             android:contentDescription="Sports Image" />
 
         <LinearLayout
@@ -37,7 +37,7 @@
                     android:id="@+id/textViewAddress"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
-                    android:layout_weight="2"
+                    android:layout_weight="2.5"
                     android:gravity="center_vertical"
                     android:text="Address"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -61,7 +61,7 @@
                     android:id="@+id/textViewReminder"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
-                    android:layout_weight="2"
+                    android:layout_weight="2.5"
                     android:gravity="center_vertical"
                     android:text="Date"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -86,7 +86,7 @@
                     android:id="@+id/phases"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
-                    android:layout_weight="2"
+                    android:layout_weight="2.5"
                     android:gravity="center_vertical"
                     android:text="phases:"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
