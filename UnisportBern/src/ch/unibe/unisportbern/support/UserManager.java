@@ -40,10 +40,6 @@ public class UserManager implements Observer{
 		return parse.getFriendsFavorites();
 	}
 	
-	public void addFavourites(Course favourite, String myUsername){
-		parse.addFavourites(favourite, myUsername);
-	}
-	
 	public void orderSearchOtherUser(String otherUser){
 		parse.orderSearch(otherUser);
 	}

@@ -39,12 +39,6 @@ public class FriendsFavouriteNotification implements INotification {
 
 
 	@Override
-	public String getUserName() {
-		return "";
-	}
-
-
-	@Override
 	public String getFriendName() {
 		return getFriend().getUsername();
 	}

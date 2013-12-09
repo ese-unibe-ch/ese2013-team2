@@ -9,12 +9,10 @@ import ch.unibe.unisportbern.views.friends.ProfileWrapperActivity;
 public class FriendsNotification implements INotification {
 	
 	private User newFriend;
-	private User myUsername;
 	
 	
-	public FriendsNotification(User newFriend, User myUsername){
+	public FriendsNotification(User newFriend){
 		this.newFriend = newFriend;
-		this.myUsername = myUsername;
 	}
 	
 	public User getFriend(){
@@ -29,11 +27,6 @@ public class FriendsNotification implements INotification {
 	@Override
 	public boolean isFriendsNotification() {
 		return true;
-	}
-
-	@Override
-	public String getUserName() {
-		return this.myUsername.getUsername();
 	}
 
 	@Override

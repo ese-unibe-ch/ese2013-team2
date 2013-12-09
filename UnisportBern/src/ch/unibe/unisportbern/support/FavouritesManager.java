@@ -31,12 +31,12 @@ public class FavouritesManager implements Observer {
 		parse.fillFriendsFavorites(friendsUsername);
 	}
 	
-	public void addFavourites(Course favourite, String myUsername){
-		parse.addFavourites(favourite, myUsername);
+	public void addFavourites(Course favourite){
+		parse.addFavourites(favourite);
 	}
 	
-	public void deleteMyFavouriteCourse(String myUsername, int cid ){
-		parse.deleteFavourite(myUsername, cid);
+	public void deleteMyFavouriteCourse(int cid ){
+		parse.deleteFavourite(cid);
 	}
 	
 	@Override

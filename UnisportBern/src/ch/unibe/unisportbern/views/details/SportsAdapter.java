@@ -241,13 +241,13 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 				if (isChecked && !db.isFavourite(course)){
 					db.addFavorite(course);
 					
-					manager.addFavourites(course, ParseUser.getCurrentUser().getString("username"));
+					manager.addFavourites(course);
 					Toast.makeText(context, R.string.ToastCourseAdded, Toast.LENGTH_LONG).show();
 				}
 					
 				else if (!isChecked && db.isFavourite(course)){
 					db.deleteFavorite(course);
-					manager.deleteMyFavouriteCourse(ParseUser.getCurrentUser().getString("username"), course.getId());
+					manager.deleteMyFavouriteCourse(course.getId());
 					Toast.makeText(context, R.string.ToastCourseDeleted, Toast.LENGTH_LONG).show();
 				}
 			}

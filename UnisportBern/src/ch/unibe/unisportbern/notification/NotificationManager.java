@@ -31,7 +31,7 @@ public class NotificationManager implements Observer {
 	}
 	
 	public void checkNotification(){
-		parse.fillNotificationList();
+		parse.fillINotificationList();
 	}
 	
 	public void deleteNotification(FriendsNotification friendNotification){
@@ -39,7 +39,7 @@ public class NotificationManager implements Observer {
 	}
 	
 	public void deleteNotification(FriendsFavouriteNotification favouriteNotification){
-		parse.deleteFavourite(ParseUser.getCurrentUser().getString("username"), favouriteNotification.getCid() );
+		parse.deleteFriendsFavouriteNotification(favouriteNotification);
 	}
 	
 	public void deleteNotification(INotification notification){

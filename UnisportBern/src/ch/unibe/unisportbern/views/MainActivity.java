@@ -41,8 +41,8 @@ public class MainActivity extends Activity {
 			DialogFragment signupFragment = new SignUpDialog();
 			signupFragment.show(getFragmentManager(), "Welcome Dialog");
 		}
-		parse.addFavourites(new Course(2, null, "", "", "", "", "", "", false, "", ""), "mmm");
-		parse.addFriend("kkk", "iii");
+		//parse.addFavourites(new Course(2, null, "", "", "", "", "", "", false, "", ""));
+		//parse.addFriend("kkk", "iii");
 
 		int index = getIntent().getIntExtra("index", -1);
 

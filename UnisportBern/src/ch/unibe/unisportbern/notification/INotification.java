@@ -8,8 +8,6 @@ public interface INotification {
 
 	public boolean isFriendsNotification();
 
-	public String getUserName();
-
 	public String getFriendName();
 
 	public void delete(NotificationManager notificationManager);
