@@ -21,6 +21,7 @@ public class FriendsProfileFragment extends Fragment{
 	protected ExpandableListView listView;
 	protected SportsAdapter adapter;
 	
+	FavouritesManager manager;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -32,12 +33,10 @@ public class FriendsProfileFragment extends Fragment{
 		tv.setText(userName);
 		
 		listView = (ExpandableListView) view.findViewById(R.id.expandableListViewFavourites);
-		FavouritesManager manager = new FavouritesManager(getActivity());
+		
+		manager = new FavouritesManager(getActivity());
 		manager.createView(listView);
 		manager.fillFriendsFavouritesList(userName);
-		
-		//FavouritesManager manager = new FavouritesManager(context);
-		//manager.fillFriendsFavouritesList(friendsUsername, listView, adapter);
 		
 		return view;
 	}

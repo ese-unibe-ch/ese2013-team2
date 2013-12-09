@@ -54,7 +54,7 @@ public class SearchFriendDialog extends DialogFragment {
 				EditText et = (EditText) view.findViewById(R.id.editTextSearchFriendName);
 				
 				CustomFriendResultListAdapter adapter =
-						new CustomFriendResultListAdapter(getActivity(), new String[0], SearchFriendDialog.this.getDialog());
+						new CustomFriendResultListAdapter(getActivity(), new String[0], SearchFriendDialog.this.getDialog(), (FriendsFragment)getTargetFragment());
 				
 				manager.orderSearchOtherUser(et.getText().toString());
 				manager.createView(adapter, list);

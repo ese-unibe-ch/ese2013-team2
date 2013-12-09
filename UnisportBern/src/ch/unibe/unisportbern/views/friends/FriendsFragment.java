@@ -3,6 +3,7 @@ package ch.unibe.unisportbern.views.friends;
 import ch.unibe.unisportbern.R;
 import ch.unibe.unisportbern.support.UserManager;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,10 +35,10 @@ public class FriendsFragment extends Fragment {
 		// manager.orderSearchOtherUser("k");
 		manager.createView(adapter, list);
 
-		Button button = (Button) view.findViewById(R.id.buttonAddFriend);
+		Button addButton = (Button) view.findViewById(R.id.buttonAddFriend);
 
 		final FriendsFragment fragment = this;
-		button.setOnClickListener(new OnClickListener() {
+		addButton.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -49,6 +50,10 @@ public class FriendsFragment extends Fragment {
 		});
 
 		return view;
+	}
+
+	public UserManager getManager() {
+		return manager;
 	}
 
 }

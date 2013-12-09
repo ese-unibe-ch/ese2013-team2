@@ -18,9 +18,10 @@ public class CustomFriendResultListAdapter extends CustomAdapter {
 	Dialog dialog;
 	protected FriendsFragment fragment;
 	
-	public CustomFriendResultListAdapter(Context context, String[] values, Dialog dialog) {
+	public CustomFriendResultListAdapter(Context context, String[] values, Dialog dialog, FriendsFragment friendsFragment) {
 		super(context, R.layout.list_view_friends_result_layout , values);
 		this.dialog = dialog;
+		fragment = friendsFragment;
 	}
 	
 	@Override
@@ -41,8 +42,7 @@ public class CustomFriendResultListAdapter extends CustomAdapter {
 
 			@Override
 			public void onClick(View v) {
-				UserManager manager = new UserManager(getContext());
-				manager.addFriend(values[position], ParseUser.getCurrentUser().getString("username"));
+				fragment.getManager().addFriend(values[position], ParseUser.getCurrentUser().getString("username"));
 				dialog.cancel();
 			}
 		});
