@@ -1,5 +1,7 @@
 package ch.unibe.unisportbern.views.friends;
 
+import com.parse.ParseUser;
+
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -9,6 +11,7 @@ import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import ch.unibe.unisportbern.R;
+import ch.unibe.unisportbern.parse.ParseMethodes;
 import ch.unibe.unisportbern.support.UserManager;
 
 public class CustomFriendListAdapter extends CustomAdapter {
@@ -36,7 +39,7 @@ public class CustomFriendListAdapter extends CustomAdapter {
 			@Override
 			public void onClick(View v) {
 				UserManager manager = new UserManager(getContext());
-				//manager.deleteFriend();
+				manager.deleteFriend(ParseUser.getCurrentUser().getString("username"), values[position]);
 			}
 		});
 

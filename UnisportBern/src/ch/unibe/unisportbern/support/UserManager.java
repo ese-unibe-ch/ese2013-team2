@@ -70,4 +70,9 @@ public class UserManager implements Observer{
 		}
 		return friends;
 	}
+	
+	public void deleteFriend(String username, String friendName){
+		parse.deleteFriend(username, friendName);
+	}
+	
 }
