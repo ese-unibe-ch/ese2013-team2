@@ -53,8 +53,11 @@ public class SearchFriendDialog extends DialogFragment {
 				ListView list = (ListView) view.findViewById(R.id.listViewSearchFriendResult);
 				EditText et = (EditText) view.findViewById(R.id.editTextSearchFriendName);
 				
+				CustomFriendResultListAdapter adapter =
+						new CustomFriendResultListAdapter(getActivity(), new String[0], SearchFriendDialog.this.getDialog());
+				
 				manager.orderSearchOtherUser(et.getText().toString());
-				manager.createView(new CustomFriendResultListAdapter(getActivity(), new String[0], SearchFriendDialog.this.getDialog()), list);
+				manager.createView(adapter, list);
 				
 				TextView tv = (TextView) view.findViewById(R.id.textViewResult);
 				tv.setVisibility(View.VISIBLE);

@@ -47,6 +47,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@android:color/transparent"
                     android:src="@drawable/map" />
             </LinearLayout>
 
@@ -71,7 +72,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_weight="1"
-                    android:src="@drawable/time" />
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_action_alarms" />
             </LinearLayout>
 
             <LinearLayout
@@ -94,6 +96,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
+                    android:background="@android:color/transparent"
                     android:src="@drawable/map" />
             </LinearLayout>
         </LinearLayout>

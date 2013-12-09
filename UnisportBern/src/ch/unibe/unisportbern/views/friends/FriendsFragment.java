@@ -42,6 +42,7 @@ public class FriendsFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				SearchFriendDialog dialog = new SearchFriendDialog();
+								
 				dialog.show(getFragmentManager(), "addFriend");
 				dialog.setTargetFragment(fragment, 0);
 			}

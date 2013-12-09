@@ -13,7 +13,7 @@ import ch.unibe.unisportbern.views.friends.CustomAdapter;
 import android.content.Context;
 import android.widget.ListView;
 
-public class UserManager implements Observer {
+public class UserManager implements Observer{
 	
 	private CustomAdapter adapter;
 	private List <User> user;
@@ -70,13 +70,4 @@ public class UserManager implements Observer {
 		}
 		return friends;
 	}
-
-
-	public void addFriend(int position, String string) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
-
 }
