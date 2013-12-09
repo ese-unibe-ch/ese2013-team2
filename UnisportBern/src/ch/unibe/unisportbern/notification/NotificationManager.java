@@ -13,6 +13,7 @@ import android.widget.ListView;
 import ch.unibe.unisportbern.parse.ParseMethodes;
 import ch.unibe.unisportbern.support.Course;
 import ch.unibe.unisportbern.views.details.SportsAdapter;
+import ch.unibe.unisportbern.views.friends.CustomAdapter;
 import ch.unibe.unisportbern.views.friends.FriendsArrayAdapter;
 
 public class NotificationManager implements Observer {
@@ -20,7 +21,7 @@ public class NotificationManager implements Observer {
 	private ArrayList <INotification> notificationsList;
 	private Context context;
 	private ParseMethodes parse;
-	private NotificationArrayAdapter adapter;
+	private CustomAdapter adapter;
 	
 	
 	public NotificationManager (Context context){
@@ -33,12 +34,16 @@ public class NotificationManager implements Observer {
 		parse.fillNotificationList();
 	}
 	
-	public void deleteFriendNotification(FriendsNotification friendNotification){
+	public void deleteNotification(FriendsNotification friendNotification){
 		parse.deleteFriendNotification(friendNotification);
 	}
 	
-	public void deleteFavouriteNotification(FriendsFavouriteNotification favouriteNotification, int cid ){
-		parse.deleteFavourite(ParseUser.getCurrentUser().getString("username"), cid );
+	public void deleteNotification(FriendsFavouriteNotification favouriteNotification){
+		parse.deleteFavourite(ParseUser.getCurrentUser().getString("username"), favouriteNotification.getCid() );
+	}
+	
+	public void deleteNotification(INotification notification){
+		notification.delete(this);
 	}
 	
 	@Override
@@ -49,7 +54,7 @@ public class NotificationManager implements Observer {
 		
 	}
 	
-	public void createView(NotificationArrayAdapter friendsAdapter, ListView list) {
+	public void createView(CustomAdapter friendsAdapter, ListView list) {
 		adapter = friendsAdapter;
 		list.setAdapter(adapter);	
 		

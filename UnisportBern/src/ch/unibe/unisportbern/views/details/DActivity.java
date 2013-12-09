@@ -49,6 +49,9 @@ public class DActivity extends Activity {
 		TextView sportName = (TextView) findViewById(R.id.sportName);
 		sportName.setText(sport.getName());
 
+		if (courses.isEmpty())
+			courses.add(new Course(sport.getId()*10+1, sport, sport.getName(), "unknown", "unknown", "unknown", "", "", false, "", ""));
+		
 		myList = (ExpandableListView) findViewById(R.id.expandableListView);
 		sportsadapter = new SportsAdapter(this, courses);
 		myList.setAdapter(sportsadapter);

@@ -1,7 +1,6 @@
 package ch.unibe.unisportbern.views.details;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
 
@@ -130,6 +129,7 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 				
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block

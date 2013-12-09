@@ -6,7 +6,6 @@ import com.parse.ParseUser;
 
 import ch.unibe.unisportbern.support.Course;
 import ch.unibe.unisportbern.support.DBMethodes;
-import ch.unibe.unisportbern.views.MainActivity;
 import ch.unibe.unisportbern.views.details.SportsAdapter;
 
 import ch.unibe.unisportbern.R;

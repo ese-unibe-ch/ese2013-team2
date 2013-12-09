@@ -1,6 +1,6 @@
 package ch.unibe.unisportbern.notification;
 
-import java.util.ArrayList;
+import android.content.Context;
 
 public interface INotification {
 	
@@ -11,5 +11,9 @@ public interface INotification {
 	public String getUserName();
 
 	public String getFriendName();
+
+	public void delete(NotificationManager notificationManager);
+
+	public void startActivity(Context context);
 	
 }

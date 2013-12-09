@@ -1,8 +1,10 @@
 package ch.unibe.unisportbern.notification;
 
-import java.util.ArrayList;
+import android.content.Context;
+import android.content.Intent;
 
 import ch.unibe.unisportbern.support.User;
+import ch.unibe.unisportbern.views.friends.ProfileWrapperActivity;
 
 public class FriendsNotification implements INotification {
 	
@@ -37,6 +39,20 @@ public class FriendsNotification implements INotification {
 	@Override
 	public String getFriendName() {
 		return this.getFriend().getUsername();
+	}
+
+	@Override
+	public void delete(NotificationManager manager) {
+		manager.deleteNotification(this);
+		
+	}
+
+	@Override
+	public void startActivity(Context context) {
+		Intent intent = new Intent(context, ProfileWrapperActivity.class);	
+		intent.putExtra("friendName", newFriend.getUsername());
+		
+		context.startActivity(intent);
 	}
 	
 	

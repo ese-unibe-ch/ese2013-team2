@@ -24,7 +24,9 @@ public class NotificationsDialog extends DialogFragment{
 		LayoutInflater inflater = getActivity().getLayoutInflater();
 		final View view = inflater.inflate(R.layout.notifications_dialog_layout, null);
 		
-		notifications = new ArrayList<INotification>();
+		NotificationManager manager = new NotificationManager(getActivity());
+		
+		/*notifications = manager.getNotifications();
 		
 		//TODO: get notifications
 		
@@ -33,7 +35,7 @@ public class NotificationsDialog extends DialogFragment{
 			TextView tv = (TextView) view.findViewById(R.id.textViewNotificationDialogEmptyListText);
 			tv.setText("There are no new Notifications available");
 			tv.setVisibility(View.VISIBLE);
-		}
+		}*/
 			
 		
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());

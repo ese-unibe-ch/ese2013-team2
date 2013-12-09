@@ -1,9 +1,10 @@
 package ch.unibe.unisportbern.notification;
 
-import java.util.ArrayList;
-
+import android.content.Context;
+import android.content.Intent;
 import ch.unibe.unisportbern.support.Course;
 import ch.unibe.unisportbern.support.User;
+import ch.unibe.unisportbern.views.details.DActivity;
 
 public class FriendsFavouriteNotification implements INotification {
 	
@@ -48,6 +49,24 @@ public class FriendsFavouriteNotification implements INotification {
 		return getFriend().getUsername();
 	}
 
+	public int getCid(){
+		return favourite.getId();
+	}
 
+
+	@Override
+	public void delete(NotificationManager manager) {
+		manager.deleteNotification(this);
+	}
+
+
+	@Override
+	public void startActivity(Context context) {
+		Intent intent = new Intent(context, DActivity.class);
+		intent.putExtra("SportName", favourite.getSport().getName());
+		intent.putExtra("SportID", favourite.getSport().getId());
+		
+		context.startActivity(intent);
+	}
 
 }
