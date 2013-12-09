@@ -298,7 +298,6 @@ public class ParseMethodes extends Observable implements Comparator<ParseObject>
 	public void orderSearch (String otherUser){
 		ParseQuery<ParseUser> query = ParseUser.getQuery();
 		query.whereContains("username", otherUser);
-		//query.whereEqualTo("username", otherUser);
 		query.findInBackground(new FindCallback<ParseUser>() {
 			@Override
 			public void done(List<ParseUser> objects, com.parse.ParseException e) {
@@ -467,6 +466,24 @@ public class ParseMethodes extends Observable implements Comparator<ParseObject>
 			return 0;
 		}
 	}
+
+
+	public boolean isDuplicate(String string) {
+		ParseQuery<ParseUser> query = ParseUser.getQuery();
+		query.whereEqualTo("username", string);
+		List<ParseUser> list;
+		try {
+			list = query.find();
+			if(list.size()==0)
+				return false;
+		} catch (com.parse.ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return true;	
+	}
+	
 
 	
 	

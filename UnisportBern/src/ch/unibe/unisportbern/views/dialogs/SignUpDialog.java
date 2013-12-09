@@ -35,10 +35,11 @@ public class SignUpDialog extends DialogFragment {
 				EditText password = (EditText) view.findViewById(R.id.editTextPW);
 				
 				ParseMethodes parse = new ParseMethodes(getActivity());
+				/*if(parse.isDuplicate(username.getText().toString())== true || username.getText().toString().isEmpty()==true || password.getText().toString().isEmpty()==true){
+					SignUpDialog.this.show(getFragmentManager(), "Welcome Dialog");
+				}*/
 				parse.signingUp(username.getText().toString(), password.getText().toString());
 				
-		    	//DBMethodes db = new DBMethodes(getActivity());
-		    	//db.setUser(username.getText().toString(), password.getText().toString());
 			}
 		}).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 
@@ -46,6 +47,7 @@ public class SignUpDialog extends DialogFragment {
 			public void onClick(DialogInterface dialog, int which) {
 				Toast.makeText(getActivity(), R.string.SignUpCancelToastText, Toast.LENGTH_LONG).show();
 				SignUpDialog.this.getDialog().cancel();
+				getActivity().finish();
 			}
 		});
 		
