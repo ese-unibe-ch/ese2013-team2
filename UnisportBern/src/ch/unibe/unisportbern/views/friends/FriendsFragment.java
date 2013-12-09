@@ -26,7 +26,7 @@ public class FriendsFragment extends Fragment {
 		view = inflater.inflate(R.layout.friends_fragment_layout, container, false);
 		ListView list = (ListView) view.findViewById(R.id.listViewFriends);
 		// adapter = new NotificationArrayAdapter(getActivity(), new String[0]);
-		adapter = new CustomFriendListAdapter(getActivity(), new String[0]);
+		adapter = new CustomFriendListAdapter(getActivity(), new String[0], manager);
 		// NotificationManager manager = new NotificationManager(getActivity());
 		// manager.checkNotification();
 		// manager.createView(adapter, list);

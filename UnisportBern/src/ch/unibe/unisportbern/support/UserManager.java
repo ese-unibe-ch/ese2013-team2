@@ -71,8 +71,8 @@ public class UserManager implements Observer{
 		return friends;
 	}
 	
-	public void deleteFriend(String username, String friendName){
-		parse.deleteFriend(username, friendName);
+	public void deleteFriend(String username, String friendName, int position){
+		parse.deleteFriend(username, friendName, position);
 	}
 	
 }

@@ -170,7 +170,7 @@ public class ParseMethodes extends Observable {
 
 	}
 
-	public void deleteFriend(String myUsername, String friendUsername) {
+	public void deleteFriend(String myUsername, String friendUsername, final int position) {
 		ParseQuery<ParseObject> query = ParseQuery.getQuery("FRIENDSFAV");
 		query.whereEqualTo("username", myUsername);
 		query.whereEqualTo("friendsID", friendUsername);
@@ -180,7 +180,9 @@ public class ParseMethodes extends Observable {
 			public void done(List<ParseObject> objects, com.parse.ParseException e) {
 				// TODO Auto-generated method stub
 				if (e == null) {
-					objects.get(0).deleteEventually();
+					objects.get(0).deleteInBackground();
+					
+					usersList.remove(position);
 					ParseMethodes.this.setChanged();
 					ParseMethodes.this.notifyObservers();
 					// The query was successful.

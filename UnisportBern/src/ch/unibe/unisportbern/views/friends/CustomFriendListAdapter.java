@@ -11,13 +11,15 @@ import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import ch.unibe.unisportbern.R;
-import ch.unibe.unisportbern.parse.ParseMethodes;
 import ch.unibe.unisportbern.support.UserManager;
 
 public class CustomFriendListAdapter extends CustomAdapter {
 
-	public CustomFriendListAdapter(Context context, String[] values) {
+	UserManager manager;
+	
+	public CustomFriendListAdapter(Context context, String[] values, UserManager manager) {
 		super(context, R.layout.listview_friends_layout, values);
+		this.manager = manager;
 	}
 
 	@Override
@@ -38,8 +40,7 @@ public class CustomFriendListAdapter extends CustomAdapter {
 
 			@Override
 			public void onClick(View v) {
-				UserManager manager = new UserManager(getContext());
-				manager.deleteFriend(ParseUser.getCurrentUser().getString("username"), values[position]);
+				manager.deleteFriend(ParseUser.getCurrentUser().getString("username"), values[position], position);
 			}
 		});
 
