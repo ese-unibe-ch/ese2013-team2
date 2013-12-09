@@ -7,11 +7,13 @@ import java.util.concurrent.TimeoutException;
 import org.json.JSONException;
 
 import com.androidquery.AQuery;
+import com.parse.ParseUser;
 
 import ch.unibe.unisportbern.R;
 
 import ch.unibe.unisportbern.support.Course;
 import ch.unibe.unisportbern.support.DBMethodes;
+import ch.unibe.unisportbern.support.FavouritesManager;
 import ch.unibe.unisportbern.support.JsonCoordinate;
 import ch.unibe.unisportbern.views.dialogs.ReminderDialog;
 
@@ -224,6 +226,8 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 		courseName.setText(course.getName());
 		courseDate.setText(course.getDay() + " " + course.getTime());
 		
+		final FavouritesManager manager = new FavouritesManager(context);
+		
 		CheckBox checkbox = (CheckBox) convertView.findViewById(R.id.checkBox);
 		checkbox.setChecked(db.isFavourite(course));
 		checkbox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -236,11 +240,14 @@ public class SportsAdapter extends BaseExpandableListAdapter  {
 				
 				if (isChecked && !db.isFavourite(course)){
 					db.addFavorite(course);
+					
+					manager.addFavourites(course, ParseUser.getCurrentUser().getString("username"));
 					Toast.makeText(context, R.string.ToastCourseAdded, Toast.LENGTH_LONG).show();
 				}
 					
 				else if (!isChecked && db.isFavourite(course)){
 					db.deleteFavorite(course);
+					manager.deleteMyFavouriteCourse(ParseUser.getCurrentUser().getString("username"), course.getId());
 					Toast.makeText(context, R.string.ToastCourseDeleted, Toast.LENGTH_LONG).show();
 				}
 			}
