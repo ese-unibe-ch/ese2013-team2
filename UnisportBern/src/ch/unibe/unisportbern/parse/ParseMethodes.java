@@ -45,6 +45,7 @@ public class ParseMethodes extends Observable implements Comparator<ParseObject>
 	private List <ParseObject> notiobject = new ArrayList<ParseObject>();
 	private List <ParseObject> friendsCID = new ArrayList <ParseObject>();
 	private List <String> friendsUsername = new ArrayList <String>();
+	private boolean invalidUsername =false;
 	
 	
 	public ParseMethodes(Context context){
@@ -55,24 +56,22 @@ public class ParseMethodes extends Observable implements Comparator<ParseObject>
 	
 	public void signingUp(String username, String password){
 		
-		user.setUsername(username);
-		user.setPassword(password);
-		user.signUpInBackground(new SignUpCallback() {
-		  public void done(ParseException e) {
-		    if (e == null) {
-		      // Hooray! Let them use the app now. Toast?	    	
-		    } else {
-		      // Sign up didn't succeed. Look at the ParseException
-		      // to figure out what went wrong Toast?
-		    }
-		  }
+		if(!username.isEmpty() || !password.isEmpty()){
+			user.setUsername(username);
+			user.setPassword(password);
+			user.signUpInBackground(new SignUpCallback() {
 
-		@Override
-		public void done(com.parse.ParseException e) {
-			// TODO Auto-generated method stub
-			
+				@Override
+				public void done(com.parse.ParseException e) {
+					if (e == null) {
+						// Hooray! Let them use the app now. Toast?	    	
+				    	} else {
+				    		// Sign up didn't succeed. Look at the ParseException
+				    		// to figure out what went wrong Toast?
+				    	}// TODO Auto-generated method stub
+				}
+			});
 		}
-		});
 	}
 	public boolean automaticLogin(){
 		ParseUser currentUser = ParseUser.getCurrentUser();
@@ -478,26 +477,32 @@ public class ParseMethodes extends Observable implements Comparator<ParseObject>
 	}
 
 
-	public boolean isDuplicate(String string) {
+	public void isDuplicate(String username) {
 		ParseQuery<ParseUser> query = ParseUser.getQuery();
-		query.whereEqualTo("username", string);
-		List<ParseUser> list;
-		try {
-			list = query.find();
-			if(list.size()==0)
-				return false;
-		} catch (com.parse.ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(!username.isEmpty()){
+		query.whereEqualTo("username", username);
+		query.findInBackground(new FindCallback<ParseUser>() {
+
+			@Override
+			public void done(List<ParseUser> objects,
+					com.parse.ParseException e) {
+				
+				if(objects.size()!=0)
+					invalidUsername = true;
+				setChanged();
+				notifyObservers();
+				}
+		});	
 		}
-		
-		return true;	
+		else 
+			setChanged();
+		    notifyObservers();
+			
 	}
-	
 
-	
-	
-
+	public boolean isInvalid() {
+		return invalidUsername;
+	}
 
 }
 

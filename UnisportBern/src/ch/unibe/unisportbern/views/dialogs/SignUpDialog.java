@@ -3,6 +3,7 @@ package ch.unibe.unisportbern.views.dialogs;
 import ch.unibe.unisportbern.R;
 import ch.unibe.unisportbern.parse.ParseMethodes;
 import ch.unibe.unisportbern.support.DBMethodes;
+import ch.unibe.unisportbern.support.SignManager;
 import ch.unibe.unisportbern.views.MainActivity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -33,11 +34,11 @@ public class SignUpDialog extends DialogFragment {
 			public void onClick(DialogInterface dialog, int which) {
 				EditText username = (EditText) view.findViewById(R.id.editTextUsername);
 				EditText password = (EditText) view.findViewById(R.id.editTextPW);
+				ParseMethodes parse = new ParseMethodes (getActivity());
 				
-				ParseMethodes parse = new ParseMethodes(getActivity());
-				if(parse.isDuplicate(username.getText().toString())== true || username.getText().toString().isEmpty()==true || password.getText().toString().isEmpty()==true){
-					//SignUpDialog.this.show(getFragmentManager(), "Welcome Dialog");
-				}
+				SignManager manager = new SignManager(getActivity());
+				manager.isDuplicateUsername(username.getText().toString(), password.getText().toString());
+				
 				parse.signingUp(username.getText().toString(), password.getText().toString());
 				
 			}

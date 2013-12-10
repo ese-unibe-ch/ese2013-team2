@@ -42,5 +42,6 @@
         <item>Afternoon</item>
         <item>Evening</item>
     </string-array>
+    <string name="ToastInvalidUsername">Username already exists or invalid username, please try again!</string>
 
 </resources>

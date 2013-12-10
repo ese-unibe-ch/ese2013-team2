@@ -53,7 +53,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	@Override
 	/**
-	 * manges the SQLiteDatabase versions
+	 * manages the SQLiteDatabase versions
 	 */
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		db.execSQL(String.format("DROP TABLE IF EXISTS %s", SPORTS));
