@@ -64,7 +64,7 @@ public class BootReceiver extends BroadcastReceiver {
 		 i.putExtra("time", time);
 		 i.putExtra("sports", sportsName);
 		 PendingIntent pendingIntent =
-			            PendingIntent.getBroadcast(context, 0,i , 0);
+			            PendingIntent.getBroadcast(context, 0,i , PendingIntent.FLAG_CANCEL_CURRENT);
 		 alarmMgr.setRepeating (AlarmManager.RTC, calendar.getTimeInMillis(), 1000*60*60*24*7, pendingIntent);
 		
 	}

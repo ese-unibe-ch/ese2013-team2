@@ -33,8 +33,8 @@ public class NotificationService extends IntentService {
 		Intent kintent = new Intent(this, MainActivity.class);
 	    PendingIntent pIntent = PendingIntent.getActivity(this, 0, kintent, 0);
 	  Notification noti = new Notification.Builder(this)
-	    .setContentTitle(intent.getStringExtra("sports") + " at "   + intent.getStringExtra("time"))
-	    .setContentText("").setSmallIcon(R.drawable.unisport_logo)
+	    .setContentTitle("UniSport Reminder").setContentText(intent.getStringExtra("sports") + " at "   + intent.getStringExtra("time"))
+	    .setSmallIcon(R.drawable.unisport_logo).setAutoCancel(true)
 	  .setContentIntent(pIntent).build();
 	  NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 	  // hide the notification after its selected

@@ -22,6 +22,7 @@ import ch.unibe.unisportbern.support.DBMethodes;
 import ch.unibe.unisportbern.support.User;
 import ch.unibe.unisportbern.views.friends.FriendsFragment;
 
+import com.parse.DeleteCallback;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.LogInCallback;
@@ -251,11 +252,20 @@ public class ParseMethodes extends Observable implements Comparator<ParseObject>
 			public void done(List<ParseObject> objects, com.parse.ParseException e) {
 				// TODO Auto-generated method stub
 				if (e == null) {
-					objects.get(0).deleteInBackground();
-					
-					usersList.remove(position);
 					ParseMethodes.this.setChanged();
 					ParseMethodes.this.notifyObservers();
+					/*objects.get(0).deleteInBackground(new DeleteCallback() {
+						
+						@Override
+						public void done(com.parse.ParseException e) {
+							ParseMethodes.this.setChanged();
+							ParseMethodes.this.notifyObservers();
+							
+						}
+					});*/
+					
+					//usersList.remove(position);
+					
 					// The query was successful.
 				} else {
 					// Something went wrong.

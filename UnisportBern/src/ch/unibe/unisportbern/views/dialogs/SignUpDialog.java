@@ -35,9 +35,9 @@ public class SignUpDialog extends DialogFragment {
 				EditText password = (EditText) view.findViewById(R.id.editTextPW);
 				
 				ParseMethodes parse = new ParseMethodes(getActivity());
-				/*if(parse.isDuplicate(username.getText().toString())== true || username.getText().toString().isEmpty()==true || password.getText().toString().isEmpty()==true){
-					SignUpDialog.this.show(getFragmentManager(), "Welcome Dialog");
-				}*/
+				if(parse.isDuplicate(username.getText().toString())== true || username.getText().toString().isEmpty()==true || password.getText().toString().isEmpty()==true){
+					//SignUpDialog.this.show(getFragmentManager(), "Welcome Dialog");
+				}
 				parse.signingUp(username.getText().toString(), password.getText().toString());
 				
 			}
