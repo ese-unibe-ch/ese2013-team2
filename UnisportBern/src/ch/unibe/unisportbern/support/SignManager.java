@@ -17,7 +17,7 @@ public class SignManager implements Observer {
 	private ParseMethodes parse;
 	private Context context;
 	private String username;
-	private String newPassword;
+	private String password;
 	
 	public SignManager(Context context){
 		this.context =  context;
@@ -25,21 +25,39 @@ public class SignManager implements Observer {
 		parse.addObserver(this);
 	}
 	
+	public void signup(String username, String password){
+		parse.signingUp(username,password);
+	}
 	
+	public boolean automaticLogin(){
+		return parse.automaticLogin();
+	}
+	
+	public void logIn(String username, String password){
+		parse.loggingIn(username, password);
+	}
 	
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		if(parse.isInvalid()==true || username.isEmpty()|| newPassword.isEmpty()){
+		if(parse.isInvalid()==true || username.isEmpty()|| password.isEmpty()){
 			dialog = new SignUpDialog();
 			dialog.show(((Activity) context).getFragmentManager(), "Welcome Dialog");
 			Toast.makeText(context, R.string.ToastInvalidUsername, Toast.LENGTH_LONG).show();
 		}
 		
+		else if (parse.isWrongLogin()==true|| username.isEmpty()||password.isEmpty()){
+			dialog = new SignUpDialog();
+			dialog.show(((Activity) context).getFragmentManager(), "Welcome Dialog");
+			Toast.makeText(context, R.string.ToastInvalidUsername, Toast.LENGTH_LONG).show();
+		}
 	}
 	
-	public void isDuplicateUsername(String newUsername, String password){
+	public void saveInManger(String newUsername, String newPassword){
 		username = newUsername;
-		newPassword = password;
+		password = newPassword;
+	}
+	
+	public void isDuplicateUsername(String newUsername){
 		parse.isDuplicate(newUsername);
 	}
 

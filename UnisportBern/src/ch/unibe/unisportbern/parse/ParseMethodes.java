@@ -46,6 +46,7 @@ public class ParseMethodes extends Observable implements Comparator<ParseObject>
 	private List <ParseObject> friendsCID = new ArrayList <ParseObject>();
 	private List <String> friendsUsername = new ArrayList <String>();
 	private boolean invalidUsername =false;
+	private boolean wrongLogin = false;
 	
 	
 	public ParseMethodes(Context context){
@@ -96,7 +97,9 @@ public class ParseMethodes extends Observable implements Comparator<ParseObject>
 				if (user != null) {
 				      // Hooray! The user is logged in.
 				    } else {
-				      // Signup failed. Look at the ParseException to see what happened.
+				       wrongLogin = true;
+				       setChanged();
+				       notifyObservers();
 				    }
 			}
 		});
@@ -502,6 +505,10 @@ public class ParseMethodes extends Observable implements Comparator<ParseObject>
 
 	public boolean isInvalid() {
 		return invalidUsername;
+	}
+
+	public boolean isWrongLogin() {
+		return wrongLogin;
 	}
 
 }

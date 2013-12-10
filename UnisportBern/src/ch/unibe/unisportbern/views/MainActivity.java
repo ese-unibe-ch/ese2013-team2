@@ -3,6 +3,7 @@ package ch.unibe.unisportbern.views;
 import ch.unibe.unisportbern.notification.NotificationsDialog;
 import ch.unibe.unisportbern.parse.ParseMethodes;
 import ch.unibe.unisportbern.support.DBMethodes;
+import ch.unibe.unisportbern.support.SignManager;
 import ch.unibe.unisportbern.views.dialogs.SignUpDialog;
 import ch.unibe.unisportbern.views.friends.FriendsFragment;
 import ch.unibe.unisportbern.views.profile.ProfileFragment;
@@ -34,9 +35,9 @@ public class MainActivity extends Activity {
 		// Activate the database
 		DBMethodes dbMethodes = new DBMethodes(this);
 		dbMethodes.setUpDatabase();
-		ParseMethodes parse = new ParseMethodes(this);
+		SignManager manager = new SignManager(this);
 
-		if (!parse.automaticLogin()) {
+		if (!manager.automaticLogin()) {
 			DialogFragment signupFragment = new SignUpDialog();
 			signupFragment.show(getFragmentManager(), "Welcome Dialog");
 		}

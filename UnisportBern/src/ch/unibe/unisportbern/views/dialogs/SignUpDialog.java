@@ -34,12 +34,11 @@ public class SignUpDialog extends DialogFragment {
 			public void onClick(DialogInterface dialog, int which) {
 				EditText username = (EditText) view.findViewById(R.id.editTextUsername);
 				EditText password = (EditText) view.findViewById(R.id.editTextPW);
-				ParseMethodes parse = new ParseMethodes (getActivity());
 				
 				SignManager manager = new SignManager(getActivity());
-				manager.isDuplicateUsername(username.getText().toString(), password.getText().toString());
-				
-				parse.signingUp(username.getText().toString(), password.getText().toString());
+				manager.saveInManger(username.getText().toString(), password.getText().toString());
+				manager.isDuplicateUsername(username.getText().toString());
+				manager.signup(username.getText().toString(), password.getText().toString());
 				
 			}
 		}).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
