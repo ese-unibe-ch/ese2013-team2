@@ -11,11 +11,10 @@ import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
 
 public class NotificationsDialog extends DialogFragment{
 
-	ArrayList<INotification> notifications;
+	private ArrayList<INotification> notifications;
 	
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -25,19 +24,7 @@ public class NotificationsDialog extends DialogFragment{
 		final View view = inflater.inflate(R.layout.notifications_dialog_layout, null);
 		
 		NotificationManager manager = new NotificationManager(getActivity());
-		
-		/*notifications = manager.getNotifications();
-		
-		//TODO: get notifications
-		
-		if(notifications.isEmpty()){
 			
-			TextView tv = (TextView) view.findViewById(R.id.textViewNotificationDialogEmptyListText);
-			tv.setText("There are no new Notifications available");
-			tv.setVisibility(View.VISIBLE);
-		}*/
-			
-		
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
 		builder.setView(view);
@@ -46,7 +33,6 @@ public class NotificationsDialog extends DialogFragment{
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				// TODO: additional behavior goes here
 			}
 		});
 		

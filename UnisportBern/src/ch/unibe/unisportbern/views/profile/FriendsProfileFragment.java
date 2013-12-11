@@ -21,7 +21,7 @@ public class FriendsProfileFragment extends Fragment{
 	protected ExpandableListView listView;
 	protected SportsAdapter adapter;
 	
-	FavouritesManager manager;
+	private FavouritesManager manager;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

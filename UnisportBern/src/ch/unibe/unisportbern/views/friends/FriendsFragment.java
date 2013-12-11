@@ -3,7 +3,6 @@ package ch.unibe.unisportbern.views.friends;
 import ch.unibe.unisportbern.R;
 import ch.unibe.unisportbern.support.UserManager;
 import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,27 +11,28 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 
+/**
+ * This class is responsible showing the friends. It is actually the tab friends. 
+ * @author Thomas Steinmann
+ *
+ */
+
+
+
 public class FriendsFragment extends Fragment {
 
 	private View view;
-	// private NotificationArrayAdapter adapter;
 	private CustomFriendListAdapter adapter;
-
-	UserManager manager;
+	private UserManager manager;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 		view = inflater.inflate(R.layout.friends_fragment_layout, container, false);
 		ListView list = (ListView) view.findViewById(R.id.listViewFriends);
-		// adapter = new NotificationArrayAdapter(getActivity(), new String[0]);
-		adapter = new CustomFriendListAdapter(getActivity(), new String[0], manager);
-		// NotificationManager manager = new NotificationManager(getActivity());
-		// manager.checkNotification();
-		// manager.createView(adapter, list);
 		manager = new UserManager(getActivity());
+		adapter = new CustomFriendListAdapter(getActivity(), new String[0], manager);
 		manager.fillUserList();
-		// manager.orderSearchOtherUser("k");
 		manager.createView(adapter, list);
 
 		Button addButton = (Button) view.findViewById(R.id.buttonAddFriend);

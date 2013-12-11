@@ -8,7 +8,12 @@ import ch.unibe.unisportbern.views.details.SportsAdapter;
 import ch.unibe.unisportbern.views.friends.CustomFriendListAdapter;
 import android.content.Context;
 import android.widget.ExpandableListView;
-import android.widget.ListView;
+
+/**
+ * is responsible for managing the favourites of friends and your own as a user.
+ * 
+ * @author Karan Sethi
+ */
 
 public class FavouritesManager implements Observer {
 	
@@ -24,9 +29,21 @@ public class FavouritesManager implements Observer {
 		parse.addObserver(this);
 	}
 	
-	public ArrayList<Course> getFriendsFavourites(String username){
+	/**
+	 * gets the list of favourite of a specific friend.
+	 * 
+	 *
+	 */
+	
+	public ArrayList<Course> getFriendsFavourites(){
 		return parse.getFriendsFavorites();
 	}
+	
+	/**
+	 * fills the favourites of a specific friend into a list.
+	 * 
+	 * @param name of the friend
+	 */
 	
 	public void fillFriendsFavouritesList(String friendsUsername){
 		parse.fillFriendsFavorites(friendsUsername);
@@ -47,14 +64,14 @@ public class FavouritesManager implements Observer {
 		adapter.notifyDataSetChanged();
 		
 	}
+	/**
+	 * initalizes an adapter and sets it into a view
+	 * @param view it is given by the friendsprofilefragment class to set the adapter.
+	 * 
+	 */
 	
 	public void createView(ExpandableListView view){
 		adapter = new SportsAdapter(context, new ArrayList<Course>());
 		view.setAdapter(adapter);
-	}
-	
-	public void createView (ListView view , CustomFriendListAdapter fadapter ){
-		fadapter = testAdapter;
-		view.setAdapter(fadapter);
 	}
 }

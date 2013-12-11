@@ -37,6 +37,12 @@ public class BootReceiver extends BroadcastReceiver {
 	 }  
 	}
 	
+	/**
+	 * This method saves all the information received by the ReminderDialog.
+	 * @param intent It is the intent that we got by the ReminderDialog.
+	 *
+	 */
+	
 	private void saveReminderInfoToReceiver(Intent intent){
 		
 		 Bundle extras = intent.getExtras();

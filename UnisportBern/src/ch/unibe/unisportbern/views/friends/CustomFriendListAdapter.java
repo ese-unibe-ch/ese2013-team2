@@ -13,7 +13,15 @@ import android.widget.TextView;
 import ch.unibe.unisportbern.R;
 import ch.unibe.unisportbern.support.UserManager;
 
+/**
+ * This class is an adapter that is used to show the friends in a listview.
+ * @author Thomas Steinmann
+ *
+ */
+
 public class CustomFriendListAdapter extends CustomAdapter {
+	
+	
 
 	UserManager manager;
 	
@@ -40,7 +48,7 @@ public class CustomFriendListAdapter extends CustomAdapter {
 
 			@Override
 			public void onClick(View v) {
-				manager.deleteFriend(ParseUser.getCurrentUser().getString("username"), values[position], position);
+				manager.deleteFriend(values[position], position);
 			}
 		});
 

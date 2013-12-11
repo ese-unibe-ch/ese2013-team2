@@ -1,10 +1,9 @@
 package ch.unibe.unisportbern.views;
 
 import ch.unibe.unisportbern.notification.NotificationsDialog;
-import ch.unibe.unisportbern.parse.ParseMethodes;
 import ch.unibe.unisportbern.support.DBMethodes;
 import ch.unibe.unisportbern.support.SignManager;
-import ch.unibe.unisportbern.views.dialogs.SignUpDialog;
+import ch.unibe.unisportbern.views.dialogs.SignUpLogInDialog;
 import ch.unibe.unisportbern.views.friends.FriendsFragment;
 import ch.unibe.unisportbern.views.profile.ProfileFragment;
 
@@ -20,8 +19,6 @@ import android.view.MenuItem;
 import android.widget.ExpandableListView;
 
 public class MainActivity extends Activity {
-
-	boolean FIRSSTART = true;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +35,9 @@ public class MainActivity extends Activity {
 		SignManager manager = new SignManager(this);
 
 		if (!manager.automaticLogin()) {
-			DialogFragment signupFragment = new SignUpDialog();
+			DialogFragment signupFragment = new SignUpLogInDialog();
 			signupFragment.show(getFragmentManager(), "Welcome Dialog");
 		}
-		//parse.addFavourites(new Course(2, null, "", "", "", "", "", "", false, "", ""));
-		//parse.addFriend("kkk", "iii");
 
 		int index = getIntent().getIntExtra("index", -1);
 
@@ -64,7 +59,6 @@ public class MainActivity extends Activity {
 
 		actionbar.addTab(tab);
 
-		// exception needed?
 		if (index != -1) {
 			ExpandableListView list = (ExpandableListView) findViewById(R.id.expandableListViewFavourites);
 			list.expandGroup(index);

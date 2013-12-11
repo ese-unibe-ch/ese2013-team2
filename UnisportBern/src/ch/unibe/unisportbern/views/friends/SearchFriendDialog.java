@@ -16,10 +16,16 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+/**
+ * This class is the dialog that is shown when one wants to search for a user. 
+ * @author Thomas Steinmann
+ *
+ */
+
 public class SearchFriendDialog extends DialogFragment {
 
-	View view;
-	UserManager manager;
+	private View view;
+	private UserManager manager;
 	
 
 	@Override

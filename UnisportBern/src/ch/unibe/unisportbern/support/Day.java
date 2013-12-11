@@ -2,6 +2,12 @@ package ch.unibe.unisportbern.support;
 
 import java.util.Calendar;
 
+/**
+ * is responsible for calculating the next coming date for a specific day.
+ * 
+ * @author Michael Scheuerer
+ */
+
 public class Day {
 	
 	private String[] days;
@@ -15,6 +21,12 @@ public class Day {
 		this.days = new String[]{"So","Mo", "Di", "Mi", "Do", "Fr", "Sa"};
 		this.day = day;
 	}
+	
+	/**
+	 * this method is responsible for calculating the next date of a specific day.
+	 * 
+	 * @return it returns the format of a date.
+	 */
 	
 	public String getNextDay(){
 		

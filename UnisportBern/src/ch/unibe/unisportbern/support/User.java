@@ -1,5 +1,10 @@
 package ch.unibe.unisportbern.support;
 
+/**
+ * is responsible for displaying a user of this application.
+ * 
+ * @author Karan Sethi
+ */
 
 public class User {
 	

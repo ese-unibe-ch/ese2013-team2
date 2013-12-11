@@ -43,5 +43,7 @@
         <item>Evening</item>
     </string-array>
     <string name="ToastInvalidUsername">Username already exists or invalid username, please try again!</string>
+    <string name="ToastSignUp">Sign up successful!</string>
+    <string name="ToastLogIn">Log in successful!</string>
 
 </resources>

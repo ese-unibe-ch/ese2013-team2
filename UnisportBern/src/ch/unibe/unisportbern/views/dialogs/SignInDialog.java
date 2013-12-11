@@ -1,6 +1,6 @@
 package ch.unibe.unisportbern.views.dialogs;
 
-public class SignInDialog extends SignUpDialog{
+public class SignInDialog extends SignUpLogInDialog{
 
 	// TODO:
 	

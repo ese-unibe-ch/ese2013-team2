@@ -6,6 +6,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+/**
+ * is responsible for communication with the database.
+ * 
+ * @author Michael Scheuerer
+ */
+
 public class DBMethodes {
 
 	private Network network;

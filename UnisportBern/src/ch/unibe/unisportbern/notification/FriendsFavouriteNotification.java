@@ -6,6 +6,12 @@ import ch.unibe.unisportbern.support.Course;
 import ch.unibe.unisportbern.support.User;
 import ch.unibe.unisportbern.views.details.DActivity;
 
+/**
+ * is responsible for displaying a notification when a friend has added a course as a favourite.
+ * 
+ * @author Karan Sethi
+ */
+
 public class FriendsFavouriteNotification implements INotification {
 	
 	private User friend;

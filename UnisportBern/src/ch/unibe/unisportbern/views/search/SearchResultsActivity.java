@@ -11,17 +11,14 @@ import android.widget.ListView;
 
 public class SearchResultsActivity extends Activity {
 
-	Intent intent;
-	SearchHandler parameter;
-
-	ArrayList<IEvent> result;
-	ListView listView;
+	private Intent intent;
+	private SearchHandler parameter;
+	private ArrayList<IEvent> result;
+	private ListView listView;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		setup(savedInstanceState);
-	
-		//TODO: listView.setAdapter();
 	}
 
 	private void setup(Bundle savedInstanceState) {

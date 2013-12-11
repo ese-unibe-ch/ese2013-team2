@@ -15,9 +15,9 @@ import android.widget.TextView;
 public class StandardMessageDialog extends DialogFragment {
 
 	private View view;
-	String title;
-	String message;
-	String tag;
+	private String title;
+	private String message;
+	private String tag;
 	
 	
 	@Override

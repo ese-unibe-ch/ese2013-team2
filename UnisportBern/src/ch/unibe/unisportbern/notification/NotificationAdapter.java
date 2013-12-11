@@ -12,9 +12,9 @@ import ch.unibe.unisportbern.views.friends.CustomAdapter;
 
 public class NotificationAdapter extends CustomAdapter {
 
-	NotificationManager manager;
-	INotification[] values;
-	Context context;
+	private NotificationManager manager;
+	private INotification[] values;
+	private Context context;
 
 	public NotificationAdapter(Context context, int reference, INotification[] values) {
 		super(context, reference, toString(values));

@@ -1,9 +1,7 @@
 package ch.unibe.unisportbern.views.friends;
 
-import com.parse.ParseUser;
 
 import ch.unibe.unisportbern.R;
-import ch.unibe.unisportbern.support.UserManager;
 import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,6 +10,12 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+/**
+ * This class adapter is responsible for showing the results in the search view.
+ * @author Thomas Steinmann
+ *
+ */
 
 public class CustomFriendResultListAdapter extends CustomAdapter {
 
@@ -42,7 +46,7 @@ public class CustomFriendResultListAdapter extends CustomAdapter {
 
 			@Override
 			public void onClick(View v) {
-				fragment.getManager().addFriend(values[position], ParseUser.getCurrentUser().getString("username"));
+				fragment.getManager().addFriend(values[position]);
 				dialog.cancel();
 			}
 		});

@@ -19,7 +19,5 @@ public class ProfileWrapperActivity extends Activity{
         
         getFragmentManager().beginTransaction().add(R.id.profile_wrapper_layout, fragment, "friend").commit();
         
-        // TODO: add when working
-        //getActionBar().setDisplayHomeAsUpEnabled(true);
     }	
 }

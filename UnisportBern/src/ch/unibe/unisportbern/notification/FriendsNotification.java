@@ -6,10 +6,15 @@ import android.content.Intent;
 import ch.unibe.unisportbern.support.User;
 import ch.unibe.unisportbern.views.friends.ProfileWrapperActivity;
 
+/**
+ * is responsible for displaying a notification when a friend has added you as user as a friend.
+ * 
+ * @author Karan Sethi
+ */
+
 public class FriendsNotification implements INotification {
 	
 	private User newFriend;
-	
 	
 	public FriendsNotification(User newFriend){
 		this.newFriend = newFriend;

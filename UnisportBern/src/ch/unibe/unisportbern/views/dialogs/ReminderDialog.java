@@ -19,6 +19,12 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+/**
+ * This class is responsible for the dialog that appears when on wants to set a reminder for a specific course.
+ * @author Thomas Steinmann
+ *
+ */
+
 public class ReminderDialog extends DialogFragment {
 	
 	private int min = -1;

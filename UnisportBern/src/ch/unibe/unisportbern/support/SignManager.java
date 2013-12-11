@@ -9,11 +9,17 @@ import android.widget.Toast;
 
 import ch.unibe.unisportbern.R;
 import ch.unibe.unisportbern.parse.ParseMethodes;
-import ch.unibe.unisportbern.views.dialogs.SignUpDialog;
+import ch.unibe.unisportbern.views.dialogs.SignUpLogInDialog;
+
+/**
+ * is responsible for managing the sign ups and logging in into the application
+ * 
+ * @author Karan Sethi
+ */
 
 public class SignManager implements Observer {
 	
-	private SignUpDialog dialog;
+	private SignUpLogInDialog dialog;
 	private ParseMethodes parse;
 	private Context context;
 	private String username;
@@ -25,40 +31,45 @@ public class SignManager implements Observer {
 		parse.addObserver(this);
 	}
 	
-	public void signup(String username, String password){
-		parse.signingUp(username,password);
-	}
+	/**
+	 * This method looks for the username in the cache.
+	 * @return if true the the login will be done automatically else register.
+	 *
+	 */
+	
 	
 	public boolean automaticLogin(){
 		return parse.automaticLogin();
 	}
 	
-	public void logIn(String username, String password){
+	public void logInOrSignUp(String username, String password){
 		parse.loggingIn(username, password);
 	}
-	
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		if(parse.isInvalid()==true || username.isEmpty()|| password.isEmpty()){
-			dialog = new SignUpDialog();
-			dialog.show(((Activity) context).getFragmentManager(), "Welcome Dialog");
-			Toast.makeText(context, R.string.ToastInvalidUsername, Toast.LENGTH_LONG).show();
-		}
-		
-		else if (parse.isWrongLogin()==true|| username.isEmpty()||password.isEmpty()){
-			dialog = new SignUpDialog();
-			dialog.show(((Activity) context).getFragmentManager(), "Welcome Dialog");
-			Toast.makeText(context, R.string.ToastInvalidUsername, Toast.LENGTH_LONG).show();
-		}
+		if(parse.isInvalid())
+			restartDialog();
 	}
 	
-	public void saveInManger(String newUsername, String newPassword){
+	/**
+	 * looks if the username and password are empty and restart the dialog. or saves them and calls the method to sign up or log in.
+	 * @param newUsername username given into the register dialog
+	 * @param newPassword given
+	 */
+	public void saveAndlogIn(String newUsername, String newPassword){
 		username = newUsername;
 		password = newPassword;
+		if(username.isEmpty() || password.isEmpty())
+		restartDialog();
+		else
+			this.logInOrSignUp(newUsername, newPassword);
 	}
 	
-	public void isDuplicateUsername(String newUsername){
-		parse.isDuplicate(newUsername);
+	private void restartDialog(){
+		dialog = new SignUpLogInDialog();
+		dialog.show(((Activity) context).getFragmentManager(), "Welcome Dialog");
+		Toast.makeText(context, R.string.ToastInvalidUsername, Toast.LENGTH_LONG).show();
+		
 	}
 
 }
