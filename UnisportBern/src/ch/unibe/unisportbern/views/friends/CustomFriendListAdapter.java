@@ -13,12 +13,13 @@ import android.widget.TextView;
 import ch.unibe.unisportbern.R;
 import ch.unibe.unisportbern.support.UserManager;
 
+
 /**
- * This class is an adapter that is used to show the friends in a listview.
- * @author Thomas Steinmann
+ * The Adapter that fits with the ListView in the friens_fragment_layout
+ * 
+ * @author Thomas
  *
  */
-
 public class CustomFriendListAdapter extends CustomAdapter {
 	
 	

@@ -1,6 +1,5 @@
 package ch.unibe.unisportbern.views;
 
-import ch.unibe.unisportbern.notification.NotificationsDialog;
 import ch.unibe.unisportbern.support.DBMethodes;
 import ch.unibe.unisportbern.support.SignManager;
 import ch.unibe.unisportbern.views.dialogs.SignUpLogInDialog;
@@ -14,10 +13,13 @@ import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.app.DialogFragment;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ExpandableListView;
 
+/**
+ * provides the actionbar and nests all tabs. works as the context for most of the app.
+ * @author Thomas
+ *
+ */
 public class MainActivity extends Activity {
 	
 	@Override
@@ -67,20 +69,20 @@ public class MainActivity extends Activity {
 		dbMethodes.getCourse(2);
 	}
 
-	@Override
+	/*@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main_activity_actions, menu);
 		return true;
-	}
+	}*/
 
-	@Override
+	/*@Override
 	/**
 	 * defines the action performed when a button is clicked
 	 * 
 	 * @item	the button that has been clicked
 	 */
-	public boolean onOptionsItemSelected(MenuItem item) {
+	/*public boolean onOptionsItemSelected(MenuItem item) {
 
 		if (item.getItemId() == R.id.notifications){
 			// TODO:
@@ -90,5 +92,5 @@ public class MainActivity extends Activity {
 		}
 		
 		return super.onOptionsItemSelected(item);
-	}
+	}*/
 }

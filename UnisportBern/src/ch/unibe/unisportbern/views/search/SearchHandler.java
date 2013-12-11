@@ -10,6 +10,13 @@ import android.app.Activity;
 import android.os.Parcel;
 import android.os.Parcelable;
  
+/**
+ * stores searchparameters and can be sent via an intent.
+ * Also provides some functionality to search with by the given parameters.
+ * 
+ * @author Thomas
+ *
+ */
 public class SearchHandler implements Parcelable
 {	
 	private int nameOrTime; // search by name(0) or time(1)

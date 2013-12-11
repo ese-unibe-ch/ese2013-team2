@@ -3,6 +3,11 @@ package ch.unibe.unisportbern.views.friends;
 import android.content.Context;
 import android.widget.ArrayAdapter;
 
+/**
+ * to be implemented when a adapter for a listview is needed.
+ * @author Thomas
+ *
+ */
 public class CustomAdapter extends ArrayAdapter<String>{
 
 	protected String[] values;

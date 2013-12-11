@@ -32,7 +32,10 @@ public class SportsFragment extends Fragment {
 	private ArrayList<IEvent> events;
 	private boolean searchActive;
 	
-
+	/**
+	 * Displays either all sports or a selection of sports. The search functionality is also included in the Sportsfragment
+	 * 
+	 */
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		searchActive = false;

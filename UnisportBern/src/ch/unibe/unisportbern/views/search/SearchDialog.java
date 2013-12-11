@@ -15,6 +15,12 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import ch.unibe.unisportbern.R;
 
+/**
+ * allows the user to input searchvalues, is called from sportstab.
+ * 
+ * @author Thomas
+ *
+ */
 public class SearchDialog extends DialogFragment {
 	
 	@Override

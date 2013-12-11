@@ -12,6 +12,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 
+/**
+ * to be displayed when the notifications button is pushed
+ * 
+ * @author Thomas
+ *
+ */
 public class NotificationsDialog extends DialogFragment{
 
 	private ArrayList<INotification> notifications;

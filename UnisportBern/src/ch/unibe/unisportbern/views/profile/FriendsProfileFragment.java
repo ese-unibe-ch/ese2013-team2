@@ -1,7 +1,5 @@
 package ch.unibe.unisportbern.views.profile;
 
-import java.util.ArrayList;
-
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,10 +9,15 @@ import android.widget.ExpandableListView;
 import android.widget.TextView;
 
 import ch.unibe.unisportbern.R;
-import ch.unibe.unisportbern.support.Course;
 import ch.unibe.unisportbern.support.FavouritesManager;
 import ch.unibe.unisportbern.views.details.SportsAdapter;
 
+/**
+ * a slightly altered version of the ProfileFragment for displaying the profile of a friend instead of the users.
+ * 
+ * @author Thomas
+ *
+ */
 public class FriendsProfileFragment extends Fragment{
 	
 	protected String userName;
